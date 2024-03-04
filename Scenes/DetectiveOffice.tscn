@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://3tn1o525br5"]
+
+[ext_resource type="Texture2D" uid="uid://dgwfuiv4aeayf" path="res://Art Assets/DetectiveOffice.png" id="1_hr8we"]
+[ext_resource type="Texture2D" uid="uid://bhr555jpmpi3a" path="res://Art Assets/TestTarget.png" id="2_ckodd"]
+[ext_resource type="Script" path="res://Scripts/Objects/Environment/DebugScreenSlider.cs" id="3_on8kr"]
+[ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="4_aefr5"]
+[ext_resource type="Texture2D" uid="uid://evexanvo4noa" path="res://Art Assets/FrameHelper.png" id="5_xxw6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xeoym"]
+size = Vector2(26, 27)
+
+[node name="Investigation" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-47, -105)
+texture = ExtResource("1_hr8we")
+centered = false
+
+[node name="TestTarget" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(236, 59)
+texture = ExtResource("2_ckodd")
+script = ExtResource("3_on8kr")
+
+[node name="Area2D" type="Area2D" parent="TestTarget"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestTarget/Area2D"]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_xeoym")
+
+[node name="Pointer" parent="." instance=ExtResource("4_aefr5")]
+
+[node name="Frame" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -1)
+texture = ExtResource("5_xxw6f")
+centered = false
+
+[connection signal="area_entered" from="TestTarget/Area2D" to="TestTarget" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="TestTarget/Area2D" to="TestTarget" method="_on_area_2d_area_exited"]
+[connection signal="input_event" from="TestTarget/Area2D" to="TestTarget" method="_on_area_2d_input_event"]

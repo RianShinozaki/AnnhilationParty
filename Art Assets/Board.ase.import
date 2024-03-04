@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://clwcyujwhqodk"
+path="res://.godot/imported/Board.ase-9a9d3cfdcdc5f0e5cadb061d3ad35c3c.res"
+
+[deps]
+
+source_file="res://Art Assets/Board.ase"
+dest_files=["res://.godot/imported/Board.ase-9a9d3cfdcdc5f0e5cadb061d3ad35c3c.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

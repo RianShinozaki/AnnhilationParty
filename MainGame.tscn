@@ -1,0 +1,231 @@
+[gd_scene load_steps=20 format=3 uid="uid://ckkmahvxvbxj7"]
+
+[ext_resource type="Texture2D" uid="uid://npb8bivfwrh1" path="res://Art Assets/DetectiveBoard.png" id="1_2fsyx"]
+[ext_resource type="Script" path="res://Scripts/System/GameController.cs" id="1_boi1k"]
+[ext_resource type="Texture2D" uid="uid://djyuqjia8q62q" path="res://Art Assets/DetectiveOffice.png" id="2_tx3jc"]
+[ext_resource type="Texture2D" uid="uid://cck8feglyg4h4" path="res://Art Assets/Divider2.png" id="3_ipxs1"]
+[ext_resource type="Shader" path="res://Shaders/splitScreen.gdshader" id="3_j1gh7"]
+[ext_resource type="Texture2D" uid="uid://car8d6fmosijm" path="res://Art Assets/Pointer.png" id="4_kjhbg"]
+[ext_resource type="Script" path="res://Scripts/System/Screen.cs" id="6_dgpa3"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fycyq"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_y52jd"]
+script/source = "using Godot;
+using System;
+
+public partial class Clickable : Sprite2D
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+
+	private void _on_area_2d_input_event(Node viewport, InputEvent @event, int shape_idx) {
+		if(@event is InputEventMouseButton inputEventMouseButton) {
+			GD.Print(\"click Test 1\");
+			//if(inputEventMouseButton.)
+		}
+	}
+}
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l8r4i"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_x03pj"]
+script/source = "using Godot;
+using System;
+
+public partial class Pointer : Sprite3D
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		Position = new Vector3(GameController.mousePos.X, GameController.mousePos.Y, -0.5f);
+	}
+}
+"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_f7d3x"]
+viewport_path = NodePath("Investigation/Investigation")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2x7fb"]
+viewport_path = NodePath("Board/Board")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_biqi6"]
+resource_local_to_scene = true
+shader = ExtResource("3_j1gh7")
+shader_parameter/viewport_size = Vector2(160, 90)
+shader_parameter/split_line_thickness = 0.0
+shader_parameter/split_line_color = Vector4(1, 1, 1, 1)
+shader_parameter/split_slope = 3.81
+shader_parameter/split_origin = Vector2(1, 0)
+shader_parameter/viewport1 = SubResource("ViewportTexture_f7d3x")
+shader_parameter/viewport2 = SubResource("ViewportTexture_2x7fb")
+
+[sub_resource type="QuadMesh" id="QuadMesh_y801q"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_85l6x"]
+viewport_path = NodePath("Board/Board")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ww6v1"]
+viewport_path = NodePath("Investigation/Investigation")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hx6g7"]
+resource_local_to_scene = true
+shader = ExtResource("3_j1gh7")
+shader_parameter/viewport_size = Vector2(1152, 648)
+shader_parameter/split_line_thickness = 1.0
+shader_parameter/split_line_color = null
+shader_parameter/split_slope = 5.0
+shader_parameter/split_origin = Vector2(1, 0)
+shader_parameter/viewport1 = SubResource("ViewportTexture_85l6x")
+shader_parameter/viewport2 = SubResource("ViewportTexture_ww6v1")
+
+[sub_resource type="Environment" id="Environment_u71wa"]
+background_energy_multiplier = 0.0
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GameController" type="Node" parent="."]
+script = ExtResource("1_boi1k")
+
+[node name="Board" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Board" type="SubViewport" parent="Board"]
+handle_input_locally = false
+physics_object_picking = true
+physics_object_picking_sort = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Board/Board"]
+projection = 1
+size = 1.4
+
+[node name="Board" type="Node3D" parent="Board/Board/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="Sprite3D" type="Sprite3D" parent="Board/Board/Camera3D/Board"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.435, 0.03, 0)
+pixel_size = 0.0078
+transparent = false
+texture_filter = 0
+texture = ExtResource("1_2fsyx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board/Board/Camera3D/Board"]
+transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, -0.455926, 0, 0)
+mesh = SubResource("SphereMesh_fycyq")
+script = SubResource("CSharpScript_y52jd")
+
+[node name="Area3D" type="Area3D" parent="Board/Board/Camera3D/Board/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/Board/Camera3D/Board/MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_l8r4i")
+
+[node name="Investigation" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Investigation" type="SubViewport" parent="Investigation"]
+handle_input_locally = false
+physics_object_picking = true
+physics_object_picking_sort = true
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Investigation/Investigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+projection = 1
+size = 1.4
+
+[node name="Investigation" type="Node3D" parent="Investigation/Investigation/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16098, -0.36829, -0.699962)
+
+[node name="Sprite3D" type="Sprite3D" parent="Investigation/Investigation/Camera3D/Investigation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.791, 0.073, -0.3)
+pixel_size = 0.0078
+transparent = false
+texture_filter = 0
+texture = ExtResource("2_tx3jc")
+
+[node name="Pointer" type="Sprite3D" parent="Investigation/Investigation/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+visible = false
+pixel_size = 0.0078
+texture_filter = 0
+texture = ExtResource("4_kjhbg")
+script = SubResource("CSharpScript_x03pj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Investigation/Investigation/Camera3D"]
+transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0.37547, 0, -0.884503)
+mesh = SubResource("SphereMesh_fycyq")
+script = SubResource("CSharpScript_y52jd")
+
+[node name="Area3D" type="Area3D" parent="Investigation/Investigation/Camera3D/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Investigation/Investigation/Camera3D/MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_l8r4i")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_dgpa3")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+material = SubResource("ShaderMaterial_biqi6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1112.0
+offset_bottom = 608.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_2fsyx")
+expand_mode = 1
+
+[node name="SplitLine" type="Control" parent="Control"]
+anchors_preset = 0
+offset_left = 1152.0
+offset_right = 1192.0
+offset_bottom = 40.0
+
+[node name="SplitLine" type="TextureRect" parent="Control/SplitLine"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -320.0
+offset_right = -24.0
+offset_bottom = 608.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ipxs1")
+expand_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("QuadMesh_y801q")
+surface_material_override/0 = SubResource("ShaderMaterial_hx6g7")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u71wa")
+
+[connection signal="mouse_entered" from="Board/Board/Camera3D/Board/MeshInstance3D/Area3D" to="Board/Board/Camera3D/Board/MeshInstance3D" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_entered" from="Investigation/Investigation/Camera3D/MeshInstance3D/Area3D" to="Investigation/Investigation/Camera3D/MeshInstance3D" method="_on_area_3d_mouse_entered"]

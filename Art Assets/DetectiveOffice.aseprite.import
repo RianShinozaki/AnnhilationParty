@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://c8olw1y88yivp"
+path="res://.godot/imported/DetectiveOffice.aseprite-03058656acc10527b5ee86d380e47f22.res"
+
+[deps]
+
+source_file="res://Art Assets/DetectiveOffice.aseprite"
+dest_files=["res://.godot/imported/DetectiveOffice.aseprite-03058656acc10527b5ee86d380e47f22.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

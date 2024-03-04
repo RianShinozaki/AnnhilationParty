@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://coa3n4qcg0a3t"]
+
+[ext_resource type="Shader" path="res://Shaders/splitScreen.gdshader" id="1_a33m0"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_a33m0")
+shader_parameter/viewport_size = null
+shader_parameter/split_line_thickness = null
+shader_parameter/split_line_color = null
+shader_parameter/split_slope = null
+shader_parameter/split_origin = null

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://vp8daweruw2t"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Clickable.cs" id="1_etqfx"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_q1n21"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_bjcch"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+physics_object_picking = true
+physics_object_picking_sort = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76997, 0, 2.45341)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.21, 0, 0, 0, 0.21, 0, 0, 0, 0.21, 0.0647216, 0, -1.16295)
+mesh = SubResource("SphereMesh_q1n21")
+script = ExtResource("1_etqfx")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+shape = SubResource("SphereShape3D_bjcch")
+
+[connection signal="mouse_entered" from="MeshInstance3D/Area3D" to="MeshInstance3D" method="_on_area_3d_mouse_entered"]

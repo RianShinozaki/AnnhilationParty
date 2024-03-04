@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://b4gbtqoxlv630"
+path="res://.godot/imported/FrameHelper.aseprite-99a020933b40089dcd2ea76f6ee3859d.res"
+
+[deps]
+
+source_file="res://Art Assets/FrameHelper.aseprite"
+dest_files=["res://.godot/imported/FrameHelper.aseprite-99a020933b40089dcd2ea76f6ee3859d.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

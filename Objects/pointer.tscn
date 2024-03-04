@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bokf3bdem5cn8"]
+
+[ext_resource type="Texture2D" uid="uid://car8d6fmosijm" path="res://Art Assets/Pointer.png" id="1_6ajif"]
+[ext_resource type="Script" path="res://Scripts/System/Pointer.cs" id="2_7hewo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gpcyk"]
+radius = 2.0
+
+[node name="Pointer" type="Sprite2D"]
+visible = false
+texture_filter = 1
+position = Vector2(152, 87)
+texture = ExtResource("1_6ajif")
+script = ExtResource("2_7hewo")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gpcyk")

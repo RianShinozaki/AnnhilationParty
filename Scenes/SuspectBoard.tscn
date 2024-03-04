@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7ciicikyr5s2"]
+
+[ext_resource type="Texture2D" uid="uid://c0b7dxgbx0mt4" path="res://Art Assets/Board.png" id="1_46h16"]
+[ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="4_gc7ut"]
+[ext_resource type="Texture2D" uid="uid://evexanvo4noa" path="res://Art Assets/FrameHelper.png" id="5_e8pn7"]
+
+[node name="Board" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-58, -8)
+texture = ExtResource("1_46h16")
+centered = false
+
+[node name="Pointer" parent="." instance=ExtResource("4_gc7ut")]
+
+[node name="Frame" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -1)
+texture = ExtResource("5_e8pn7")
+centered = false

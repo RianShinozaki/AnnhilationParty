@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dab07dflhwun4"]
+
+[ext_resource type="FontFile" uid="uid://buu42evyolhg7" path="res://Font/Greybeard-11px.ttf" id="1_3bsqx"]
+
+[resource]
+default_font = ExtResource("1_3bsqx")
+default_font_size = 11

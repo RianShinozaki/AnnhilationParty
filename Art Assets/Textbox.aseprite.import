@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://dly86r5ti14gr"
+path="res://.godot/imported/Textbox.aseprite-c5d6cca22955ff40b3ed1b0245645a2f.res"
+
+[deps]
+
+source_file="res://Art Assets/Textbox.aseprite"
+dest_files=["res://.godot/imported/Textbox.aseprite-c5d6cca22955ff40b3ed1b0245645a2f.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false
