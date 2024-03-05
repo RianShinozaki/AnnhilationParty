@@ -7,7 +7,7 @@
 [ext_resource type="Shader" path="res://Shaders/splitScreen.gdshader" id="3_ggccd"]
 [ext_resource type="Texture2D" uid="uid://cck8feglyg4h4" path="res://Art Assets/Divider2.png" id="6_3h7n4"]
 [ext_resource type="FontFile" uid="uid://or16hm10ws1k" path="res://Font/SignwoodItalic-K74BA.ttf" id="7_chxhd"]
-[ext_resource type="PackedScene" uid="uid://k8rwx7o3go0e" path="res://Objects/System/textbox_system.tscn" id="10_fyxm3"]
+[ext_resource type="PackedScene" uid="uid://k8rwx7o3go0e" path="res://Objects/System/Dialogue/textbox_system.tscn" id="10_fyxm3"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l607p"]
 viewport_path = NodePath("Control/Investigation/SubViewport")

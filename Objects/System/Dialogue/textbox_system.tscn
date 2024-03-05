@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://k8rwx7o3go0e"]
+[gd_scene load_steps=5 format=3 uid="uid://k8rwx7o3go0e"]
 
 [ext_resource type="Texture2D" uid="uid://c5fk27f4oevx1" path="res://Art Assets/Textbox.png" id="1_86u3a"]
+[ext_resource type="Script" path="res://Scripts/System/textbox_system.cs" id="1_y2i8b"]
+[ext_resource type="PackedScene" uid="uid://bstrfkdu5ivds" path="res://Objects/System/Dialogue/response.tscn" id="2_8t2sx"]
 [ext_resource type="Theme" uid="uid://dab07dflhwun4" path="res://Font/Textbox.tres" id="2_n4sfx"]
 
-[node name="TextboxSystem" type="Control"]
+[node name="TextboxSystem" type="Control" node_paths=PackedStringArray("ResponseGroup")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_y2i8b")
+ResponseGroup = NodePath("Container/Responses/Vertical Group")
+ResponseButton = ExtResource("2_8t2sx")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -26,6 +31,16 @@ grow_vertical = 0
 pivot_offset = Vector2(0, 28)
 texture = ExtResource("1_86u3a")
 
+[node name="NextButton" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 225.0
+offset_top = 156.0
+offset_right = 257.0
+offset_bottom = 175.0
+theme = ExtResource("2_n4sfx")
+text = "Next"
+
 [node name="Container" type="Control" parent="."]
 anchors_preset = 0
 offset_left = 63.0
@@ -34,7 +49,6 @@ offset_right = 256.0
 offset_bottom = 156.0
 
 [node name="Dialogue" type="RichTextLabel" parent="Container"]
-visible = false
 texture_filter = 1
 layout_mode = 2
 offset_right = 193.0
@@ -51,10 +65,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Vertical Group" type="VBoxContainer" parent="Container/Responses"]
+visible = false
 layout_mode = 2
 
-[node name="Response" type="Button" parent="Container/Responses/Vertical Group"]
-texture_filter = 1
+[node name="Response" parent="Container/Responses/Vertical Group" instance=ExtResource("2_8t2sx")]
 layout_mode = 2
-theme = ExtResource("2_n4sfx")
-text = "Response 1"
+
+[connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bstrfkdu5ivds"]
+
+[ext_resource type="Theme" uid="uid://dab07dflhwun4" path="res://Font/Textbox.tres" id="1_3vwtr"]
+[ext_resource type="Script" path="res://Objects/System/Dialogue/ResponseButton.cs" id="2_eth34"]
+
+[node name="Response" type="Button"]
+texture_filter = 1
+theme = ExtResource("1_3vwtr")
+text = "Response 1"
+script = ExtResource("2_eth34")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://3tn1o525br5"]
 
-[ext_resource type="Texture2D" uid="uid://dgwfuiv4aeayf" path="res://Art Assets/DetectiveOffice.png" id="1_hr8we"]
+[ext_resource type="Texture2D" uid="uid://ir52vpxpuy84" path="res://Art Assets/IMG_0239.webp" id="1_f1b38"]
 [ext_resource type="Texture2D" uid="uid://bhr555jpmpi3a" path="res://Art Assets/TestTarget.png" id="2_ckodd"]
 [ext_resource type="Script" path="res://Scripts/Objects/Environment/DebugScreenSlider.cs" id="3_on8kr"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="4_aefr5"]
@@ -13,11 +13,13 @@ size = Vector2(26, 27)
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-47, -105)
-texture = ExtResource("1_hr8we")
+position = Vector2(-57, -60)
+scale = Vector2(0.422925, 0.422925)
+texture = ExtResource("1_f1b38")
 centered = false
 
 [node name="TestTarget" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(236, 59)
 texture = ExtResource("2_ckodd")

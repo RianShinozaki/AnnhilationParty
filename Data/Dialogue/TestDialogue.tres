@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="DialogueSet" load_steps=2 format=3 uid="uid://dd5erng7qs266"]
+
+[ext_resource type="Script" path="res://Data/Dialogue/DialogueSet.cs" id="1_we4pl"]
+
+[resource]
+script = ExtResource("1_we4pl")
+lines = PackedStringArray("First line of dialogue", "Second line of dialogue!", "Third line! are you there god")

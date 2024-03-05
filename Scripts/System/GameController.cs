@@ -19,7 +19,6 @@ public partial class GameController : Node
     {
         base._Process(delta);
 		splitX = Mathf.Lerp(splitX, wishSplitX, 0.1f);
-		GD.Print(splitX);
     }
 }
 

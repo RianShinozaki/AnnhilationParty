@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uwfula6blgkc"
-path="res://.godot/imported/aravox-logo.png-5b10a3661a0f0bda74e19be3092a6186.ctex"
+uid="uid://ir52vpxpuy84"
+path="res://.godot/imported/IMG_0239.webp-8a88f9fec80c1d2839516efb7f8533c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/aravox/other/aravox-logo.png"
-dest_files=["res://.godot/imported/aravox-logo.png-5b10a3661a0f0bda74e19be3092a6186.ctex"]
+source_file="res://Art Assets/IMG_0239.webp"
+dest_files=["res://.godot/imported/IMG_0239.webp-8a88f9fec80c1d2839516efb7f8533c4.ctex"]
 
 [params]
 
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
