@@ -1,11 +1,13 @@
 using Godot;
 using System;
 
-public partial class Clickable : Sprite2D
+public partial class Clickable : Area2D
 {
 	bool mouseOver = false;
 	public override void _Ready()
 	{
+		AreaEntered += _on_area_2d_area_entered;
+		AreaExited += _on_area_2d_area_exited;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

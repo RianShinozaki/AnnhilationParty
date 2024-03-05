@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkd0crjuwbxca"]
+
+[ext_resource type="Texture2D" uid="uid://i342h1t7gdkp" path="res://Art Assets/ButcherShop.png" id="1_ao1t6"]
+[ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="2_lvhp5"]
+
+[node name="Office" type="Node2D"]
+position = Vector2(-1.52588e-05, 0)
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-176, -93)
+scale = Vector2(4, 4)
+texture = ExtResource("1_ao1t6")
+centered = false
+
+[node name="Pointer" parent="." instance=ExtResource("2_lvhp5")]

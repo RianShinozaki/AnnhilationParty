@@ -4,10 +4,9 @@
 [ext_resource type="Script" path="res://Scripts/System/Pointer.cs" id="2_7hewo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gpcyk"]
-radius = 2.0
+radius = 7.0
 
 [node name="Pointer" type="Sprite2D"]
-visible = false
 texture_filter = 1
 position = Vector2(152, 87)
 texture = ExtResource("1_6ajif")

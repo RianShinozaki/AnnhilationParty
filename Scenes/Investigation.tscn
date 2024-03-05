@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://3tn1o525br5"]
+
+[ext_resource type="Script" path="res://Scripts/UI/InvestigationScene.cs" id="1_o1gyx"]
+[ext_resource type="PackedScene" uid="uid://ctasrud4l0rp2" path="res://Scenes/office.tscn" id="2_wwxdb"]
+[ext_resource type="Texture2D" uid="uid://evexanvo4noa" path="res://Art Assets/FrameHelper.png" id="5_xxw6f"]
+
+[sub_resource type="Gradient" id="Gradient_xcl6s"]
+colors = PackedColorArray(0, 0, 0, 1, 0.15167, 0.0961784, 0.0760967, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tmmht"]
+gradient = SubResource("Gradient_xcl6s")
+
+[node name="Investigation" type="Node2D"]
+script = ExtResource("1_o1gyx")
+
+[node name="SpecificSceneHolder" type="Node2D" parent="."]
+
+[node name="Office" parent="SpecificSceneHolder" instance=ExtResource("2_wwxdb")]
+
+[node name="Fade" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.945098)
+position = Vector2(640, 356)
+scale = Vector2(5.07812, 744)
+texture = SubResource("GradientTexture1D_tmmht")
+
+[node name="Frame" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-4, -4)
+scale = Vector2(4, 4)
+texture = ExtResource("5_xxw6f")
+centered = false

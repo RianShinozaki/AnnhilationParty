@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ctasrud4l0rp2"]
+
+[ext_resource type="Texture2D" uid="uid://d1mqlas4woor8" path="res://Art Assets/Untitled_Artwork.webp" id="1_0go05"]
+[ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="2_t3on5"]
+
+[node name="Office" type="Node2D"]
+position = Vector2(-1.52588e-05, 0)
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-181, -123)
+scale = Vector2(1.37222, 1.37222)
+texture = ExtResource("1_0go05")
+centered = false
+
+[node name="Pointer" parent="." instance=ExtResource("2_t3on5")]

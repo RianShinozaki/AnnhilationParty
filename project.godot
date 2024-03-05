@@ -11,18 +11,18 @@ config_version=5
 [application]
 
 config/name="Annihilation Party"
-run/main_scene="res://MainGame2D.tscn"
+run/main_scene="res://Init.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-AraVox="*res://addons/aravox/aravox.gd"
+GameController="*res://Scripts/System/GameController.cs"
 
 [display]
 
-window/size/viewport_width=320
-window/size/viewport_height=180
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="viewport"
