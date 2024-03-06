@@ -33,7 +33,6 @@ public partial class InvestigationScene : Node2D
 	}
 	public void OnSwitchScene() {
 		GameController.Instance.OnSwitchScene();
-		GameController.Instance.SwitchSceneTransitionBegin -= OnSwitchSceneTransitionBegin;
 		instantiatedScene.QueueFree();
 		instantiatedScene = toScene.Instantiate();
 		GetNode("SpecificSceneHolder").AddChild(instantiatedScene);

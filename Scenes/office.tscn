@@ -14,3 +14,4 @@ texture = ExtResource("1_0go05")
 centered = false
 
 [node name="Pointer" parent="." instance=ExtResource("2_t3on5")]
+modulate = Color(0, 1, 1, 1)

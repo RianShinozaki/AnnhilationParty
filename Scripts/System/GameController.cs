@@ -27,6 +27,30 @@ public partial class GameController : Node
 	public static float split2X;
 	public static float split3X;
 	static float wishSplitX;
+    public static Speaker theSpeaker;
+    public static Location currentLocation;
+    public static GameState currentState;
+
+
+    const int MORNING = 0;
+    const int EVENING = 1;
+    const int NIGHTFALL = 2;
+
+    public static int currentTime = 0;
+
+    public static int currentDay = 1;
+
+    public const int BUTCHER = 0;
+    public const int SOFTWARE = 1;
+    public const int TEACHER = 2;
+    public const int BARTENDER = 3;
+    public const int OCCULTER = 4;
+    public const int OLDGUARD = 5;
+
+    public static float money;
+    public static Godot.Collections.Array items = new Godot.Collections.Array();
+
+    public static float[] trustLevels = new float[5];
 
     public override void _Ready()
     {
@@ -34,6 +58,12 @@ public partial class GameController : Node
         wishSplitX = 225;
         GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile, "res://MainGame2D.tscn");
         Instance = this;
+
+        for(int i = 0; i < trustLevels.Length; i++) {
+            trustLevels[i] = 0;
+        }
+
+        money = 100;
     }
     public static void SetSplitX(float x) {
 		wishSplitX = x;
@@ -51,7 +81,15 @@ public partial class GameController : Node
     }
     public void OnSwitchSceneTransitionBegin(string newScene) {
         EmitSignal(SignalName.SwitchSceneTransitionBegin, newScene);
-        wishSplitX = 50;
+        if(currentLocation == Location.Office) {
+            wishSplitX = 225;
+            currentTime++;
+        } else {
+            wishSplitX = 50;
+        }
+    }
+    public static void AddToInventory(Item item) {
+        items.Add(item);
     }
 }
 

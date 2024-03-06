@@ -10,6 +10,7 @@ public partial class textbox_system : Control
 	public float visibleT;
 	public Button nextButton;
 	bool responseMode = false;
+	public static textbox_system Instance;
 
 	[Export] Control ResponseGroup;
 	[Export] PackedScene ResponseButton;
@@ -18,95 +19,19 @@ public partial class textbox_system : Control
     {
 		dialogue = GetNode("Container").GetNode<RichTextLabel>("Dialogue");
 		nextButton = GetNode<Button>("NextButton");
-
+		Instance = this;
         base._Ready();
-		GetNextDialogue(0);
+		Visible = false;
     }
 
 	public void GetNextDialogue(int id) {
-		switch(id){
-			case 0:
-				dialogueSet = new DialogueSet(
-					new Godot.Collections.Array{
-						"Dialogue line 1",
-						"Dialogue line 2",
-						"Dialogue line 3"
-					},
-					new Godot.Collections.Array{
-						"test_1",
-						"test_2",
-						"test_3"
-					},
-					new Godot.Collections.Array{
-
-					},
-					new Godot.Collections.Array{
-						1
-					}
-				);
-				break;
-			case 1:
-
-				dialogueSet = new DialogueSet(
-					new Godot.Collections.Array{
-						"Let me ask you a question...",
-						"Yes or no?",
-					},
-					new Godot.Collections.Array{
-						"test_1_1",
-						"test_1_2",
-						"test_1_3"
-					},
-					new Godot.Collections.Array{
-						"Yes",
-						"No"
-					},
-					new Godot.Collections.Array{
-						2,
-						3
-					}
-				);
-
-				break;
-			case 2:
-
-				dialogueSet = new DialogueSet(
-					new Godot.Collections.Array{
-						"Hard agree.",
-					},
-					new Godot.Collections.Array{
-						"test_2_1"
-					},
-					new Godot.Collections.Array{
-					},
-					new Godot.Collections.Array{
-						-1
-					}
-				);
-
-				break;
-			case 3:
-
-				dialogueSet = new DialogueSet(
-					new Godot.Collections.Array{
-						"Disappointing..."
-					},
-					new Godot.Collections.Array{
-						"test_3_1"
-					},
-					new Godot.Collections.Array{
-					},
-					new Godot.Collections.Array{
-						-1,
-					}
-				);
-
-				break;
-			default:
-				QueueFree();
-				break;
+		GameController.currentState = GameController.GameState.Dialogue;
+		dialogueSet = GameController.theSpeaker.GetNextDialogue(id);
+		if(dialogueSet == null) {
+			GameController.currentState = GameController.GameState.Office;
+			Visible = false;
+			return;
 		}
-
 		visibleT = 0;
 		idx = 0;
 		dialogue.Text = (string)dialogueSet.lines[idx];
@@ -116,6 +41,10 @@ public partial class textbox_system : Control
 
 	//METHODS
 
+	public void Initialize(int id) {
+		GetNextDialogue(id);
+		Visible = true;
+	}
     public override void _Process(double delta)
     {
         base._Process(delta);

@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://1jok35302t31"]
+
+[ext_resource type="FontFile" uid="uid://b5ena1nd7llsv" path="res://Font/Signwood-2Om7l.ttf" id="1_sklr0"]
+
+[resource]
+default_font = ExtResource("1_sklr0")
+default_font_size = 40

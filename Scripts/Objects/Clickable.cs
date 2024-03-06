@@ -14,7 +14,8 @@ public partial class Clickable : Area2D
 	public override void _Process(double delta)
 	{
 		if(Input.IsActionJustPressed("Click")) {
-			if(mouseOver) OnClick();
+			if(GameController.currentState != GameController.GameState.Dialogue)
+				if(mouseOver) OnClick();
 		}
 	}
 	

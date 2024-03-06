@@ -18,6 +18,7 @@ public partial class SuspectPhoto : Clickable
     public override void OnClick()
     {
         base.OnClick();
+		GameController.currentLocation = myLocation;
 		GameController.Instance.OnSwitchSceneTransitionBegin(goToScene);
 		clicked = true;
     }

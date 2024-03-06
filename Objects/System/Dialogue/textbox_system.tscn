@@ -6,6 +6,7 @@
 [ext_resource type="Theme" uid="uid://dab07dflhwun4" path="res://Font/Textbox.tres" id="2_n4sfx"]
 
 [node name="TextboxSystem" type="Control" node_paths=PackedStringArray("ResponseGroup")]
+z_index = 500
 layout_mode = 3
 anchors_preset = 0
 offset_top = 57.0
