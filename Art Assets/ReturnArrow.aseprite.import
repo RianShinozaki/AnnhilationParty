@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://cqibmar1gux7l"
+path="res://.godot/imported/ReturnArrow.aseprite-cbe2ebe0e24d54ad025a47880ecca86e.res"
+
+[deps]
+
+source_file="res://Art Assets/ReturnArrow.aseprite"
+dest_files=["res://.godot/imported/ReturnArrow.aseprite-cbe2ebe0e24d54ad025a47880ecca86e.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

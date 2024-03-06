@@ -14,6 +14,7 @@ public partial class textbox_system : Control
 
 	[Export] Control ResponseGroup;
 	[Export] PackedScene ResponseButton;
+	GameController.GameState stateCache;
 
     public override void _Ready()
     {
@@ -25,10 +26,13 @@ public partial class textbox_system : Control
     }
 
 	public void GetNextDialogue(int id) {
-		GameController.currentState = GameController.GameState.Dialogue;
+		if(GameController.currentState != GameController.GameState.Dialogue) {
+			stateCache = GameController.currentState;
+			GameController.currentState = GameController.GameState.Dialogue;
+		}
 		dialogueSet = GameController.theSpeaker.GetNextDialogue(id);
 		if(dialogueSet == null) {
-			GameController.currentState = GameController.GameState.Office;
+			GameController.currentState = stateCache;
 			Visible = false;
 			return;
 		}
@@ -47,27 +51,33 @@ public partial class textbox_system : Control
 	}
     public override void _Process(double delta)
     {
+		GD.Print(stateCache);
         base._Process(delta);
 
 		if(!responseMode) {
 			//Typewriter effect
-			if(dialogue.VisibleCharacters < dialogue.GetTotalCharacterCount()) {
+			if(visibleT < dialogue.GetTotalCharacterCount()) {
 				visibleT += (float)delta * 20;
 				dialogue.VisibleCharacters = Mathf.RoundToInt(visibleT);
-				nextButton.Visible = false;
+				nextButton.Text = "Skip";
 
 			}
 			else {
 				//If no more letters to display, make the next button visible
-				nextButton.Visible = true;
+				nextButton.Text = "Next";
 			}
 		}
 		else {
-			nextButton.Visible = false;
+			nextButton.Text = "Skip";
 		}
     }
 
 	private void _on_next_button_pressed() {
+		if(dialogue.VisibleCharacters < dialogue.GetTotalCharacterCount()) {
+			visibleT = dialogue.GetTotalCharacterCount();
+			dialogue.VisibleCharacters = dialogue.GetTotalCharacterCount();
+			return;
+		}
 		if(idx == dialogueSet.lines.Count-1) {
 			//If there are any responses, switch to response mode. Otherwise, go to the next dialogue
 			if(dialogueSet.responses.Count == 0)

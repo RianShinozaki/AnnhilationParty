@@ -9,6 +9,8 @@ public partial class GameController : Node
     public delegate void SwitchSceneTransitionBeginEventHandler(string newScene);
     [Signal]
     public delegate void SwitchSceneEventHandler();
+    [Signal]
+    public delegate void MoneyChangedEventHandler();
 
     public enum GameState {
         Office,
@@ -52,6 +54,9 @@ public partial class GameController : Node
 
     public static float[] trustLevels = new float[5];
 
+    public static short[] butcherMemory = new short[10];
+    //0 -- marital status
+
     public override void _Ready()
     {
         base._Ready();
@@ -63,7 +68,7 @@ public partial class GameController : Node
             trustLevels[i] = 0;
         }
 
-        money = 100;
+        money = 200;
     }
     public static void SetSplitX(float x) {
 		wishSplitX = x;
@@ -71,9 +76,9 @@ public partial class GameController : Node
     public override void _Process(double delta)
     {
         base._Process(delta);
-		splitX = Mathf.Lerp(splitX, wishSplitX, 0.1f);
-		split2X = Mathf.Lerp(split2X, wishSplitX-2, 0.08f);
-		split3X = Mathf.Lerp(split3X, wishSplitX-4, 0.06f);
+		splitX = Mathf.Lerp(splitX, wishSplitX, (float)delta*5);
+		split2X = Mathf.Lerp(split2X, wishSplitX-2, (float)delta*4);
+		split3X = Mathf.Lerp(split3X, wishSplitX-4, (float)delta*3);
     }
 
     public void OnSwitchScene() {
@@ -83,13 +88,23 @@ public partial class GameController : Node
         EmitSignal(SignalName.SwitchSceneTransitionBegin, newScene);
         if(currentLocation == Location.Office) {
             wishSplitX = 225;
+            currentState = GameState.Office;
             currentTime++;
         } else {
             wishSplitX = 50;
+            currentState = GameState.SuspectLocation;
         }
     }
     public static void AddToInventory(Item item) {
         items.Add(item);
+    }
+    public void ChangeMoney(float amount) {
+        money += amount;
+        EmitSignal(SignalName.MoneyChanged);
+    }
+    public void SetMoney(float amount) {
+        money = amount;
+        EmitSignal(SignalName.MoneyChanged);
     }
 }
 

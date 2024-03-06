@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://cu62wws2ouvbn"
+path="res://.godot/imported/Backpack.aseprite-5c4066035f83f65051f3e0f2d433ac30.res"
+
+[deps]
+
+source_file="res://Art Assets/Backpack.aseprite"
+dest_files=["res://.godot/imported/Backpack.aseprite-5c4066035f83f65051f3e0f2d433ac30.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

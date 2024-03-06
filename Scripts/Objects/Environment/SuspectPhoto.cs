@@ -14,6 +14,12 @@ public partial class SuspectPhoto : Clickable
     public override void _Process(double delta)
     {
         base._Process(delta);
+        if(myLocation == GameController.Location.Office 
+            && GameController.currentState != GameController.GameState.SuspectLocation) {
+            Visible = false;
+        } else {
+            Visible = true;
+        }
     }
     public override void OnClick()
     {

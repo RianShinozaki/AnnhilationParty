@@ -26,7 +26,7 @@ public partial class Screen : TextureRect
     }
     public void OnSwitchScene() {
         string time = GameController.currentTime == 0 ? "MORNING" : (GameController.currentTime == 1 ? "EVENING" : "NIGHTFALL");
-        string date = "12    " + GameController.currentDay.ToString();
+        string date = "12    " + GameController.currentDay.ToString("D2");
         TimeAndDate.Text = date + "\r\n" + time;
     }
 }

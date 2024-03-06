@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://rc02847t6sxq"]
+[gd_scene load_steps=19 format=3 uid="uid://rc02847t6sxq"]
 
 [ext_resource type="Script" path="res://Scripts/System/Screen.cs" id="1_haiik"]
 [ext_resource type="PackedScene" uid="uid://3tn1o525br5" path="res://Scenes/Investigation.tscn" id="1_lbqt6"]
@@ -6,6 +6,9 @@
 [ext_resource type="Shader" path="res://Shaders/splitScreen.gdshader" id="3_ggccd"]
 [ext_resource type="Texture2D" uid="uid://cck8feglyg4h4" path="res://Art Assets/Divider2.png" id="6_3h7n4"]
 [ext_resource type="FontFile" uid="uid://81hcxqd8mm4q" path="res://Font/GlitchGoblin-2O87v.ttf" id="7_55wed"]
+[ext_resource type="Theme" uid="uid://1jok35302t31" path="res://Font/UI.tres" id="7_s0mlh"]
+[ext_resource type="Script" path="res://Scripts/UI/MoneyLabel.cs" id="8_kdkoj"]
+[ext_resource type="Texture2D" uid="uid://6dc4jhjx5rni" path="res://Art Assets/Backpack.png" id="9_gqsao"]
 [ext_resource type="PackedScene" uid="uid://k8rwx7o3go0e" path="res://Objects/System/Dialogue/textbox_system.tscn" id="10_fyxm3"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l607p"]
@@ -38,6 +41,16 @@ outline_size = 8
 shadow_size = 17
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssc2h"]
+bg_color = Color(0, 1, 0.623529, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="Theme" id="Theme_55asv"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ssc2h")
 
 [node name="Node2D" type="Control"]
 layout_mode = 3
@@ -154,5 +167,43 @@ offset_bottom = 161.0
 text = "12    01
 Morning"
 label_settings = SubResource("LabelSettings_8qiov")
+
+[node name="Money" type="Panel" parent="Screen"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 500.0
+offset_right = 214.0
+offset_bottom = 560.0
+theme = SubResource("Theme_55asv")
+
+[node name="TextureRect" type="Panel" parent="Screen/Money"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -7.0
+offset_right = 182.0
+offset_bottom = 53.0
+theme = SubResource("Theme_55asv")
+
+[node name="Label" type="Label" parent="Screen/Money"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 31.0
+offset_right = 274.0
+offset_bottom = 141.0
+theme = ExtResource("7_s0mlh")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "$100.00"
+script = ExtResource("8_kdkoj")
+
+[node name="TextureRect" type="TextureRect" parent="Screen"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 514.0
+offset_right = 260.0
+offset_bottom = 770.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_gqsao")
 
 [node name="TextboxSystem" parent="." instance=ExtResource("10_fyxm3")]
