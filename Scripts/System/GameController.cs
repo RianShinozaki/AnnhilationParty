@@ -15,13 +15,26 @@ public partial class GameController : Node
     public enum GameState {
         Office,
         SuspectLocation,
-        Dialogue
+        Dialogue,
+        Transitioning,
+        SuspectLog
     }
 
     public enum Location {
         Office,
-        Butcher
+        Butcher,
+        Teacher
     }
+
+    public static Godot.Collections.Array days = new Godot.Collections.Array{
+		"Friday",
+		"Saturday",
+		"Sunday",
+		"Monday",
+		"Tuesday",
+		"Wednesday",
+		"Thursday"
+	};
     
 	public static GameController Instance;
     
@@ -56,6 +69,20 @@ public partial class GameController : Node
 
     public static short[] butcherMemory = new short[10];
     //0 -- marital status
+    //1 -- has met :: 0 -- no :: 1 -- yes
+
+    public static short[] teacherMemory = new short[10];
+    //0 -- has kids :: 1 -- no :: 2 -- yes
+    //1 -- has met :: 0 -- no :: 1 -- yes
+    //2 -- worked w/o them :: 0 -- no :: 1 -- yes
+
+    public static short[] engineerMemory = new short[10];
+    //0 -- know his fav anime ? :: 0 -- no :: 2 -- yes
+    //1 -- has met :: 0 -- no :: 1 -- yes
+    //2 -- know job :: 0 -- ? :: 1 -- writer :: 2 -- unemployed :: 3 -- engineer
+
+
+    public static Godot.Collections.Dictionary[] dialogueRecords = new Godot.Collections.Dictionary[31];
 
     public override void _Ready()
     {
@@ -90,6 +117,10 @@ public partial class GameController : Node
             wishSplitX = 225;
             currentState = GameState.Office;
             currentTime++;
+            if(currentTime > 1) {
+                currentDay++;
+                currentTime = 0;
+            }
         } else {
             wishSplitX = 50;
             currentState = GameState.SuspectLocation;
@@ -105,6 +136,9 @@ public partial class GameController : Node
     public void SetMoney(float amount) {
         money = amount;
         EmitSignal(SignalName.MoneyChanged);
+    }
+    public static string GetDay(int day) {
+        return (string)days[day%7];
     }
 }
 

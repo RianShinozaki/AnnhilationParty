@@ -32,25 +32,26 @@ scale = Vector2(4, 4)
 texture = ExtResource("5_e8pn7")
 centered = false
 
-[node name="EndInvestigation" type="Area2D" parent="."]
+[node name="ReturnButton" type="Area2D" parent="."]
 position = Vector2(88, 97)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("4_gcqtr")
 goToScene = "res://Scenes/office.tscn"
+tooltip = "Return to Office"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EndInvestigation"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReturnButton"]
 position = Vector2(49, -10)
 shape = SubResource("RectangleShape2D_cgn2v")
 
-[node name="TextureRect" type="TextureRect" parent="EndInvestigation/CollisionShape2D"]
+[node name="TextureRect" type="TextureRect" parent="ReturnButton/CollisionShape2D"]
 offset_left = -40.0
 offset_top = -18.0
 offset_right = 24.0
 offset_bottom = 46.0
 texture = ExtResource("5_gxrli")
 
-[node name="Label" type="Label" parent="EndInvestigation/CollisionShape2D"]
+[node name="Label" type="Label" parent="ReturnButton/CollisionShape2D"]
 offset_left = -56.0
 offset_top = -51.0
 offset_right = 58.0
@@ -60,13 +61,40 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 13
 text = "RETURN"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="TeacherPhoto" type="Area2D" parent="."]
+position = Vector2(-183, 127)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_gcqtr")
+myLocation = 2
+goToScene = "res://Scenes/teacher.tscn"
+tooltip = "Teacher"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TeacherPhoto"]
+position = Vector2(559, 169)
+shape = SubResource("RectangleShape2D_pn217")
+
+[node name="EngineerPhoto" type="Area2D" parent="."]
+position = Vector2(-65, 292)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("4_gcqtr")
+myLocation = 2
+goToScene = "res://Scenes/engineer.tscn"
+tooltip = "Engineer"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EngineerPhoto"]
+position = Vector2(559, 169)
+shape = SubResource("RectangleShape2D_pn217")
+
+[node name="ButcherPhoto" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("4_gcqtr")
 myLocation = 1
 goToScene = "res://Scenes/butcher.tscn"
+tooltip = "Butcher"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ButcherPhoto"]
 position = Vector2(559, 169)
 shape = SubResource("RectangleShape2D_pn217")

@@ -15,6 +15,7 @@ public partial class Screen : TextureRect
         Split3Line = GetNode<TextureRect>("SplitLine3");
         TimeAndDate = SplitLine.GetNode<Label>("Label");
         GameController.Instance.SwitchScene += OnSwitchScene;
+        OnSwitchScene();
     }
     public override void _Process(double delta)
     {
@@ -25,8 +26,9 @@ public partial class Screen : TextureRect
 		Split3Line.GlobalPosition = new Vector2(GameController.split3X*4 - 49*4, 0);
     }
     public void OnSwitchScene() {
+        string day = GameController.GetDay(GameController.currentDay);
         string time = GameController.currentTime == 0 ? "MORNING" : (GameController.currentTime == 1 ? "EVENING" : "NIGHTFALL");
         string date = "12    " + GameController.currentDay.ToString("D2");
-        TimeAndDate.Text = date + "\r\n" + time;
+        TimeAndDate.Text = date + "\r\n" + day + "\r\n" + time;
     }
 }

@@ -14,13 +14,33 @@ public partial class SuspectPhoto : Clickable
     public override void _Process(double delta)
     {
         base._Process(delta);
-        if(myLocation == GameController.Location.Office 
-            && GameController.currentState != GameController.GameState.SuspectLocation) {
-            Visible = false;
+    }
+
+    public override void CheckActive()
+    {
+        if(myLocation == GameController.Location.Office) {
+            if(GameController.currentState != GameController.GameState.SuspectLocation) {
+                Visible = false;
+                active = false;
+            } else {
+                Visible = true;
+                active = true;
+            }
         } else {
-            Visible = true;
+            if(GameController.currentState != GameController.GameState.Office) {
+                Visible = false;
+                active = false;
+            } else {
+                Visible = true;
+                active = true;
+            }
+        }
+        if(GameController.currentTime == 2) {
+            Visible = false;
+            active = false;
         }
     }
+
     public override void OnClick()
     {
         base.OnClick();

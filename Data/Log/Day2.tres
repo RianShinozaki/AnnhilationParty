@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LogDay" load_steps=2 format=3 uid="uid://utomm6vkokso"]
+
+[ext_resource type="Script" path="res://Data/Log/LogDay.cs" id="1_chfbi"]
+
+[resource]
+script = ExtResource("1_chfbi")
+EngineerLog = "The Engineer stayed home and watched the anime 'Auta'."
+TeacherLog = "The Teacher prepared worksheets."
+ButcherLog = "The Butcher went fishing up North."
+OccultistLog = "The Occultist watched TV at home."

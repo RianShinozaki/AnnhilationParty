@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctasrud4l0rp2"]
+[gd_scene load_steps=6 format=3 uid="uid://ctasrud4l0rp2"]
 
 [ext_resource type="Texture2D" uid="uid://d1mqlas4woor8" path="res://Art Assets/Untitled_Artwork.webp" id="1_0go05"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="2_t3on5"]
+[ext_resource type="Script" path="res://Scripts/Objects/Environment/SuspectLogs.cs" id="3_a8yh6"]
+[ext_resource type="Texture2D" uid="uid://cfhqc3io1feh3" path="res://Art Assets/PaperStackTemp.png" id="4_csh88"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uk75d"]
+size = Vector2(257, 119)
 
 [node name="Office" type="Node2D"]
 position = Vector2(-1.52588e-05, 0)
@@ -15,3 +20,18 @@ centered = false
 
 [node name="Pointer" parent="." instance=ExtResource("2_t3on5")]
 modulate = Color(0, 1, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(1146, 626)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("3_a8yh6")
+tooltip = "Review Daily Logs"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-22.5, -8.5)
+shape = SubResource("RectangleShape2D_uk75d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(-30, -70)
+texture = ExtResource("4_csh88")

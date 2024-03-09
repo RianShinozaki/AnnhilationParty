@@ -51,7 +51,6 @@ public partial class textbox_system : Control
 	}
     public override void _Process(double delta)
     {
-		GD.Print(stateCache);
         base._Process(delta);
 
 		if(!responseMode) {

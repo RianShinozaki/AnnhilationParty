@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://convuciwqr7cg"
+path="res://.godot/imported/PaperStackTemp.aseprite-6401206745ce26e51f3b91cd49abc627.res"
+
+[deps]
+
+source_file="res://Art Assets/PaperStackTemp.aseprite"
+dest_files=["res://.godot/imported/PaperStackTemp.aseprite-6401206745ce26e51f3b91cd49abc627.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://rc02847t6sxq"]
+[gd_scene load_steps=60 format=3 uid="uid://rc02847t6sxq"]
 
 [ext_resource type="Script" path="res://Scripts/System/Screen.cs" id="1_haiik"]
 [ext_resource type="PackedScene" uid="uid://3tn1o525br5" path="res://Scenes/Investigation.tscn" id="1_lbqt6"]
@@ -10,6 +10,45 @@
 [ext_resource type="Script" path="res://Scripts/UI/MoneyLabel.cs" id="8_kdkoj"]
 [ext_resource type="Texture2D" uid="uid://6dc4jhjx5rni" path="res://Art Assets/Backpack.png" id="9_gqsao"]
 [ext_resource type="PackedScene" uid="uid://k8rwx7o3go0e" path="res://Objects/System/Dialogue/textbox_system.tscn" id="10_fyxm3"]
+[ext_resource type="FontFile" uid="uid://or16hm10ws1k" path="res://Font/SignwoodItalic-K74BA.ttf" id="11_qs02f"]
+[ext_resource type="Script" path="res://Scripts/System/Tooltip.cs" id="12_7hf3v"]
+[ext_resource type="Script" path="res://Scripts/UI/SuspectLog.cs" id="13_vpomw"]
+[ext_resource type="Texture2D" uid="uid://d30edjnvo3b60" path="res://Art Assets/LogPaper.png" id="13_who0r"]
+[ext_resource type="FontFile" uid="uid://buu42evyolhg7" path="res://Font/Greybeard-11px.ttf" id="14_5xqi0"]
+[ext_resource type="Resource" uid="uid://dqjg7hvwgbbwm" path="res://Data/Log/Day1.tres" id="14_toaxe"]
+[ext_resource type="Theme" uid="uid://qrc8qo2jtbb2" path="res://Font/LogButton.tres" id="15_gfsd2"]
+[ext_resource type="Resource" uid="uid://utomm6vkokso" path="res://Data/Log/Day2.tres" id="15_sdd52"]
+[ext_resource type="Resource" uid="uid://ctaostm22ix8d" path="res://Data/Log/Day3.tres" id="16_rq6sd"]
+[ext_resource type="Script" path="res://Scripts/Debug/DayChange.cs" id="17_bbsds"]
+[ext_resource type="Resource" uid="uid://cexo4cefmnevb" path="res://Data/Log/Day4.tres" id="17_xg0hk"]
+[ext_resource type="Resource" uid="uid://ct24qit1tqlt2" path="res://Data/Log/Day5.tres" id="18_7ai4u"]
+[ext_resource type="Resource" uid="uid://cfyv3lox7a03g" path="res://Data/Log/Day6.tres" id="19_mxvr2"]
+[ext_resource type="Resource" uid="uid://cmpuvtbhlj8n4" path="res://Data/Log/Day7.tres" id="20_xmpdy"]
+[ext_resource type="Resource" uid="uid://deksawgwpeb5g" path="res://Data/Log/Day8.tres" id="21_q8bvb"]
+[ext_resource type="Resource" uid="uid://c38x3bsdmbr17" path="res://Data/Log/Day9.tres" id="22_uuv21"]
+[ext_resource type="Resource" uid="uid://bg6k8j00p7i6a" path="res://Data/Log/Day10.tres" id="23_roowr"]
+[ext_resource type="Resource" uid="uid://duc00cfelc3kx" path="res://Data/Log/Day11.tres" id="24_1v0xb"]
+[ext_resource type="Resource" uid="uid://ce13cesgaccik" path="res://Data/Log/Day12.tres" id="25_11en3"]
+[ext_resource type="Resource" uid="uid://dl0innon8450c" path="res://Data/Log/Day13.tres" id="26_wmhnq"]
+[ext_resource type="Resource" uid="uid://mqvrqayg6ryl" path="res://Data/Log/Day14.tres" id="27_uvosv"]
+[ext_resource type="Resource" uid="uid://m8sg5b7c16tn" path="res://Data/Log/Day15.tres" id="28_6mtmm"]
+[ext_resource type="Resource" uid="uid://c6go865d1mvxw" path="res://Data/Log/Day16.tres" id="29_omtue"]
+[ext_resource type="Resource" uid="uid://h3e38k4haoal" path="res://Data/Log/Day17.tres" id="30_bmpva"]
+[ext_resource type="Resource" uid="uid://c7lwps54vijvn" path="res://Data/Log/Day18.tres" id="31_6l5c2"]
+[ext_resource type="Resource" uid="uid://dwvv2g3jdiwx" path="res://Data/Log/Day19.tres" id="32_po251"]
+[ext_resource type="Resource" uid="uid://d1xa2w3cpaqnl" path="res://Data/Log/Day20.tres" id="33_nyv85"]
+[ext_resource type="Resource" uid="uid://c453060sshxuu" path="res://Data/Log/Day21.tres" id="34_gbw3m"]
+[ext_resource type="Resource" uid="uid://ds5467y6258l0" path="res://Data/Log/Day22.tres" id="35_uyw5y"]
+[ext_resource type="Resource" uid="uid://bodeje5fv4nfv" path="res://Data/Log/Day23.tres" id="36_wd4xt"]
+[ext_resource type="Resource" uid="uid://cua7hhi8t5mcs" path="res://Data/Log/Day24.tres" id="37_an5py"]
+[ext_resource type="Resource" uid="uid://da2b1a152lq6u" path="res://Data/Log/Day25.tres" id="38_npa0p"]
+[ext_resource type="Resource" uid="uid://dealu2p6o23bk" path="res://Data/Log/Day26.tres" id="39_j0dtm"]
+[ext_resource type="Resource" uid="uid://n2s4g231nyxk" path="res://Data/Log/Day27.tres" id="40_w1fqq"]
+[ext_resource type="Resource" uid="uid://c33akkwl7oudi" path="res://Data/Log/Day28.tres" id="41_j2o0s"]
+[ext_resource type="Resource" uid="uid://bb1i5tawa7oxt" path="res://Data/Log/Day29.tres" id="42_j7xil"]
+[ext_resource type="Resource" uid="uid://bpwroymrx0s3a" path="res://Data/Log/Day30.tres" id="43_3gpsx"]
+[ext_resource type="Resource" uid="uid://cxtnps06v7exv" path="res://Data/Log/Day31.tres" id="44_fbqvm"]
+[ext_resource type="AudioStream" uid="uid://mbte7cc45ii2" path="res://Audio/SeenUnseen.mp3" id="49_jsk3t"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l607p"]
 viewport_path = NodePath("Control/Investigation/SubViewport")
@@ -51,6 +90,17 @@ border_width_bottom = 4
 
 [sub_resource type="Theme" id="Theme_55asv"]
 Panel/styles/panel = SubResource("StyleBoxFlat_ssc2h")
+
+[sub_resource type="LabelSettings" id="LabelSettings_w50vm"]
+font = ExtResource("11_qs02f")
+font_size = 44
+outline_size = 17
+outline_color = Color(0.545098, 0, 0.541176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4k144"]
+font = ExtResource("14_5xqi0")
+font_size = 22
+font_color = Color(0, 0, 0, 1)
 
 [node name="Node2D" type="Control"]
 layout_mode = 3
@@ -206,4 +256,151 @@ offset_bottom = 770.0
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("9_gqsao")
 
+[node name="Tooltip" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 51.0
+text = "TEST"
+label_settings = SubResource("LabelSettings_w50vm")
+script = ExtResource("12_7hf3v")
+
+[node name="SuspectLog" type="Control" parent="." node_paths=PackedStringArray("EngineerButton", "TeacherButton", "ButcherButton", "OccultistButton", "Date")]
+anchors_preset = 0
+offset_left = -370.0
+offset_top = 32.0
+offset_right = -330.0
+offset_bottom = 72.0
+rotation = 1.13446
+script = ExtResource("13_vpomw")
+logs = [ExtResource("14_toaxe"), ExtResource("15_sdd52"), ExtResource("16_rq6sd"), ExtResource("17_xg0hk"), ExtResource("18_7ai4u"), ExtResource("19_mxvr2"), ExtResource("20_xmpdy"), ExtResource("21_q8bvb"), ExtResource("22_uuv21"), ExtResource("23_roowr"), ExtResource("24_1v0xb"), ExtResource("25_11en3"), ExtResource("26_wmhnq"), ExtResource("27_uvosv"), ExtResource("28_6mtmm"), ExtResource("29_omtue"), ExtResource("30_bmpva"), ExtResource("31_6l5c2"), ExtResource("32_po251"), ExtResource("33_nyv85"), ExtResource("34_gbw3m"), ExtResource("35_uyw5y"), ExtResource("36_wd4xt"), ExtResource("37_an5py"), ExtResource("38_npa0p"), ExtResource("39_j0dtm"), ExtResource("40_w1fqq"), ExtResource("41_j2o0s"), ExtResource("42_j7xil"), ExtResource("43_3gpsx"), ExtResource("44_fbqvm")]
+EngineerButton = NodePath("Engineer")
+TeacherButton = NodePath("Teacher")
+ButcherButton = NodePath("Butcher")
+OccultistButton = NodePath("Occultist")
+Date = NodePath("Date")
+
+[node name="PaperTex" type="TextureRect" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 588.0
+offset_top = 29.0
+offset_right = 1079.0
+offset_bottom = 649.0
+texture = ExtResource("13_who0r")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"slice_section": false
+}
+
+[node name="Date" type="Label" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 47.0
+offset_right = 1057.0
+offset_bottom = 591.0
+text = "December 01, 500X"
+label_settings = SubResource("LabelSettings_4k144")
+autowrap_mode = 3
+
+[node name="Engineer" type="Label" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 109.0
+offset_right = 1057.0
+offset_bottom = 211.0
+text = "The Engineer stayed home and played an MMO until nightfall."
+label_settings = SubResource("LabelSettings_4k144")
+autowrap_mode = 3
+
+[node name="Teacher" type="Label" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 218.0
+offset_right = 1057.0
+offset_bottom = 320.0
+text = "December 01, 500X"
+label_settings = SubResource("LabelSettings_4k144")
+autowrap_mode = 3
+
+[node name="Butcher" type="Label" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 332.0
+offset_right = 1057.0
+offset_bottom = 434.0
+text = "December 01, 500X"
+label_settings = SubResource("LabelSettings_4k144")
+autowrap_mode = 3
+
+[node name="Occultist" type="Label" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 441.0
+offset_right = 1057.0
+offset_bottom = 543.0
+text = "December 01, 500X"
+label_settings = SubResource("LabelSettings_4k144")
+autowrap_mode = 3
+
+[node name="CLOSE" type="Button" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 614.0
+offset_right = 800.0
+offset_bottom = 645.0
+theme = ExtResource("15_gfsd2")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "CLOSE"
+
+[node name="NextDay" type="Button" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 972.0
+offset_right = 1076.0
+offset_bottom = 31.0
+theme = ExtResource("15_gfsd2")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "NEXT DAY"
+
+[node name="PreviousDay" type="Button" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 647.0
+offset_top = -1.0
+offset_right = 799.0
+offset_bottom = 30.0
+theme = ExtResource("15_gfsd2")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "PREVIOUS DAY"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1075.0
+offset_top = 9.0
+offset_right = 1220.0
+offset_bottom = 51.0
+text = "Day +1"
+script = ExtResource("17_bbsds")
+val = 1
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1075.0
+offset_top = 60.0
+offset_right = 1220.0
+offset_bottom = 102.0
+text = "Day -1"
+script = ExtResource("17_bbsds")
+val = -1
+
 [node name="TextboxSystem" parent="." instance=ExtResource("10_fyxm3")]
+visible = false
+z_index = 0
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("49_jsk3t")
+autoplay = true
+
+[connection signal="pressed" from="SuspectLog/CLOSE" to="SuspectLog" method="_on_close_pressed"]
+[connection signal="pressed" from="SuspectLog/NextDay" to="SuspectLog" method="_on_next_day_pressed"]
+[connection signal="pressed" from="SuspectLog/PreviousDay" to="SuspectLog" method="_on_previous_day_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]

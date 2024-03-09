@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://p1kbmuf676ac"
+path="res://.godot/imported/LogPaper.aseprite-b4c7172bb5c8ce9a8e5f292713779911.res"
+
+[deps]
+
+source_file="res://Art Assets/LogPaper.aseprite"
+dest_files=["res://.godot/imported/LogPaper.aseprite-b4c7172bb5c8ce9a8e5f292713779911.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

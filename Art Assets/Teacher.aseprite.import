@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://b7u0x6dnck2g8"
+path="res://.godot/imported/Teacher.aseprite-3601c1fa43caff1a9825b8b7d63001cb.res"
+
+[deps]
+
+source_file="res://Art Assets/Teacher.aseprite"
+dest_files=["res://.godot/imported/Teacher.aseprite-3601c1fa43caff1a9825b8b7d63001cb.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

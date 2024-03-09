@@ -1,0 +1,406 @@
+[gd_scene load_steps=60 format=3 uid="uid://c8mmc2fvoc277"]
+
+[ext_resource type="PackedScene" uid="uid://c7ciicikyr5s2" path="res://Scenes/SuspectBoard.tscn" id="1_xhooo"]
+[ext_resource type="PackedScene" uid="uid://3tn1o525br5" path="res://Scenes/Investigation.tscn" id="2_tlk1b"]
+[ext_resource type="Shader" path="res://Shaders/splitScreen.gdshader" id="3_w4brs"]
+[ext_resource type="Script" path="res://Scripts/System/Screen.cs" id="4_o6ama"]
+[ext_resource type="Texture2D" uid="uid://cck8feglyg4h4" path="res://Art Assets/Divider2.png" id="5_tqtys"]
+[ext_resource type="FontFile" uid="uid://81hcxqd8mm4q" path="res://Font/GlitchGoblin-2O87v.ttf" id="6_3yr86"]
+[ext_resource type="Theme" uid="uid://1jok35302t31" path="res://Font/UI.tres" id="7_eryro"]
+[ext_resource type="Script" path="res://Scripts/UI/MoneyLabel.cs" id="8_gtwfc"]
+[ext_resource type="Texture2D" uid="uid://6dc4jhjx5rni" path="res://Art Assets/Backpack.png" id="9_fnchh"]
+[ext_resource type="FontFile" uid="uid://or16hm10ws1k" path="res://Font/SignwoodItalic-K74BA.ttf" id="10_vgwb7"]
+[ext_resource type="Script" path="res://Scripts/System/Tooltip.cs" id="11_ci4hi"]
+[ext_resource type="Script" path="res://Scripts/UI/SuspectLog.cs" id="12_c2rt6"]
+[ext_resource type="Resource" uid="uid://dqjg7hvwgbbwm" path="res://Data/Log/Day1.tres" id="13_sy7hl"]
+[ext_resource type="Resource" uid="uid://utomm6vkokso" path="res://Data/Log/Day2.tres" id="14_vv8bj"]
+[ext_resource type="Resource" uid="uid://ctaostm22ix8d" path="res://Data/Log/Day3.tres" id="15_hn55p"]
+[ext_resource type="Resource" uid="uid://cexo4cefmnevb" path="res://Data/Log/Day4.tres" id="16_vbl5a"]
+[ext_resource type="Resource" uid="uid://ct24qit1tqlt2" path="res://Data/Log/Day5.tres" id="17_wdxgt"]
+[ext_resource type="Resource" uid="uid://cfyv3lox7a03g" path="res://Data/Log/Day6.tres" id="18_1rhxt"]
+[ext_resource type="Resource" uid="uid://cmpuvtbhlj8n4" path="res://Data/Log/Day7.tres" id="19_0eeru"]
+[ext_resource type="Resource" uid="uid://deksawgwpeb5g" path="res://Data/Log/Day8.tres" id="20_jg6xc"]
+[ext_resource type="Resource" uid="uid://c38x3bsdmbr17" path="res://Data/Log/Day9.tres" id="21_axecy"]
+[ext_resource type="Resource" uid="uid://bg6k8j00p7i6a" path="res://Data/Log/Day10.tres" id="22_y3xyl"]
+[ext_resource type="Resource" uid="uid://duc00cfelc3kx" path="res://Data/Log/Day11.tres" id="23_afkoj"]
+[ext_resource type="Resource" uid="uid://ce13cesgaccik" path="res://Data/Log/Day12.tres" id="24_ekxk6"]
+[ext_resource type="Resource" uid="uid://dl0innon8450c" path="res://Data/Log/Day13.tres" id="25_re6sp"]
+[ext_resource type="Resource" uid="uid://mqvrqayg6ryl" path="res://Data/Log/Day14.tres" id="26_i0p7t"]
+[ext_resource type="Resource" uid="uid://m8sg5b7c16tn" path="res://Data/Log/Day15.tres" id="27_24ot2"]
+[ext_resource type="Resource" uid="uid://c6go865d1mvxw" path="res://Data/Log/Day16.tres" id="28_0v5ix"]
+[ext_resource type="Resource" uid="uid://h3e38k4haoal" path="res://Data/Log/Day17.tres" id="29_dbav5"]
+[ext_resource type="Resource" uid="uid://c7lwps54vijvn" path="res://Data/Log/Day18.tres" id="30_yesvr"]
+[ext_resource type="Resource" uid="uid://dwvv2g3jdiwx" path="res://Data/Log/Day19.tres" id="31_p6kqp"]
+[ext_resource type="Resource" uid="uid://d1xa2w3cpaqnl" path="res://Data/Log/Day20.tres" id="32_ug640"]
+[ext_resource type="Resource" uid="uid://c453060sshxuu" path="res://Data/Log/Day21.tres" id="33_3ifns"]
+[ext_resource type="Resource" uid="uid://ds5467y6258l0" path="res://Data/Log/Day22.tres" id="34_34fet"]
+[ext_resource type="Resource" uid="uid://bodeje5fv4nfv" path="res://Data/Log/Day23.tres" id="35_73gl4"]
+[ext_resource type="Resource" uid="uid://cua7hhi8t5mcs" path="res://Data/Log/Day24.tres" id="36_ix353"]
+[ext_resource type="Resource" uid="uid://da2b1a152lq6u" path="res://Data/Log/Day25.tres" id="37_jmg41"]
+[ext_resource type="Resource" uid="uid://dealu2p6o23bk" path="res://Data/Log/Day26.tres" id="38_4dpcq"]
+[ext_resource type="Resource" uid="uid://n2s4g231nyxk" path="res://Data/Log/Day27.tres" id="39_nfqef"]
+[ext_resource type="Resource" uid="uid://c33akkwl7oudi" path="res://Data/Log/Day28.tres" id="40_u48qi"]
+[ext_resource type="Resource" uid="uid://bb1i5tawa7oxt" path="res://Data/Log/Day29.tres" id="41_awgmi"]
+[ext_resource type="Resource" uid="uid://bpwroymrx0s3a" path="res://Data/Log/Day30.tres" id="42_dfpu6"]
+[ext_resource type="Resource" uid="uid://cxtnps06v7exv" path="res://Data/Log/Day31.tres" id="43_pkef1"]
+[ext_resource type="Texture2D" uid="uid://d30edjnvo3b60" path="res://Art Assets/LogPaper.png" id="44_lhtqp"]
+[ext_resource type="FontFile" uid="uid://buu42evyolhg7" path="res://Font/Greybeard-11px.ttf" id="45_8oove"]
+[ext_resource type="Theme" uid="uid://qrc8qo2jtbb2" path="res://Font/LogButton.tres" id="46_1vjf4"]
+[ext_resource type="Script" path="res://Scripts/Debug/DayChange.cs" id="47_ls4xh"]
+[ext_resource type="PackedScene" uid="uid://k8rwx7o3go0e" path="res://Objects/System/Dialogue/textbox_system.tscn" id="48_af6mi"]
+[ext_resource type="AudioStream" uid="uid://mbte7cc45ii2" path="res://Audio/SeenUnseen.mp3" id="49_mtcrv"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_l607p"]
+viewport_path = NodePath("Control/Investigation/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_l18a7"]
+viewport_path = NodePath("Control/Board/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j6kpp"]
+resource_local_to_scene = true
+shader = ExtResource("3_w4brs")
+shader_parameter/viewport_size = Vector2(1280, 720)
+shader_parameter/split_line_thickness = 0.0
+shader_parameter/split_line_color = Vector4(1, 1, 1, 1)
+shader_parameter/split_slope = 3.5
+shader_parameter/split_origin = Vector2(0.5, 0.5)
+shader_parameter/viewport1 = SubResource("ViewportTexture_l607p")
+shader_parameter/viewport2 = SubResource("ViewportTexture_l18a7")
+
+[sub_resource type="Gradient" id="Gradient_je7h7"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sguut"]
+gradient = SubResource("Gradient_je7h7")
+
+[sub_resource type="LabelSettings" id="LabelSettings_8qiov"]
+font = ExtResource("6_3yr86")
+font_size = 59
+font_color = Color(0, 0.117647, 1, 1)
+outline_size = 8
+shadow_size = 17
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ssc2h"]
+bg_color = Color(0, 1, 0.623529, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="Theme" id="Theme_55asv"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ssc2h")
+
+[sub_resource type="LabelSettings" id="LabelSettings_w50vm"]
+font = ExtResource("10_vgwb7")
+font_size = 44
+outline_size = 17
+outline_color = Color(0.545098, 0, 0.541176, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4k144"]
+font = ExtResource("45_8oove")
+font_size = 22
+font_color = Color(0, 0, 0, 1)
+
+[node name="Node2D" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Board" type="SubViewportContainer" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="Control/Board"]
+handle_input_locally = false
+physics_object_picking = true
+physics_object_picking_sort = true
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Board" parent="Control/Board/SubViewport" instance=ExtResource("1_xhooo")]
+
+[node name="Investigation" type="SubViewportContainer" parent="Control"]
+texture_filter = 1
+layout_mode = 0
+offset_right = 320.0
+offset_bottom = 180.0
+
+[node name="SubViewport" type="SubViewport" parent="Control/Investigation"]
+handle_input_locally = false
+physics_object_picking = true
+physics_object_picking_sort = true
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Investigation" parent="Control/Investigation/SubViewport" instance=ExtResource("2_tlk1b")]
+
+[node name="Screen" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_j6kpp")
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+mouse_filter = 2
+texture = SubResource("GradientTexture1D_sguut")
+script = ExtResource("4_o6ama")
+
+[node name="SplitLine3" type="TextureRect" parent="Screen"]
+modulate = Color(0, 1, 0.623529, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -358.0
+offset_right = 254.0
+offset_bottom = 362.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_tqtys")
+
+[node name="SplitLine2" type="TextureRect" parent="Screen"]
+modulate = Color(0.905882, 0.443137, 1, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -359.0
+offset_right = 263.0
+offset_bottom = 361.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_tqtys")
+
+[node name="SplitLine" type="TextureRect" parent="Screen"]
+self_modulate = Color(0, 0.117647, 1, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 17.0
+offset_top = -90.0
+offset_right = 115.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_tqtys")
+
+[node name="Label" type="Label" parent="Screen/SplitLine"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 239.0
+offset_top = 20.0
+offset_right = 482.0
+offset_bottom = 161.0
+text = "12    01
+Morning"
+label_settings = SubResource("LabelSettings_8qiov")
+
+[node name="Money" type="Panel" parent="Screen"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 24.0
+offset_top = 500.0
+offset_right = 214.0
+offset_bottom = 560.0
+theme = SubResource("Theme_55asv")
+
+[node name="TextureRect" type="Panel" parent="Screen/Money"]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -7.0
+offset_right = 182.0
+offset_bottom = 53.0
+theme = SubResource("Theme_55asv")
+
+[node name="Label" type="Label" parent="Screen/Money"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 31.0
+offset_right = 274.0
+offset_bottom = 141.0
+theme = ExtResource("7_eryro")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+text = "$100.00"
+script = ExtResource("8_gtwfc")
+
+[node name="TextureRect" type="TextureRect" parent="Screen"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 514.0
+offset_right = 260.0
+offset_bottom = 770.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_fnchh")
+
+[node name="Tooltip" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 500.0
+offset_bottom = 51.0
+text = "TEST"
+label_settings = SubResource("LabelSettings_w50vm")
+script = ExtResource("11_ci4hi")
+
+[node name="SuspectLog" type="Control" parent="." node_paths=PackedStringArray("EngineerButton", "TeacherButton", "ButcherButton", "OccultistButton", "Date")]
+anchors_preset = 0
+offset_left = -370.0
+offset_top = 32.0
+offset_right = -330.0
+offset_bottom = 72.0
+rotation = 1.13446
+script = ExtResource("12_c2rt6")
+logs = [ExtResource("13_sy7hl"), ExtResource("14_vv8bj"), ExtResource("15_hn55p"), ExtResource("16_vbl5a"), ExtResource("17_wdxgt"), ExtResource("18_1rhxt"), ExtResource("19_0eeru"), ExtResource("20_jg6xc"), ExtResource("21_axecy"), ExtResource("22_y3xyl"), ExtResource("23_afkoj"), ExtResource("24_ekxk6"), ExtResource("25_re6sp"), ExtResource("26_i0p7t"), ExtResource("27_24ot2"), ExtResource("28_0v5ix"), ExtResource("29_dbav5"), ExtResource("30_yesvr"), ExtResource("31_p6kqp"), ExtResource("32_ug640"), ExtResource("33_3ifns"), ExtResource("34_34fet"), ExtResource("35_73gl4"), ExtResource("36_ix353"), ExtResource("37_jmg41"), ExtResource("38_4dpcq"), ExtResource("39_nfqef"), ExtResource("40_u48qi"), ExtResource("41_awgmi"), ExtResource("42_dfpu6"), ExtResource("43_pkef1")]
+EngineerButton = NodePath("Engineer")
+TeacherButton = NodePath("Teacher")
+ButcherButton = NodePath("Butcher")
+OccultistButton = NodePath("Occultist")
+Date = NodePath("Date")
+
+[node name="PaperTex" type="TextureRect" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 588.0
+offset_top = 29.0
+offset_right = 1079.0
+offset_bottom = 649.0
+texture = ExtResource("44_lhtqp")
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": false,
+"slice_section": false
+}
+
+[node name="Date" type="Label" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 47.0
+offset_right = 1057.0
+offset_bottom = 591.0
+text = "December 01, 500X"
+label_settings = SubResource("LabelSettings_4k144")
+autowrap_mode = 3
+
+[node name="Engineer" type="Label" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 109.0
+offset_right = 1057.0
+offset_bottom = 211.0
+text = "The Engineer stayed home and played an MMO until nightfall."
+label_settings = SubResource("LabelSettings_4k144")
+autowrap_mode = 3
+
+[node name="Teacher" type="Label" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 218.0
+offset_right = 1057.0
+offset_bottom = 320.0
+text = "December 01, 500X"
+label_settings = SubResource("LabelSettings_4k144")
+autowrap_mode = 3
+
+[node name="Butcher" type="Label" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 332.0
+offset_right = 1057.0
+offset_bottom = 434.0
+text = "December 01, 500X"
+label_settings = SubResource("LabelSettings_4k144")
+autowrap_mode = 3
+
+[node name="Occultist" type="Label" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 668.0
+offset_top = 441.0
+offset_right = 1057.0
+offset_bottom = 543.0
+text = "December 01, 500X"
+label_settings = SubResource("LabelSettings_4k144")
+autowrap_mode = 3
+
+[node name="CLOSE" type="Button" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 648.0
+offset_top = 614.0
+offset_right = 800.0
+offset_bottom = 645.0
+theme = ExtResource("46_1vjf4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "CLOSE"
+
+[node name="NextDay" type="Button" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 972.0
+offset_right = 1076.0
+offset_bottom = 31.0
+theme = ExtResource("46_1vjf4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "NEXT DAY"
+
+[node name="PreviousDay" type="Button" parent="SuspectLog"]
+layout_mode = 0
+offset_left = 647.0
+offset_top = -1.0
+offset_right = 799.0
+offset_bottom = 30.0
+theme = ExtResource("46_1vjf4")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "PREVIOUS DAY"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1075.0
+offset_top = 9.0
+offset_right = 1220.0
+offset_bottom = 51.0
+text = "Day +1"
+script = ExtResource("47_ls4xh")
+val = 1
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1075.0
+offset_top = 60.0
+offset_right = 1220.0
+offset_bottom = 102.0
+text = "Day -1"
+script = ExtResource("47_ls4xh")
+val = -1
+
+[node name="TextboxSystem" parent="." instance=ExtResource("48_af6mi")]
+visible = false
+z_index = 0
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("49_mtcrv")
+autoplay = true
+
+[connection signal="pressed" from="SuspectLog/CLOSE" to="SuspectLog" method="_on_close_pressed"]
+[connection signal="pressed" from="SuspectLog/NextDay" to="SuspectLog" method="_on_next_day_pressed"]
+[connection signal="pressed" from="SuspectLog/PreviousDay" to="SuspectLog" method="_on_previous_day_pressed"]
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
