@@ -40,21 +40,28 @@ public partial class SuspectLog : Control
 		Visible = true;
 	}
 	public void OnDayChanged() {
-		if(currentLogDay > GameController.currentDay-1) {
+		if(currentLogDay > GameController.currentDay-1 && GameController.currentDay > 1) {
 			EngineerButton.Text = "";
 			TeacherButton.Text = "";
 			ButcherButton.Text = "";
 			OccultistButton.Text = "";
+		} else if (GameController.currentDay > 1){
+			EngineerButton.Text = logs[currentLogDay-1].EngineerLog;
+			TeacherButton.Text = logs[currentLogDay-1].TeacherLog;
+			ButcherButton.Text = logs[currentLogDay-1].ButcherLog;
+			OccultistButton.Text = logs[currentLogDay-1].OccultistLog;
 		} else {
-			EngineerButton.Text = logs[currentLogDay].EngineerLog;
-			TeacherButton.Text = logs[currentLogDay].TeacherLog;
-			ButcherButton.Text = logs[currentLogDay].ButcherLog;
-			OccultistButton.Text = logs[currentLogDay].OccultistLog;
+			EngineerButton.Text = "No reports have come in yet. Check tomorrow.";
 		}
 		GD.Print(currentLogDay);
 		GD.Print(days.Count);
-		String thisDayName = (String)days[currentLogDay%7];
+		String thisDayName = (String)days[(currentLogDay-1)%7];
 		Date.Text = thisDayName + ", December " + currentLogDay.ToString("D2") + ", 50XX";
+
+		if(currentLogDay == 2 && GameController.currentDay > 2) {
+			GameController.engineerMemory[0] = 1;
+			GD.Print("Saw the Auta thing.");
+		}
 	}
 
 	private void _on_next_day_pressed() {

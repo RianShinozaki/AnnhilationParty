@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://l0emwyvvalk1"
+path="res://.godot/imported/Squiggle.aseprite-c7709361002c0e99c5278da5cb0fce98.res"
+
+[deps]
+
+source_file="res://Art Assets/Squiggle.aseprite"
+dest_files=["res://.godot/imported/Squiggle.aseprite-c7709361002c0e99c5278da5cb0fce98.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

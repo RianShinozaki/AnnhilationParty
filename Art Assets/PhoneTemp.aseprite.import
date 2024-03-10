@@ -1,0 +1,16 @@
+[remap]
+
+importer="aseprite_wizard.plugin.static-texture"
+type="AtlasTexture"
+uid="uid://bi550dwvx66x3"
+path="res://.godot/imported/PhoneTemp.aseprite-c0347fd65522f472fe8a9331c6b264fe.res"
+
+[deps]
+
+source_file="res://Art Assets/PhoneTemp.aseprite"
+dest_files=["res://.godot/imported/PhoneTemp.aseprite-c0347fd65522f472fe8a9331c6b264fe.res"]
+
+[params]
+
+exclude_layers_pattern=""
+only_visible_layers=false

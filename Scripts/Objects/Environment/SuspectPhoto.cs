@@ -39,6 +39,10 @@ public partial class SuspectPhoto : Clickable
             Visible = false;
             active = false;
         }
+        if(Phone.Instance.isRinging) {
+            Visible = false;
+            active = false;
+        }
     }
 
     public override void OnClick()

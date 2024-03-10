@@ -356,7 +356,8 @@ public partial class Teacher : Speaker
 					new Godot.Collections.Array{
 						"...",
 						"*Before you know it, it's noon. You and the Teacher take a moment for some lunch.",
-						"*...Now's your chance to get closer to them."
+						"*...Now's your chance to get closer to them.",
+						"Unfortunately, no more dialogue exists."
 					},
 					new Godot.Collections.Array{
 
@@ -364,7 +365,7 @@ public partial class Teacher : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						
+						-1
 					}
 				);
 				break;

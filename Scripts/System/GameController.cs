@@ -5,12 +5,15 @@ using System;
 
 public partial class GameController : Node
 {
+
     [Signal]
     public delegate void SwitchSceneTransitionBeginEventHandler(string newScene);
     [Signal]
     public delegate void SwitchSceneEventHandler();
     [Signal]
     public delegate void MoneyChangedEventHandler();
+    [Signal]
+    public delegate void BeginIntroSequenceEventHandler();
 
     public enum GameState {
         Office,
@@ -23,7 +26,9 @@ public partial class GameController : Node
     public enum Location {
         Office,
         Butcher,
-        Teacher
+        Teacher,
+        Engineer,
+        Occultist
     }
 
     public static Godot.Collections.Array days = new Godot.Collections.Array{
@@ -81,6 +86,8 @@ public partial class GameController : Node
     //1 -- has met :: 0 -- no :: 1 -- yes
     //2 -- know job :: 0 -- ? :: 1 -- writer :: 2 -- unemployed :: 3 -- engineer
 
+    public static short[] occultistMemory = new short[10];
+    //0 -- has met :: 0 -- no :: 1 -- yes
 
     public static Godot.Collections.Dictionary[] dialogueRecords = new Godot.Collections.Dictionary[31];
 
@@ -102,10 +109,20 @@ public partial class GameController : Node
 	}
     public override void _Process(double delta)
     {
+        
+
         base._Process(delta);
 		splitX = Mathf.Lerp(splitX, wishSplitX, (float)delta*5);
 		split2X = Mathf.Lerp(split2X, wishSplitX-2, (float)delta*4);
 		split3X = Mathf.Lerp(split3X, wishSplitX-4, (float)delta*3);
+    }
+
+    public void DoIntro() {
+        wishSplitX = 600;
+        splitX = 600;
+        split2X = 600;
+        split3X = 600;
+        EmitSignal(SignalName.BeginIntroSequence);
     }
 
     public void OnSwitchScene() {
@@ -138,7 +155,7 @@ public partial class GameController : Node
         EmitSignal(SignalName.MoneyChanged);
     }
     public static string GetDay(int day) {
-        return (string)days[day%7];
+        return (string)days[(day-1)%7];
     }
 }
 

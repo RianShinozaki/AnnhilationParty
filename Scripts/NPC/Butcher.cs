@@ -570,16 +570,17 @@ public partial class Butcher : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Hello, my friend! Glad to see you in my shop this fine morning.",
-						"Anything I can do for you?"
+						"Anything I can do for you?",
+						"Unfortunately, no more dialogue eixsts."
 					},
 					new Godot.Collections.Array{
 						"butcher_1_1",
 					},
 					new Godot.Collections.Array{
-						"Looking for something nice.",
+						/*"Looking for something nice.",
 						"Maybe some deli ham?",
 						"Just came to say hello.",
-						"Changed my mind, actually."
+						"Changed my mind, actually."*/
 					},
 					new Godot.Collections.Array{
 						-1

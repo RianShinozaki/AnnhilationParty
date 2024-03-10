@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://rc02847t6sxq"]
+[gd_scene load_steps=62 format=3 uid="uid://rc02847t6sxq"]
 
 [ext_resource type="Script" path="res://Scripts/System/Screen.cs" id="1_haiik"]
 [ext_resource type="PackedScene" uid="uid://3tn1o525br5" path="res://Scenes/Investigation.tscn" id="1_lbqt6"]
@@ -49,6 +49,8 @@
 [ext_resource type="Resource" uid="uid://bpwroymrx0s3a" path="res://Data/Log/Day30.tres" id="43_3gpsx"]
 [ext_resource type="Resource" uid="uid://cxtnps06v7exv" path="res://Data/Log/Day31.tres" id="44_fbqvm"]
 [ext_resource type="AudioStream" uid="uid://mbte7cc45ii2" path="res://Audio/SeenUnseen.mp3" id="49_jsk3t"]
+[ext_resource type="Script" path="res://Scripts/System/BGMPlayer.cs" id="50_mv3uq"]
+[ext_resource type="Script" path="res://Scripts/NPC/OfficeSpeaker.cs" id="50_um8kk"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l607p"]
 viewport_path = NodePath("Control/Investigation/SubViewport")
@@ -397,7 +399,15 @@ z_index = 0
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("49_jsk3t")
-autoplay = true
+script = ExtResource("50_mv3uq")
+
+[node name="OfficeSpeaker" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -370.0
+offset_top = 32.0
+offset_right = -330.0
+offset_bottom = 72.0
+script = ExtResource("50_um8kk")
 
 [connection signal="pressed" from="SuspectLog/CLOSE" to="SuspectLog" method="_on_close_pressed"]
 [connection signal="pressed" from="SuspectLog/NextDay" to="SuspectLog" method="_on_next_day_pressed"]

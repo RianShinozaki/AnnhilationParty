@@ -14,7 +14,10 @@ public partial class textbox_system : Control
 
 	[Export] Control ResponseGroup;
 	[Export] PackedScene ResponseButton;
+	[Export] AudioStreamPlayer talkSound;
 	GameController.GameState stateCache;
+	RandomNumberGenerator rng = new RandomNumberGenerator();
+
 
     public override void _Ready()
     {
@@ -23,6 +26,7 @@ public partial class textbox_system : Control
 		Instance = this;
         base._Ready();
 		Visible = false;
+		visibleT = 1000;
     }
 
 	public void GetNextDialogue(int id) {
@@ -59,7 +63,10 @@ public partial class textbox_system : Control
 				visibleT += (float)delta * 20;
 				dialogue.VisibleCharacters = Mathf.RoundToInt(visibleT);
 				nextButton.Text = "Skip";
-
+				if (!talkSound.Playing) {
+					talkSound.Play();
+					talkSound.PitchScale = rng.RandfRange(0.9f, 1.1f);
+				}
 			}
 			else {
 				//If no more letters to display, make the next button visible

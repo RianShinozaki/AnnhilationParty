@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://k8rwx7o3go0e"]
+[gd_scene load_steps=6 format=3 uid="uid://k8rwx7o3go0e"]
 
 [ext_resource type="Texture2D" uid="uid://c5fk27f4oevx1" path="res://Art Assets/Textbox.png" id="1_86u3a"]
 [ext_resource type="Script" path="res://Scripts/System/textbox_system.cs" id="1_y2i8b"]
 [ext_resource type="PackedScene" uid="uid://bstrfkdu5ivds" path="res://Objects/System/Dialogue/response.tscn" id="2_8t2sx"]
 [ext_resource type="Theme" uid="uid://dab07dflhwun4" path="res://Font/Textbox.tres" id="2_n4sfx"]
+[ext_resource type="AudioStream" uid="uid://bomnlh0ubyx80" path="res://Audio/Talk.wav" id="5_d5dtl"]
 
-[node name="TextboxSystem" type="Control" node_paths=PackedStringArray("ResponseGroup")]
+[node name="TextboxSystem" type="Control" node_paths=PackedStringArray("ResponseGroup", "talkSound")]
 z_index = 500
 layout_mode = 3
 anchors_preset = 0
@@ -15,6 +16,7 @@ offset_bottom = 97.0
 script = ExtResource("1_y2i8b")
 ResponseGroup = NodePath("Container/Responses/Vertical Group")
 ResponseButton = ExtResource("2_8t2sx")
+talkSound = NodePath("AudioStreamPlayer")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
@@ -77,5 +79,9 @@ layout_mode = 2
 
 [node name="Response" parent="Container/Responses/Vertical Group" instance=ExtResource("2_8t2sx")]
 layout_mode = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_d5dtl")
+pitch_scale = 0.97
 
 [connection signal="pressed" from="NextButton" to="." method="_on_next_button_pressed"]

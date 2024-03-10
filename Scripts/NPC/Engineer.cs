@@ -8,7 +8,6 @@ public partial class Engineer : Speaker
 	[Export] public Item steak;
 	public override void _Ready()
     {
-		GameController.engineerMemory[0] = 1;
 
         base._Ready();
 		GameController.theSpeaker = this;
@@ -63,22 +62,41 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case -2:
-				dialogueSet = new DialogueSet(
-					new Godot.Collections.Array{
-						"*Coffee here costs $8... Can't get a seat without paying."
-					},
-					new Godot.Collections.Array{
+				if(GameController.engineerMemory[1] == 0) {
+					dialogueSet = new DialogueSet(
+						new Godot.Collections.Array{
+							"*Coffee here costs $8... Can't get a seat without paying."
+						},
+						new Godot.Collections.Array{
 
-					},
-					new Godot.Collections.Array{
-						"*Get a coffee.",
-						"*Go home."
-					},
-					new Godot.Collections.Array{
-						-3,
-						-1
-					}
-				);
+						},
+						new Godot.Collections.Array{
+							"*Get a coffee.",
+							"*Go home."
+						},
+						new Godot.Collections.Array{
+							-3,
+							-1
+						}
+					);
+				} else {
+					dialogueSet = new DialogueSet(
+						new Godot.Collections.Array{
+							"*Coffee here costs $8... Can't get a seat without paying."
+						},
+						new Godot.Collections.Array{
+
+						},
+						new Godot.Collections.Array{
+							"*Get a coffee.",
+							"*Go home."
+						},
+						new Godot.Collections.Array{
+							100,
+							-1
+						}
+					);
+				}
 				break;
 			case -3:
 				if(GameController.money >= 8) {
@@ -335,6 +353,7 @@ public partial class Engineer : Speaker
 				}
 				break;
 			case 8:
+				GameController.engineerMemory[2] = 1;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"A writer, huh?",
@@ -354,6 +373,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 9:
+			
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Don't want people knowing who you are in public?",
@@ -393,6 +413,8 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 11:
+				GameController.engineerMemory[2] = 2;
+
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"I can't really blame you. Way things are these days...",
@@ -410,6 +432,8 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 12:
+				GameController.engineerMemory[2] = 3;
+
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Did they tell you we were in high demand, too?",
@@ -442,6 +466,23 @@ public partial class Engineer : Speaker
 					},
 					new Godot.Collections.Array{
 
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			
+			case 100:
+				animPlayer.Play("Intro");
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"You say hello to the Engineer. Unfortunately, no more dialogue exists. Go home!"
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
 						-1
