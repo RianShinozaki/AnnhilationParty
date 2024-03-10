@@ -3,8 +3,9 @@ using System;
 
 public partial class OfficeSpeaker : Speaker
 {
-	bool DoIntro = false;
+	bool DoIntro = true;
 	public static OfficeSpeaker Instance;
+	
 	public override void _Ready()
     {
         base._Ready();
@@ -37,15 +38,29 @@ public partial class OfficeSpeaker : Speaker
 		GameController.theSpeaker = this;
 		if(lastCalledDay == GameController.currentDay) {
 			textbox_system.Instance.Initialize(99);
+		} else {
+	
+			switch(GameController.timesCalledOldGuard) {
+				case 0:
+					textbox_system.Instance.Initialize(100);
+					break;
+				case 1:
+					textbox_system.Instance.Initialize(110);
+					break;
+				case 2:
+					textbox_system.Instance.Initialize(111);
+					break;
+				case 3:
+					textbox_system.Instance.Initialize(112);
+					break;
+				default:
+					textbox_system.Instance.Initialize(113);
+					break;
+			}
+			GameController.timesCalledOldGuard++;
 		}
 		lastCalledDay = GameController.currentDay;
-
-		int theDay = GameController.currentDay;
-		switch(theDay) {
-			case 1:
-				textbox_system.Instance.Initialize(100);
-				break;
-		}
+		
 	}
 	public int lastCalledDay = 0;
 
@@ -385,14 +400,14 @@ public partial class OfficeSpeaker : Speaker
 					new Godot.Collections.Array{
 						"We've lost three colonies over it, but I was able to save one of the central planets.",
 						"That puts us at... 25%?",
-						"It is what it is."
+						"Pretty nice odds."
 					},
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						108
+						105
 					}
 				);
 				break;
@@ -433,6 +448,91 @@ public partial class OfficeSpeaker : Speaker
 					}
 				);
 				break;
+			
+			case 110:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"Hey there. You gone and visited any folks yet?",
+						"I guess the briefing told ya where to find them... not necessarily when.",
+						"Hope you haven't wasted any time running around and not finding anyone...",
+						"Check that logbook. Most people operate on a schedule, and that book should make it pretty obvious when to find someone.",
+						"Or, if that doesn't sit right by ya... just hope you get lucky.",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 111:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"This job requires you to be a real people-person.",
+						"When ya talk to people, you're gonna have to break through their reservations.",
+						"Most people don't act their true selves around someone they just met...",
+						"Doesn't mean you have to appease them. You can even try putting them off balance.",
+						"Be a loon for all I care. Makes people think they can say whatever they want to you.",
+						"Don't be reserved yourself, though.",
+						"*The phone clicks off.",
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			
+			case 112:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"Oh yeah, how's the war-fund taking care of ya?",
+						"Two-hundred big-ones a week. Imagine that.",
+						"...Still, that's all you get.",
+						"...",
+						"Are you really meant to succeed here? Hell if I know.",
+						"I wouldn't be in your position if they paid me a million times that.",
+						"*The phone clicks off.",
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			
+			case 113:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*Nobody responds.",
+						
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+		
 		
 			default:
 				dialogueSet = null;

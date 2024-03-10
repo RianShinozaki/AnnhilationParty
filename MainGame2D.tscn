@@ -212,9 +212,9 @@ texture = ExtResource("6_3h7n4")
 [node name="Label" type="Label" parent="Screen/SplitLine"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 239.0
+offset_left = 235.0
 offset_top = 20.0
-offset_right = 482.0
+offset_right = 608.0
 offset_bottom = 161.0
 text = "12    01
 Morning"
@@ -374,6 +374,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "PREVIOUS DAY"
 
 [node name="Button" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1075.0
 offset_top = 9.0
@@ -384,6 +385,7 @@ script = ExtResource("17_bbsds")
 val = 1
 
 [node name="Button2" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1075.0
 offset_top = 60.0

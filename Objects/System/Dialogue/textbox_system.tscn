@@ -74,10 +74,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Vertical Group" type="VBoxContainer" parent="Container/Responses"]
-visible = false
 layout_mode = 2
 
 [node name="Response" parent="Container/Responses/Vertical Group" instance=ExtResource("2_8t2sx")]
+visible = false
 layout_mode = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

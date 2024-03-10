@@ -8,7 +8,6 @@ public partial class ResponseButton : Button
 	public int aNumber;
 	
 	private void _on_pressed() {
-		GD.Print("yeehaw");
 		EmitSignal(SignalName.Pressed, aNumber);
 	}
 }

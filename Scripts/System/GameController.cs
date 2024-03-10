@@ -91,6 +91,8 @@ public partial class GameController : Node
 
     public static Godot.Collections.Dictionary[] dialogueRecords = new Godot.Collections.Dictionary[31];
 
+    public static int timesCalledOldGuard = 0;
+
     public override void _Ready()
     {
         base._Ready();

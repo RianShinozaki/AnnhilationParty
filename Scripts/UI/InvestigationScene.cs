@@ -37,10 +37,8 @@ public partial class InvestigationScene : Node2D
 		instantiatedScene = toScene.Instantiate();
 		GetNode("SpecificSceneHolder").AddChild(instantiatedScene);
 
-		GD.Print("Here");
 		Tween tween = GetTree().CreateTween();
 		tween.TweenProperty(Fade, "modulate", new Color(0, 0, 0, 0), 1.0f).SetTrans(Tween.TransitionType.Sine);
 
-		GD.Print("Here2");
 	}
 }

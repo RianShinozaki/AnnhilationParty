@@ -60,7 +60,6 @@ public partial class SuspectLog : Control
 
 		if(currentLogDay == 2 && GameController.currentDay > 2) {
 			GameController.engineerMemory[0] = 1;
-			GD.Print("Saw the Auta thing.");
 		}
 	}
 

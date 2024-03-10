@@ -17,13 +17,14 @@ public partial class Clickable : Area2D
 	public override void _Process(double delta)
 	{
 		if(active) {
-			if(Input.IsActionJustPressed("Click")) {
-				if(mouseOver) OnClick();
+			
+			if(mouseOver) {
+				Tooltip.Instance.Visible = true;
+				Tooltip.Instance.Text = tooltip;
+				if(Input.IsActionJustPressed("Click")) {
+					OnClick();
+				}
 			}
-		}
-		if(mouseOver && !active) {
-			mouseOver = false;
-			Tooltip.Instance.Visible = false;
 		}
 		CheckActive();
 	}
@@ -35,17 +36,12 @@ public partial class Clickable : Area2D
 	}
 	
 	private void _on_area_2d_area_entered(Area2D area) {
-		if(active) {
-			mouseOver = true;
-			Tooltip.Instance.Visible = true;
-			Tooltip.Instance.Text = tooltip;
-		}
+		mouseOver = true;
+		
 	}
 	private void _on_area_2d_area_exited(Area2D area) {
-		if(active) {
-			mouseOver = false;
-			Tooltip.Instance.Visible = false;
-		}
+		mouseOver = false;
+		Tooltip.Instance.Visible = false;
 	}
 	public virtual void OnClick() {
 		

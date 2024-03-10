@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkd0crjuwbxca"]
+[gd_scene load_steps=13 format=3 uid="uid://dkd0crjuwbxca"]
 
 [ext_resource type="Texture2D" uid="uid://djhiupc6yp6tb" path="res://Art Assets/Butcher.png" id="1_cl6ui"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="2_lvhp5"]
 [ext_resource type="Script" path="res://Scripts/NPC/Butcher.cs" id="3_h7qj8"]
 [ext_resource type="Resource" uid="uid://dt8vb65komejs" path="res://Data/Items/Steak.tres" id="4_1q05i"]
 [ext_resource type="Texture2D" uid="uid://cqwco4aiansp0" path="res://Art Assets/!.png" id="4_b230j"]
+[ext_resource type="FontFile" uid="uid://81hcxqd8mm4q" path="res://Font/GlitchGoblin-2O87v.ttf" id="6_o1ayl"]
 
 [sub_resource type="Animation" id="Animation_vb4fs"]
 resource_name = "Intro"
@@ -123,6 +124,15 @@ _data = {
 "!": SubResource("Animation_mcn6p")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_kb6it"]
+font = ExtResource("6_o1ayl")
+font_size = 59
+font_color = Color(0.905882, 0.443137, 1, 1)
+outline_size = 8
+shadow_size = 17
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(2, 2)
+
 [node name="Office" type="Node2D"]
 position = Vector2(-1.52588e-05, 0)
 
@@ -172,3 +182,14 @@ root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_xxmwm")
 }
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 804.0
+offset_top = 8.0
+offset_right = 1257.0
+offset_bottom = 149.0
+theme_override_colors/font_color = Color(0.905882, 0.443137, 1, 1)
+text = "BUTCHER SHOP"
+label_settings = SubResource("LabelSettings_kb6it")
+horizontal_alignment = 2

@@ -44,7 +44,6 @@ public partial class textbox_system : Control
 		idx = 0;
 		dialogue.Text = (string)dialogueSet.lines[idx];
 		dialogue.VisibleCharacters = 0;
-		GD.Print("test?");
 	}
 
 	//METHODS
@@ -60,7 +59,7 @@ public partial class textbox_system : Control
 		if(!responseMode) {
 			//Typewriter effect
 			if(visibleT < dialogue.GetTotalCharacterCount()) {
-				visibleT += (float)delta * 20;
+				visibleT += (float)delta * 30;
 				dialogue.VisibleCharacters = Mathf.RoundToInt(visibleT);
 				nextButton.Text = "Skip";
 				if (!talkSound.Playing) {
@@ -118,7 +117,6 @@ public partial class textbox_system : Control
 		} 
 	}
 	private void _on_response_pressed(int nextLine) {
-		GD.Print("woohoo");
 		GetNextDialogue(nextLine);
 		dialogue.Visible = true;
 		ResponseGroup.Visible = false;
