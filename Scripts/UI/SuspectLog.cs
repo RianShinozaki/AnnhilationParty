@@ -5,6 +5,8 @@ using System;
 public partial class SuspectLog : Control
 {
 	[Export] public LogDay[] logs = new LogDay[31];
+	[Export] public LogDay[] defaultLogs = new LogDay[7];
+
 
 	[Export] public Label EngineerButton;
 	[Export] public Label TeacherButton;
@@ -46,12 +48,30 @@ public partial class SuspectLog : Control
 			ButcherButton.Text = "";
 			OccultistButton.Text = "";
 		} else if (GameController.currentDay > 1){
-			EngineerButton.Text = logs[currentLogDay-1].EngineerLog;
-			TeacherButton.Text = logs[currentLogDay-1].TeacherLog;
-			ButcherButton.Text = logs[currentLogDay-1].ButcherLog;
-			OccultistButton.Text = logs[currentLogDay-1].OccultistLog;
+			if(logs[currentLogDay-1].EngineerLog == "") 
+				EngineerButton.Text = defaultLogs[ (currentLogDay-1)%7 ].EngineerLog;
+			else
+				EngineerButton.Text = logs[currentLogDay-1].EngineerLog;
+			
+			if(logs[currentLogDay-1].TeacherLog == "") 
+				TeacherButton.Text = defaultLogs[ (currentLogDay-1)%7 ].TeacherLog;
+			else
+				TeacherButton.Text = logs[currentLogDay-1].TeacherLog;
+			
+			if(logs[currentLogDay-1].ButcherLog == "") 
+				ButcherButton.Text = defaultLogs[ (currentLogDay-1)%7 ].ButcherLog;
+			else
+				ButcherButton.Text = logs[currentLogDay-1].ButcherLog;
+			
+			if(logs[currentLogDay-1].OccultistLog == "") 
+				OccultistButton.Text = defaultLogs[ (currentLogDay-1)%7 ].OccultistLog;
+			else
+				OccultistButton.Text = logs[currentLogDay-1].OccultistLog;
 		} else {
 			EngineerButton.Text = "No reports have come in yet. Check tomorrow.";
+			TeacherButton.Text = "";
+			ButcherButton.Text = "";
+			OccultistButton.Text = "";
 		}
 		GD.Print(currentLogDay);
 		GD.Print(days.Count);

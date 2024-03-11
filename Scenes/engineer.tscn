@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://bwpku136fy7hs"]
 
-[ext_resource type="Texture2D" uid="uid://d3dg5as5cidhl" path="res://Art Assets/BackgroundGeneric.png" id="1_04fcx"]
-[ext_resource type="Texture2D" uid="uid://trksf44t1aus" path="res://Art Assets/CharacterGeneric.png" id="2_0nmwt"]
+[ext_resource type="Texture2D" uid="uid://c7p80fvi4k6b3" path="res://Art Assets/CafeBG.png" id="1_57wes"]
+[ext_resource type="Texture2D" uid="uid://dmadot45kr2wp" path="res://Art Assets/Engineer.png" id="2_j46s3"]
 [ext_resource type="Texture2D" uid="uid://cqwco4aiansp0" path="res://Art Assets/!.png" id="3_anv14"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="4_t6yfe"]
 [ext_resource type="Script" path="res://Scripts/NPC/Engineer.cs" id="5_cgkr7"]
@@ -137,15 +137,15 @@ shadow_offset = Vector2(2, 2)
 position = Vector2(-1.52588e-05, 0)
 
 [node name="Background2" type="Sprite2D" parent="."]
-position = Vector2(641, 301)
-scale = Vector2(4, 4)
-texture = ExtResource("1_04fcx")
+position = Vector2(641, 361)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_57wes")
 
 [node name="Character" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(541, 147)
-scale = Vector2(4, 4)
-texture = ExtResource("2_0nmwt")
+position = Vector2(1.00002, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_j46s3")
 centered = false
 hframes = 2
 frame = 1
@@ -157,8 +157,8 @@ libraries = {
 
 [node name="!" type="Node2D" parent="Character"]
 visible = false
-position = Vector2(31, -20.25)
-scale = Vector2(0.25, 0.25)
+position = Vector2(1494, 190)
+scale = Vector2(2, 2)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Character/!"]
 modulate = Color(0, 0.517647, 0.811765, 1)

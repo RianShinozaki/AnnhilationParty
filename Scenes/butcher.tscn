@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dkd0crjuwbxca"]
+[gd_scene load_steps=14 format=3 uid="uid://dkd0crjuwbxca"]
 
-[ext_resource type="Texture2D" uid="uid://djhiupc6yp6tb" path="res://Art Assets/Butcher.png" id="1_cl6ui"]
+[ext_resource type="Texture2D" uid="uid://ce52ltiovswav" path="res://Art Assets/Butcher/ButcherBG.png" id="1_5pj2x"]
+[ext_resource type="Texture2D" uid="uid://d0quw6728wush" path="res://Art Assets/Butcher/ButcherAway.png" id="1_h515x"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="2_lvhp5"]
 [ext_resource type="Script" path="res://Scripts/NPC/Butcher.cs" id="3_h7qj8"]
 [ext_resource type="Resource" uid="uid://dt8vb65komejs" path="res://Data/Items/Steak.tres" id="4_1q05i"]
@@ -136,16 +137,21 @@ shadow_offset = Vector2(2, 2)
 [node name="Office" type="Node2D"]
 position = Vector2(-1.52588e-05, 0)
 
-[node name="Background" type="Sprite2D" parent="."]
+[node name="ButcherBg" type="Sprite2D" parent="."]
+position = Vector2(558, 410)
+scale = Vector2(0.645833, 0.645833)
+texture = ExtResource("1_5pj2x")
+
+[node name="Character" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-304, -124)
 scale = Vector2(0.734722, 0.734722)
-texture = ExtResource("1_cl6ui")
+texture = ExtResource("1_h515x")
 centered = false
 hframes = 2
 frame = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Background"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Character"]
 libraries = {
 "": SubResource("AnimationLibrary_bimlf")
 }
@@ -158,8 +164,8 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_h7qj8")
-NPCSprite = NodePath("../Background")
-animPlayer = NodePath("../Background/AnimationPlayer")
+NPCSprite = NodePath("../Character")
+animPlayer = NodePath("../Character/AnimationPlayer")
 steak = ExtResource("4_1q05i")
 
 [node name="!" type="Node2D" parent="."]

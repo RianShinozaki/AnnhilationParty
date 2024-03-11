@@ -4,8 +4,7 @@
 
 [resource]
 script = ExtResource("1_nclgn")
-EngineerLog = ""
+EngineerLog = "The Engineer went to work and then went home."
 TeacherLog = ""
 ButcherLog = ""
 OccultistLog = ""
-day = 1

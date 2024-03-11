@@ -6,6 +6,7 @@ public partial class Occultist : Speaker
 	[Export] public Sprite2D NPCSprite;
 	[Export] public AnimationPlayer animPlayer;
 	[Export] public Item steak;
+	[Export] public Sprite2D tempObscure;
 	public override void _Ready()
     {
         base._Ready();
@@ -16,6 +17,7 @@ public partial class Occultist : Speaker
 			|| GameController.GetDay(GameController.currentDay) == "Friday") {
 				textbox_system.Instance.Initialize(-100);
 				NPCSprite.Visible = false;
+				tempObscure.Visible = true;
 				return;
 			}
 		if(GameController.occultistMemory[0] == 0) {

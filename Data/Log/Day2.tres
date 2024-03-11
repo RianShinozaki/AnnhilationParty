@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_chfbi")
 EngineerLog = "The Engineer stayed home and watched the anime 'Auta'."
-TeacherLog = "The Teacher prepared worksheets."
-ButcherLog = "The Butcher went fishing up North."
-OccultistLog = "The Occultist spent the night sacrificing a homonculus in the park."
+TeacherLog = ""
+ButcherLog = ""
+OccultistLog = ""

@@ -9,6 +9,14 @@ public partial class Butcher : Speaker
 	public override void _Ready()
     {
         base._Ready();
+		GameController.theSpeaker = this;
+		if(GameController.currentTime != 0 
+			|| GameController.GetDay(GameController.currentDay) == "Saturday" 
+			|| GameController.GetDay(GameController.currentDay) == "Sunday") {
+			textbox_system.Instance.Initialize(-100);
+			NPCSprite.Visible = false;
+			return;
+		}
 		animPlayer.Play("Intro");
     }
     public override void _Process(double delta)
@@ -19,13 +27,6 @@ public partial class Butcher : Speaker
     }
 
 	public void Init() {
-		GameController.theSpeaker = this;
-		if(GameController.currentTime != 0 
-			|| GameController.GetDay(GameController.currentDay) == "Saturday" 
-			|| GameController.GetDay(GameController.currentDay) == "Sunday") {
-				textbox_system.Instance.Initialize(-100);
-				return;
-			}
 		if(GameController.butcherMemory[1] == 0) {
 			textbox_system.Instance.Initialize(0);
 			return;

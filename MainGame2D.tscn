@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://rc02847t6sxq"]
+[gd_scene load_steps=69 format=3 uid="uid://rc02847t6sxq"]
 
 [ext_resource type="Script" path="res://Scripts/System/Screen.cs" id="1_haiik"]
 [ext_resource type="PackedScene" uid="uid://3tn1o525br5" path="res://Scenes/Investigation.tscn" id="1_lbqt6"]
@@ -48,7 +48,14 @@
 [ext_resource type="Resource" uid="uid://bb1i5tawa7oxt" path="res://Data/Log/Day29.tres" id="42_j7xil"]
 [ext_resource type="Resource" uid="uid://bpwroymrx0s3a" path="res://Data/Log/Day30.tres" id="43_3gpsx"]
 [ext_resource type="Resource" uid="uid://cxtnps06v7exv" path="res://Data/Log/Day31.tres" id="44_fbqvm"]
+[ext_resource type="Resource" uid="uid://cxerx0pfuqbp8" path="res://Data/Log/1DefaultFriday.tres" id="44_fxatu"]
+[ext_resource type="Resource" uid="uid://dm2ni2m5jjkfv" path="res://Data/Log/2DefaultSat.tres" id="45_q0uk1"]
+[ext_resource type="Resource" uid="uid://uk81qv5c4aij" path="res://Data/Log/3DefaultSun.tres" id="46_26tji"]
+[ext_resource type="Resource" uid="uid://dinm2tvllabnp" path="res://Data/Log/4DefaultMon.tres" id="47_5btol"]
+[ext_resource type="Resource" uid="uid://ejehjpmtbndo" path="res://Data/Log/5DefaultTues.tres" id="48_8osgc"]
+[ext_resource type="Resource" uid="uid://dbc2y4j0nqa30" path="res://Data/Log/6DefaultWed.tres" id="49_5echf"]
 [ext_resource type="AudioStream" uid="uid://mbte7cc45ii2" path="res://Audio/SeenUnseen.mp3" id="49_jsk3t"]
+[ext_resource type="Resource" uid="uid://d82m45pb386u" path="res://Data/Log/7DefaultThurs.tres" id="50_dqunx"]
 [ext_resource type="Script" path="res://Scripts/System/BGMPlayer.cs" id="50_mv3uq"]
 [ext_resource type="Script" path="res://Scripts/NPC/OfficeSpeaker.cs" id="50_um8kk"]
 
@@ -217,16 +224,18 @@ offset_top = 20.0
 offset_right = 608.0
 offset_bottom = 161.0
 text = "12    01
-Morning"
+FRIDAY
+Morning
+"
 label_settings = SubResource("LabelSettings_8qiov")
 
 [node name="Money" type="Panel" parent="Screen"]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_left = 24.0
-offset_top = 500.0
+offset_top = 648.0
 offset_right = 214.0
-offset_bottom = 560.0
+offset_bottom = 708.0
 theme = SubResource("Theme_55asv")
 
 [node name="TextureRect" type="Panel" parent="Screen/Money"]
@@ -250,6 +259,7 @@ text = "$100.00"
 script = ExtResource("8_kdkoj")
 
 [node name="TextureRect" type="TextureRect" parent="Screen"]
+visible = false
 layout_mode = 0
 offset_left = 4.0
 offset_top = 514.0
@@ -276,6 +286,7 @@ offset_bottom = 72.0
 rotation = 1.13446
 script = ExtResource("13_vpomw")
 logs = [ExtResource("14_toaxe"), ExtResource("15_sdd52"), ExtResource("16_rq6sd"), ExtResource("17_xg0hk"), ExtResource("18_7ai4u"), ExtResource("19_mxvr2"), ExtResource("20_xmpdy"), ExtResource("21_q8bvb"), ExtResource("22_uuv21"), ExtResource("23_roowr"), ExtResource("24_1v0xb"), ExtResource("25_11en3"), ExtResource("26_wmhnq"), ExtResource("27_uvosv"), ExtResource("28_6mtmm"), ExtResource("29_omtue"), ExtResource("30_bmpva"), ExtResource("31_6l5c2"), ExtResource("32_po251"), ExtResource("33_nyv85"), ExtResource("34_gbw3m"), ExtResource("35_uyw5y"), ExtResource("36_wd4xt"), ExtResource("37_an5py"), ExtResource("38_npa0p"), ExtResource("39_j0dtm"), ExtResource("40_w1fqq"), ExtResource("41_j2o0s"), ExtResource("42_j7xil"), ExtResource("43_3gpsx"), ExtResource("44_fbqvm")]
+defaultLogs = [ExtResource("44_fxatu"), ExtResource("45_q0uk1"), ExtResource("46_26tji"), ExtResource("47_5btol"), ExtResource("48_8osgc"), ExtResource("49_5echf"), ExtResource("50_dqunx")]
 EngineerButton = NodePath("Engineer")
 TeacherButton = NodePath("Teacher")
 ButcherButton = NodePath("Butcher")
@@ -374,7 +385,6 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "PREVIOUS DAY"
 
 [node name="Button" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 1075.0
 offset_top = 9.0
@@ -385,7 +395,6 @@ script = ExtResource("17_bbsds")
 val = 1
 
 [node name="Button2" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 1075.0
 offset_top = 60.0

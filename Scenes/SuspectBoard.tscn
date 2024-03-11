@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c7ciicikyr5s2"]
+[gd_scene load_steps=9 format=3 uid="uid://c7ciicikyr5s2"]
 
 [ext_resource type="Texture2D" uid="uid://c0b7dxgbx0mt4" path="res://Art Assets/Board.png" id="1_46h16"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="4_gc7ut"]
@@ -6,53 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://evexanvo4noa" path="res://Art Assets/FrameHelper.png" id="5_e8pn7"]
 [ext_resource type="Texture2D" uid="uid://uj1nro4j7ujp" path="res://Art Assets/ReturnArrow.png" id="5_gxrli"]
 [ext_resource type="Theme" uid="uid://1jok35302t31" path="res://Font/UI.tres" id="5_u30ba"]
-[ext_resource type="Texture2D" uid="uid://b8wf0fn3ecbiy" path="res://Art Assets/PhoneTemp.png" id="7_d7j2k"]
-[ext_resource type="AudioStream" uid="uid://blarcj7aue1h8" path="res://Audio/PhoneRing.wav" id="8_1t1vr"]
-[ext_resource type="Script" path="res://Scripts/NPC/Phone.cs" id="8_871kv"]
-[ext_resource type="Texture2D" uid="uid://crwvo54xkl658" path="res://Art Assets/Squiggle.png" id="10_7q0op"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cgn2v"]
 size = Vector2(180, 140)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pn217"]
 size = Vector2(82, 98)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n4xwy"]
-atlas = ExtResource("7_d7j2k")
-region = Rect2(0, 0, 756, 479)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vqs68"]
-atlas = ExtResource("7_d7j2k")
-region = Rect2(756, 0, 756, 479)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bo2hh"]
-atlas = ExtResource("7_d7j2k")
-region = Rect2(0, 0, 756, 479)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7aqn0"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n4xwy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vqs68")
-}],
-"loop": true,
-"name": &"Ring",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bo2hh")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofq0m"]
-size = Vector2(221, 131)
 
 [node name="Board" type="Node2D"]
 
@@ -148,30 +107,6 @@ tooltip = "Occultist"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OccultistPhoto"]
 position = Vector2(790, 247)
 shape = SubResource("RectangleShape2D_pn217")
-
-[node name="PhoneTemp" type="AnimatedSprite2D" parent="."]
-position = Vector2(268, 483)
-sprite_frames = SubResource("SpriteFrames_7aqn0")
-frame_progress = 0.222137
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="PhoneTemp"]
-stream = ExtResource("8_1t1vr")
-
-[node name="Phone" type="Area2D" parent="PhoneTemp" node_paths=PackedStringArray("animPlayer", "ringing")]
-collision_layer = 4
-collision_mask = 2
-script = ExtResource("8_871kv")
-animPlayer = NodePath("..")
-ringing = NodePath("../AudioStreamPlayer")
-tooltip = "Phone"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PhoneTemp/Phone"]
-position = Vector2(-29.5, -7.5)
-shape = SubResource("RectangleShape2D_ofq0m")
-
-[node name="Squiggle" type="Sprite2D" parent="."]
-position = Vector2(765, 456)
-texture = ExtResource("10_7q0op")
 
 [node name="Pointer" parent="." instance=ExtResource("4_gc7ut")]
 modulate = Color(1, 0, 1, 1)

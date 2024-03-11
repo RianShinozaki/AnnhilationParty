@@ -89,6 +89,8 @@ public partial class GameController : Node
     public static short[] occultistMemory = new short[10];
     //0 -- has met :: 0 -- no :: 1 -- yes
 
+    public static bool[] engineerQuestionFlags = new bool[10];
+    
     public static Godot.Collections.Dictionary[] dialogueRecords = new Godot.Collections.Dictionary[31];
 
     public static int timesCalledOldGuard = 0;
@@ -96,7 +98,7 @@ public partial class GameController : Node
     public override void _Ready()
     {
         base._Ready();
-        wishSplitX = 225;
+        wishSplitX = 215;
         GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile, "res://MainGame2D.tscn");
         Instance = this;
 
@@ -133,7 +135,7 @@ public partial class GameController : Node
     public void OnSwitchSceneTransitionBegin(string newScene) {
         EmitSignal(SignalName.SwitchSceneTransitionBegin, newScene);
         if(currentLocation == Location.Office) {
-            wishSplitX = 225;
+            wishSplitX = 215;
             currentState = GameState.Office;
             currentTime++;
             if(currentTime > 1) {

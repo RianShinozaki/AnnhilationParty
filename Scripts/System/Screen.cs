@@ -26,9 +26,23 @@ public partial class Screen : TextureRect
 		Split3Line.GlobalPosition = new Vector2(GameController.split3X*4 - 49*4, 0);
     }
     public void OnSwitchScene() {
+        if(GameController.currentLocation == GameController.Location.Office) {
+            Tween tween = GetTree().CreateTween();
+            int toLen = TimeAndDate.Text.Length - (GameController.currentTime == 1 ? "MORNING" : "EVENING").Length;
+            tween.TweenProperty(TimeAndDate, "visible_characters", toLen, 1).SetTrans(Tween.TransitionType.Linear);
+            tween.Finished += ChangeDateDisplay;
+        }
+    }
+    public void ChangeDateDisplay() {
+        GD.Print("why");
         string day = GameController.GetDay(GameController.currentDay);
         string time = GameController.currentTime == 0 ? "MORNING" : (GameController.currentTime == 1 ? "EVENING" : "NIGHTFALL");
         string date = "12    " + GameController.currentDay.ToString("D2");
-        TimeAndDate.Text = date + "\r\n" + day + "\r\n" + time;
+        string stringFirst = date + "\n" + day + "\n";
+        TimeAndDate.VisibleCharacters = stringFirst.Length;
+        TimeAndDate.Text = stringFirst + time;
+
+        Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(TimeAndDate, "visible_characters", (stringFirst + time).Length, 1).SetTrans(Tween.TransitionType.Linear);
     }
 }

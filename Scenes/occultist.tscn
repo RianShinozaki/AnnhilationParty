@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpcj6th1adiv2"]
+[gd_scene load_steps=15 format=3 uid="uid://dpcj6th1adiv2"]
 
-[ext_resource type="Texture2D" uid="uid://d3dg5as5cidhl" path="res://Art Assets/BackgroundGeneric.png" id="1_sriyi"]
+[ext_resource type="Texture2D" uid="uid://bdrvmqu0jwm7q" path="res://Art Assets/Untitled_Artwork.png" id="1_6du5u"]
 [ext_resource type="Texture2D" uid="uid://trksf44t1aus" path="res://Art Assets/CharacterGeneric.png" id="2_dw56q"]
 [ext_resource type="Texture2D" uid="uid://cqwco4aiansp0" path="res://Art Assets/!.png" id="3_makk2"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="4_u8f6n"]
@@ -124,6 +124,12 @@ _data = {
 "!": SubResource("Animation_mcn6p")
 }
 
+[sub_resource type="Gradient" id="Gradient_d675m"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fwl2y"]
+gradient = SubResource("Gradient_d675m")
+
 [sub_resource type="LabelSettings" id="LabelSettings_by714"]
 font = ExtResource("6_vueqr")
 font_size = 59
@@ -133,15 +139,16 @@ shadow_size = 17
 shadow_color = Color(0, 0, 0, 1)
 shadow_offset = Vector2(2, 2)
 
-[node name="Office" type="Node2D"]
+[node name="Occultist" type="Node2D"]
 position = Vector2(-1.52588e-05, 0)
 
 [node name="Background2" type="Sprite2D" parent="."]
-position = Vector2(641, 301)
-scale = Vector2(4, 4)
-texture = ExtResource("1_sriyi")
+position = Vector2(636, 356)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_6du5u")
 
 [node name="Character" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(541, 147)
 scale = Vector2(4, 4)
@@ -179,7 +186,13 @@ libraries = {
 
 [node name="Pointer" parent="." instance=ExtResource("4_u8f6n")]
 
-[node name="Speaker" type="Control" parent="." node_paths=PackedStringArray("NPCSprite", "animPlayer")]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(626.5, 367.75)
+scale = Vector2(5.89453, 736.5)
+texture = SubResource("GradientTexture1D_fwl2y")
+
+[node name="Speaker" type="Control" parent="." node_paths=PackedStringArray("NPCSprite", "animPlayer", "tempObscure")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -187,6 +200,7 @@ offset_bottom = 40.0
 script = ExtResource("5_u6hgs")
 NPCSprite = NodePath("../Character")
 animPlayer = NodePath("../Character/AnimationPlayer")
+tempObscure = NodePath("../Sprite2D")
 
 [node name="Label" type="Label" parent="."]
 texture_filter = 1

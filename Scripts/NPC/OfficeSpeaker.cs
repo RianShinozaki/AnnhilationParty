@@ -3,7 +3,7 @@ using System;
 
 public partial class OfficeSpeaker : Speaker
 {
-	bool DoIntro = true;
+	bool DoIntro = false;
 	public static OfficeSpeaker Instance;
 	
 	public override void _Ready()
@@ -420,24 +420,23 @@ public partial class OfficeSpeaker : Speaker
 						"Now, you've got a few tools at your disposal. Thanks to WiFi signal reconstruction and digital surveillance, we can essentially tell you what everyone did each day.",
 						"That won't be enough, because the Abberant rarely reveals itself when it's alone.",
 						"However, the presence of the Abberant can manifest in outbursts of unusual behavior.",
-						"Try to get a measure of everyone's daily activities, and look for anything that stands out.",
+						"Read the logs each day to get a measure of everyone's daily activities, and look for anything that stands out.",
 						"However, where the Abberant really reveals itself is in contact between humans.",
 						"You'll need to get close to the suspects.",
 						"Befriend them. Throw them off guard. Make them attached to you. Use your information.",
-						"Do whatever it takes to get them to open up to you. In doing so, the Abberant may reveal itself in measured amounts.",
-						"...It does so in an attempt to infect you as well.",
+						"Do whatever it takes to get them to open up to you.",
 						"You have until the last two days of the month. Then, you'll have to make your decision.",
 						"Get either of the Abberants wrong, and it's over.",
 						"Get it right and it's a happy New Year's Day.",
-						"Let's recap. Spend time with suspects, and earn their trust. Check their logs and learn their habits.",
+						"Let's recap. Spend time with suspects, and earn their trust. Check the logbook on your desk everyday and learn their habits.",
 						"If you see some strange behavior, try to get them to talk to you about it.",
 						"...Listen, that's probably enough for today.",
-						"I can tell you more if you call again another time. Just pick up the phone. I'll be here.",
-						"Meanwhile, look over those logs and start to get to know the suspects. Your briefing should have told you where to find them.",
+						"I can tell you more if you call again another time. Go ahead and pick up that phone whenever. I'll be there.",
+						"Meanwhile, try to make contact with the suspects. Your briefing should have told you where to find them.",
 						"Rooting for ya.",
 						"*The phone clicks off.",
-						"*...A stack of logs on my desk, and photos of the suspects on the wall...",
-						"*You can call him again for more help. But for now, it could be best to take a look around.",
+						"*...Daily suspect logs on your desk, and photos of the suspects on the wall...",
+						"*You can use the phone again tomorrow to learn more. But for now, it could be best to take a look around.",
 					},
 					new Godot.Collections.Array{
 					},
