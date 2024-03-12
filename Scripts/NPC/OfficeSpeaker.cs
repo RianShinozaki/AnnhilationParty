@@ -5,6 +5,8 @@ public partial class OfficeSpeaker : Speaker
 {
 	bool DoIntro = false;
 	public static OfficeSpeaker Instance;
+	public int lastCalledDay = 0;
+
 	
 	public override void _Ready()
     {
@@ -62,7 +64,12 @@ public partial class OfficeSpeaker : Speaker
 		lastCalledDay = GameController.currentDay;
 		
 	}
-	public int lastCalledDay = 0;
+
+	public void SpecialCall(int ind) {
+		GameController.theSpeaker = this;
+		textbox_system.Instance.Initialize(ind);
+		
+	}
 
 	 public override DialogueSet GetNextDialogue(int id) {
 		DialogueSet dialogueSet;
@@ -71,8 +78,8 @@ public partial class OfficeSpeaker : Speaker
 			case 0:
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
-						"*Four suspects -- Two abberants.",
-						"*Abberants... Eldritch entities that have infested the city.",
+						"*Four suspects -- Two aberrants.",
+						"*aberrants... Eldritch entities that have infested the city.",
 						"*Beings that hide in the shadow of the psyche...",
 						"*Of the four suspects before you, two of them are unknowingly nursing a nightmare virus that hides in the cloak of their own minds.",
 						"*The longer they fester, the more power they gain...",
@@ -217,11 +224,11 @@ public partial class OfficeSpeaker : Speaker
 				BGMPlayer.Instance.BeginPlaying();
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
-						"*No time to mope about the meaning of abberations and Eldritch beings and whatnot.",
+						"*No time to mope about the meaning of aberrations and Eldritch beings and whatnot.",
 						"*Work calls.",
 						"...You've arrived in the office, and the office is still standing, and tentacled multi-eyed horrors are not peeping through the window.",
 						"*That much is right with the world so far.",
-						"*A previous 'abberation detective,' a fellow sufferer of the Eldritch Bullshit, should be calling you soon...",
+						"*A previous 'aberration detective,' a fellow sufferer of the Eldritch Bullshit, should be calling you soon...",
 					},
 					new Godot.Collections.Array{
 					},
@@ -382,7 +389,7 @@ public partial class OfficeSpeaker : Speaker
 						"...Just a little bit.",
 						"Frankly, what with the general size of this planet, and that war going on...",
 						"I think they see it as more trouble than it's worth.",
-						"Easy for them not to give it their all, given half the populace doesn't even believe in... whatever's allegedly going on here. The Abberants.",
+						"Easy for them not to give it their all, given half the populace doesn't even believe in... whatever's allegedly going on here. The Aberrants.",
 						"So if a city gets annhilated, that's one less headache, and more funding for weaponry.",
 						"Some people we put our trust in..."
 					},
@@ -416,17 +423,17 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Alright, so the details are: You're basically alone out there.",
-						"You've gotta find the two abberants by the end of the month or it's hello, annhilation.",
+						"You've gotta find the two aberrants by the end of the month or it's hello, annhilation.",
 						"Now, you've got a few tools at your disposal. Thanks to WiFi signal reconstruction and digital surveillance, we can essentially tell you what everyone did each day.",
-						"That won't be enough, because the Abberant rarely reveals itself when it's alone.",
-						"However, the presence of the Abberant can manifest in outbursts of unusual behavior.",
+						"That won't be enough, because the Aberrant rarely reveals itself when it's alone.",
+						"However, the presence of the Aberrant can manifest in outbursts of unusual behavior.",
 						"Read the logs each day to get a measure of everyone's daily activities, and look for anything that stands out.",
-						"However, where the Abberant really reveals itself is in contact between humans.",
+						"However, where the Aberrant really reveals itself is in contact between humans.",
 						"You'll need to get close to the suspects.",
 						"Befriend them. Throw them off guard. Make them attached to you. Use your information.",
 						"Do whatever it takes to get them to open up to you.",
 						"You have until the last two days of the month. Then, you'll have to make your decision.",
-						"Get either of the Abberants wrong, and it's over.",
+						"Get either of the Aberrants wrong, and it's over.",
 						"Get it right and it's a happy New Year's Day.",
 						"Let's recap. Spend time with suspects, and earn their trust. Check the logbook on your desk everyday and learn their habits.",
 						"If you see some strange behavior, try to get them to talk to you about it.",
@@ -521,6 +528,28 @@ public partial class OfficeSpeaker : Speaker
 						"*You pick up the archaic phone.",
 						"*Nobody responds.",
 						
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			
+			case 114:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"Hey there. You never called back, so I figured I had to check on you.",
+						"You're still alive, right?",
+						"Yes? Good.",
+						"Well, I'm not going to mother-hen you. If you want more information, pick up that phone and call.",
+						"If you want to do this yourself, have fun.",
+						"*The phone clicks off."
 					},
 					new Godot.Collections.Array{
 					},

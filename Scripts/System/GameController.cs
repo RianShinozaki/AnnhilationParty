@@ -90,6 +90,9 @@ public partial class GameController : Node
     //0 -- has met :: 0 -- no :: 1 -- yes
 
     public static bool[] engineerQuestionFlags = new bool[10];
+    public static bool[] butcherQuestionFlags = new bool[10];
+    public static bool[] occultistQuestionFlags = new bool[10];
+    public static bool[] teacherQuestionFlags = new bool[10];
     
     public static Godot.Collections.Dictionary[] dialogueRecords = new Godot.Collections.Dictionary[31];
 

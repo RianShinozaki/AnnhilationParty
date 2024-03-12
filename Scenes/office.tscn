@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctasrud4l0rp2"]
+[gd_scene load_steps=14 format=3 uid="uid://ctasrud4l0rp2"]
 
 [ext_resource type="Texture2D" uid="uid://dwb5ipa33jn6" path="res://Art Assets/Butcher/DetectiveOffice.png" id="1_sf8br"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="2_t3on5"]
@@ -19,6 +19,10 @@ region = Rect2(0, 0, 131, 98)
 atlas = ExtResource("4_i4m0p")
 region = Rect2(131, 0, 131, 98)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_uv4m1"]
+atlas = ExtResource("4_i4m0p")
+region = Rect2(131, 0, 131, 98)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_xcvjr"]
 animations = [{
 "frames": [{
@@ -32,7 +36,10 @@ animations = [{
 "name": &"Ring",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uv4m1")
+}],
 "loop": true,
 "name": &"default",
 "speed": 5.0
@@ -42,17 +49,16 @@ animations = [{
 size = Vector2(121.5, 60.5)
 
 [node name="Office" type="Node2D"]
-position = Vector2(-55, 0)
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-181, -123)
+position = Vector2(-246, -125)
 scale = Vector2(1.37222, 1.37222)
 texture = ExtResource("1_sf8br")
 centered = false
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(1146, 626)
+position = Vector2(1081, 624)
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("3_a8yh6")
@@ -74,10 +80,12 @@ sprite_frames = SubResource("SpriteFrames_xcvjr")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Area2D/PhoneTemp"]
 stream = ExtResource("4_agxjk")
 
-[node name="Phone" type="Area2D" parent="Area2D/PhoneTemp"]
+[node name="Phone" type="Area2D" parent="Area2D/PhoneTemp" node_paths=PackedStringArray("animPlayer", "ringing")]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("5_d3j0v")
+animPlayer = NodePath("..")
+ringing = NodePath("../AudioStreamPlayer")
 tooltip = "Phone"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D/PhoneTemp/Phone"]
@@ -86,3 +94,4 @@ shape = SubResource("RectangleShape2D_sdfqe")
 
 [node name="Pointer" parent="." instance=ExtResource("2_t3on5")]
 modulate = Color(0, 1, 1, 1)
+position = Vector2(202, 87)

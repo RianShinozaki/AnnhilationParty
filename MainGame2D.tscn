@@ -384,7 +384,8 @@ theme = ExtResource("15_gfsd2")
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "PREVIOUS DAY"
 
-[node name="Button" type="Button" parent="."]
+[node name="DAYUP" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1075.0
 offset_top = 9.0
@@ -394,7 +395,8 @@ text = "Day +1"
 script = ExtResource("17_bbsds")
 val = 1
 
-[node name="Button2" type="Button" parent="."]
+[node name="DAYDOWN" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1075.0
 offset_top = 60.0
@@ -423,5 +425,5 @@ script = ExtResource("50_um8kk")
 [connection signal="pressed" from="SuspectLog/CLOSE" to="SuspectLog" method="_on_close_pressed"]
 [connection signal="pressed" from="SuspectLog/NextDay" to="SuspectLog" method="_on_next_day_pressed"]
 [connection signal="pressed" from="SuspectLog/PreviousDay" to="SuspectLog" method="_on_previous_day_pressed"]
-[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
-[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
+[connection signal="pressed" from="DAYUP" to="DAYUP" method="_on_pressed"]
+[connection signal="pressed" from="DAYDOWN" to="DAYDOWN" method="_on_pressed"]

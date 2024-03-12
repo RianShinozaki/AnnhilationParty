@@ -7,6 +7,27 @@ public partial class Occultist : Speaker
 	[Export] public AnimationPlayer animPlayer;
 	[Export] public Item steak;
 	[Export] public Sprite2D tempObscure;
+	float trustAtStartOfMeeting;
+
+	public Godot.Collections.Array questionOptions = new Godot.Collections.Array{
+		"*Spend the night working silently.",
+		"Besides 'Auta', what else are you into?",
+		"You looking forward to anything?",
+		"How'd you end up in militia work?",
+		"So, you seeing anyone?",
+		"Everything been alright with you?",
+		"Listen, about that girl..."
+	};
+	public Godot.Collections.Array questionIndices = new Godot.Collections.Array{
+		105,
+		110,
+		-1,
+		-1,
+		-1,
+		-1,
+		-1
+	};
+
 	public override void _Ready()
     {
         base._Ready();
@@ -303,10 +324,80 @@ public partial class Occultist : Speaker
 				break;
 			
 			case 100:
+				GameController.Instance.ChangeMoney(-8);
+
+				Godot.Collections.Array theDialogue = new Godot.Collections.Array{
+					"*You see the Engineer and say hello. Briefly, you chat about your respective days."
+				};
+				if(GameController.trustLevels[GameController.OCCULTER] < 1) {
+					theDialogue.Add("*A momentary awkward silence ensues.");
+				}
+				if(GameController.trustLevels[GameController.OCCULTER] >= 1 && GameController.trustLevels[GameController.OCCULTER] < 2) {
+					theDialogue.Add("*The Engineer settles comfortably back into his work.");
+				}
+				if(GameController.trustLevels[GameController.OCCULTER] >= 2 && GameController.trustLevels[GameController.OCCULTER] < 3) {
+					theDialogue.Add("*The Engineer looks happy to see you.");
+				}
+				if(GameController.trustLevels[GameController.OCCULTER] >= 3 && GameController.trustLevels[GameController.OCCULTER] < 4) {
+					theDialogue.Add("*The Engineer seems like they're opening up to you.");
+				}
+				if(GameController.trustLevels[GameController.OCCULTER] >= 4) {
+					theDialogue.Add("*You sense a good deal of trust from the Engineer.");
+				}
+
+				theDialogue.Add("*Now's a good time to get to know him better.");
+
+				Godot.Collections.Array theQuestions = new Godot.Collections.Array{};
+				Godot.Collections.Array theIndices = new Godot.Collections.Array{};
+
+				for(int i = 0; i < questionOptions.Count; i++) {
+					if(GameController.occultistQuestionFlags[i] == true) {
+						theQuestions.Add(questionOptions[i]);
+						theIndices.Add(questionIndices[i]);
+					}
+				}
+
+				animPlayer.Play("Intro");
+				dialogueSet = new DialogueSet(
+					theDialogue,
+					new Godot.Collections.Array{
+						
+					},
+					theQuestions,
+					theIndices
+				);
+				break;
+			
+			case 105:
+				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
-						"You say hello to the Occultist. Unfortunately, no more dialogue exists. Go home!"
+						"*The two of you work together in a companionable silence.",
+						"*Some time passes. Time for you to head home."
 					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						106
+					}
+				);
+				break;
+			case 106:
+				Godot.Collections.Array byeDialogue = new Godot.Collections.Array{};
+				if(trustAtStartOfMeeting == GameController.trustLevels[GameController.SOFTWARE] ) {
+					byeDialogue.Add("*You didn't grow much closer today...");
+				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.trustLevels[GameController.SOFTWARE]) ) {
+					byeDialogue.Add("*The Engineer definitely trusts you more after today.");
+				} else if (trustAtStartOfMeeting < GameController.trustLevels[GameController.SOFTWARE] ) {
+					byeDialogue.Add("*You think you grew a little closer to the Engineer today.");
+				} else {
+					byeDialogue.Add("*Something is wrong here.");
+				}
+				dialogueSet = new DialogueSet(
+					byeDialogue,
 					new Godot.Collections.Array{
 
 					},
@@ -317,7 +408,6 @@ public partial class Occultist : Speaker
 					}
 				);
 				break;
-
 			default:
 				dialogueSet = null;
 				break;

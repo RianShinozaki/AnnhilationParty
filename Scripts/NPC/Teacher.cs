@@ -6,6 +6,27 @@ public partial class Teacher : Speaker
 	[Export] public Sprite2D NPCSprite;
 	[Export] public AnimationPlayer animPlayer;
 	[Export] public Item steak;
+
+	float trustAtStartOfMeeting;
+
+	public Godot.Collections.Array questionOptions = new Godot.Collections.Array{
+		"*Make light conversation with lunch.",
+		"By the way, I've got some food to donate...",
+		"How long have you been working here?",
+		"What do you think about the Department for Children?",
+		"*Something odd you saw in the logs...",
+		"What do you think we can do about this war?"
+	};
+	public Godot.Collections.Array questionIndices = new Godot.Collections.Array{
+		105,
+		110,
+		200,
+		300,
+		400,
+		500,
+		600,
+	};
+
 	public override void _Ready()
     {
         base._Ready();
@@ -116,7 +137,7 @@ public partial class Teacher : Speaker
 					},
 					new Godot.Collections.Array{
 						"What is this place?",
-						"Who are these kids?",
+						"Lots of kids here...",
 						"I'd like to join the volunteer effort."
 
 					},
@@ -133,7 +154,7 @@ public partial class Teacher : Speaker
 					new Godot.Collections.Array{
 						"Well, we're one of the many branches of the Unobhel House Refugee Center.",
 						"Built from an old armory, actually. Explains all the big towers and such. Haha...",
-						"Um. But thanks to the efforts of the Department of Children and our gracious volunteers, we've been able to support many refugee children here."
+						"Um. But thanks to the efforts of the Department for Children and our gracious volunteers, we've been able to support many refugee children here."
 					},
 					new Godot.Collections.Array{
 
@@ -151,7 +172,8 @@ public partial class Teacher : Speaker
 				if(GameController.teacherMemory[0] == 0) {
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{
-							"Most of them? Refugees from the war on Colony Theta-68.",
+							"Yes, well... it is a shelter.",
+							"Most of them are refugees from the war on Colony Theta-68.",
 							"...",
 							"They're all good kids. I promise.",
 							"I know some people have reservations... um...",
@@ -244,7 +266,7 @@ public partial class Teacher : Speaker
 						"Doesn't he look kind and responsible? Just what we need around here!",
 						"...",
 						"We appreciate all the help we can get. Really. Of all the branches of Unobhel House, we don't get a lot of support here...",
-						"With so many of the Colony Theta-68 kids here... well, all of them really...",
+						"With so many of the Colony T-68 kids here... well, all of them really...",
 						"Lots of people would rather support their own, I suppose...",
 						"But every child needs love and care, don't they? Doesn't matter where they're from.",
 						"I'm glad we can count on your support too. Come, let me show you around..."
@@ -296,69 +318,87 @@ public partial class Teacher : Speaker
 					}
 				);
 				break;
-			
 			case 100:
-				GameController.trustLevels[GameController.TEACHER] += 0.5f;
-				dialogueSet = new DialogueSet(
-					new Godot.Collections.Array{
-						"*You find the Teacher surrounded by smiling faces, as usual.",
-						"*They turn to you.",
-						"Hi! It's good to see you again.",
-						"There's a lot I could use your help with today..."
-					},
-					new Godot.Collections.Array{
 
-					},
-					new Godot.Collections.Array{
-					},
-					new Godot.Collections.Array{
-						101
-					}
-				);
-				break;
-			case 101:
-				dialogueSet = new DialogueSet(
-					new Godot.Collections.Array{
-						"*You spend the morning helping the Teacher around the center."
-					},
-					new Godot.Collections.Array{
-
-					},
-					new Godot.Collections.Array{
-					},
-					new Godot.Collections.Array{
-						102
-					}
-				);
-				break;
-			case 102:
-				/*
-				All possible dialogues:
-
-				new Godot.Collections.Array{
-					*Make light conversation
-					How long have you volunteered here?
-					Got a favorite kid?
-					How's work?
-					Your thoughts on the colony war?
-					Have you been holding up okay?
-					Where are you from?
-					Did you ever have kids?
-
-				},
-				new Godot.Collections.Array{
+				Godot.Collections.Array theDialogue = new Godot.Collections.Array{
+					"*You find the Teacher surrounded by smiling faces, as usual.",
+					"*They turn to you.",
+					"Hi! It's good to see you again.",
+					"There's a lot I could use your help with today...",
+					"*You spend the morning helping the Teacher around the center.",
+					"...",
+					"*Before you know it, it's noon. You and the Teacher take a moment for some lunch.",
 					
+				};
+				if(GameController.trustLevels[GameController.TEACHER] < 1) {
+					theDialogue.Add("*The two of you sit in silence.");
+				}
+				if(GameController.trustLevels[GameController.TEACHER] >= 1 && GameController.trustLevels[GameController.TEACHER] < 2) {
+					theDialogue.Add("*The two of you sit in a companionable silence.");
+				}
+				if(GameController.trustLevels[GameController.TEACHER] >= 2 && GameController.trustLevels[GameController.TEACHER] < 3) {
+					theDialogue.Add("*The Teacher is humming as they eat their lunch.");
+				}
+				if(GameController.trustLevels[GameController.TEACHER] >= 3 && GameController.trustLevels[GameController.TEACHER] < 4) {
+					theDialogue.Add("*The Teacher smiles at your gratefully.");
+				}
+				if(GameController.trustLevels[GameController.TEACHER] >= 4) {
+					theDialogue.Add("*You sense a good deal of trust from the Teacher.");
 				}
 
-				*/
+				theDialogue.Add("*...Now's your chance to get closer to them.");
 
+				Godot.Collections.Array theQuestions = new Godot.Collections.Array{};
+				Godot.Collections.Array theIndices = new Godot.Collections.Array{};
+
+				for(int i = 0; i < questionOptions.Count; i++) {
+					if(GameController.teacherQuestionFlags[i] == true) {
+						theQuestions.Add(questionOptions[i]);
+						theIndices.Add(questionIndices[i]);
+					}
+				}
+
+				animPlayer.Play("Intro");
+				dialogueSet = new DialogueSet(
+					theDialogue,
+					new Godot.Collections.Array{
+						
+					},
+					theQuestions,
+					theIndices
+				);
+				break;
+			
+			case 105:
+				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
-						"...",
-						"*Before you know it, it's noon. You and the Teacher take a moment for some lunch.",
-						"*...Now's your chance to get closer to them.",
-						"Unfortunately, no more dialogue exists."
+						"*The two of you work together in a companionable silence.",
+						"*Some time passes. Time for you to head home."
 					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						106
+					}
+				);
+				break;
+			case 106:
+				Godot.Collections.Array byeDialogue = new Godot.Collections.Array{};
+				if(trustAtStartOfMeeting == GameController.trustLevels[GameController.SOFTWARE] ) {
+					byeDialogue.Add("*You didn't grow much closer today...");
+				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.trustLevels[GameController.SOFTWARE]) ) {
+					byeDialogue.Add("*The Engineer definitely trusts you more after today.");
+				} else if (trustAtStartOfMeeting < GameController.trustLevels[GameController.SOFTWARE] ) {
+					byeDialogue.Add("*You think you grew a little closer to the Engineer today.");
+				} else {
+					byeDialogue.Add("*Something is wrong here.");
+				}
+				dialogueSet = new DialogueSet(
+					byeDialogue,
 					new Godot.Collections.Array{
 
 					},

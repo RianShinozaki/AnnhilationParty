@@ -7,10 +7,18 @@ public partial class Phone : Clickable
 	[Export] public AnimatedSprite2D animPlayer;
 	[Export] public AudioStreamPlayer ringing;
 	public bool isRinging;
+	int specialInt = -1;
     public override void _Ready()
     {
         base._Ready();
 		Instance = this;
+
+		if(GameController.currentDay - OfficeSpeaker.Instance.lastCalledDay > 1 && GameController.timesCalledOldGuard == 1) {
+			StartRinging();
+			specialInt = 114;
+		} else {
+			GD.Print(GameController.currentDay - OfficeSpeaker.Instance.lastCalledDay);
+		}
     }
     public override void CheckActive()
     {
@@ -22,8 +30,15 @@ public partial class Phone : Clickable
 			active = true;
 		}
     }
+
 	public override void OnClick() {
-		OfficeSpeaker.Instance.PickupCall();
+		if(specialInt == -1) {
+			OfficeSpeaker.Instance.PickupCall();
+			
+		} else {
+			OfficeSpeaker.Instance.SpecialCall(specialInt);
+			specialInt = -1;
+		}
 		StopRinging();
 	}
 	public void StartRinging() {

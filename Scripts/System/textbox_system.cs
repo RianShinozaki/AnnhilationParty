@@ -59,7 +59,7 @@ public partial class textbox_system : Control
 		if(!responseMode) {
 			//Typewriter effect
 			if(visibleT < dialogue.GetTotalCharacterCount()) {
-				visibleT += (float)delta * 30;
+				visibleT += (float)delta * 40;
 				dialogue.VisibleCharacters = Mathf.RoundToInt(visibleT);
 				nextButton.Text = "Skip";
 				if (!talkSound.Playing) {
