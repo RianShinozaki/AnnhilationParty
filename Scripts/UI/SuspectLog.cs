@@ -31,8 +31,8 @@ public partial class SuspectLog : Control
 		Instance = this;
     }
     public void Init() {
-		currentLogDay = 1;
-		//currentLogDay = Mathf.Max(1, GameController.currentDay-1);
+		//currentLogDay = 1;
+		currentLogDay = Mathf.Max(1, GameController.currentDay-1);
 		OnDayChanged();
 
 		Rotation = Mathf.Pi * 2/3;
@@ -80,6 +80,27 @@ public partial class SuspectLog : Control
 
 		if(currentLogDay == 2 && GameController.currentDay > 2) {
 			GameController.engineerMemory[0] = 1;
+		}
+		if(currentLogDay == 15 || currentLogDay == 16 || currentLogDay == 17) {
+			if(GameController.engineerMemory[3] == 0) {
+				GameController.engineerMemory[3] = 1;
+				GameController.engineerQuestionFlags[4] = true;
+			}
+
+		}
+		if(currentLogDay == 22) {
+			if(GameController.teacherMemory[5] == 0) {
+				GameController.teacherMemory[5] = 1;
+				GameController.teacherQuestionFlags[4] = true;
+			}
+
+		}
+		if(currentLogDay == 11) {
+			if(GameController.butcherMemory[5] == 0) {
+				GameController.butcherMemory[5] = 1;
+				GameController.butcherQuestionFlags[4] = true;
+			}
+
 		}
 	}
 

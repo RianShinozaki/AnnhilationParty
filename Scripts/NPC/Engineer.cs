@@ -26,27 +26,37 @@ public partial class Engineer : Speaker
 		500,
 		600
 	};
+	public Godot.Collections.Array relationshipGates = new Godot.Collections.Array{
+		0,
+		0,
+		1,
+		2,
+		3,
+		4,
+		3
+	};
 	public override void _Ready()
     {
 		trustAtStartOfMeeting = GameController.trustLevels[GameController.SOFTWARE];
         base._Ready();
 		GameController.theSpeaker = this;
 
-		GameController.engineerMemory[1] = 1;
+		//GameController.engineerMemory[1] = 1;
 		textbox_system.Instance.Initialize(-2);
-		GameController.engineerQuestionFlags[0] = true;
-		GameController.engineerQuestionFlags[1] = true;
-		GameController.engineerQuestionFlags[2] = true;
-		GameController.engineerQuestionFlags[3] = true;
-		GameController.engineerQuestionFlags[4] = true;
-		GameController.engineerQuestionFlags[5] = true;
-		GameController.engineerQuestionFlags[6] = true;
+		//GameController.engineerQuestionFlags[0] = true;
+		//GameController.engineerQuestionFlags[1] = true;
+		//GameController.engineerQuestionFlags[2] = true;
+		//GameController.engineerQuestionFlags[3] = true;
+		//GameController.engineerQuestionFlags[4] = true;
+		//GameController.engineerQuestionFlags[5] = true;
+		//GameController.engineerQuestionFlags[6] = true;
 		return;
 
 		if(GameController.currentTime != 1 
 			|| GameController.GetDay(GameController.currentDay) == "Friday" 
 			|| GameController.GetDay(GameController.currentDay) == "Saturday"
-			|| GameController.GetDay(GameController.currentDay) == "Wednesday") {
+			|| GameController.GetDay(GameController.currentDay) == "Wednesday"
+			|| GameController.currentDay == 15 || GameController.currentDay == 16 || GameController.currentDay == 17) {
 				textbox_system.Instance.Initialize(-100);
 				NPCSprite.Visible = false;
 				return;
@@ -662,6 +672,10 @@ public partial class Engineer : Speaker
 			case 22:
 				GameController.engineerQuestionFlags[0] = true;
 				GameController.engineerQuestionFlags[1] = true;
+				GameController.engineerQuestionFlags[2] = true;
+				GameController.engineerQuestionFlags[3] = true;
+
+				
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -712,7 +726,8 @@ public partial class Engineer : Speaker
 				Godot.Collections.Array theIndices = new Godot.Collections.Array{};
 
 				for(int i = 0; i < questionOptions.Count; i++) {
-					if(GameController.engineerQuestionFlags[i] == true) {
+					if(GameController.engineerQuestionFlags[i] == true &&
+					GameController.trustLevels[GameController.SOFTWARE] >= (float)relationshipGates[i]) {
 						theQuestions.Add(questionOptions[i]);
 						theIndices.Add(questionIndices[i]);
 					}
@@ -987,7 +1002,7 @@ public partial class Engineer : Speaker
 			
 			case 200:
 				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
-
+				GameController.engineerQuestionFlags[2] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Right now? Looking forward to going home and getting some sleep. ",
@@ -1023,7 +1038,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 202:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.25f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1165,6 +1180,8 @@ public partial class Engineer : Speaker
 				break;
 			case 405:
 				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
+				GameController.engineerQuestionFlags[4] = false;
+				GameController.engineerQuestionFlags[5] = true;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1252,6 +1269,7 @@ public partial class Engineer : Speaker
 			
 			case 500:
 				GameController.trustLevels[GameController.SOFTWARE] += 1;
+				GameController.engineerQuestionFlags[5] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Oh, yeah. That's the big question, huh? ",

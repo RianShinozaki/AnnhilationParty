@@ -10,28 +10,36 @@ public partial class Butcher : Speaker
 	float trustAtStartOfMeeting;
 
 	public Godot.Collections.Array questionOptions = new Godot.Collections.Array{
-		"*Spend the night working silently.",
-		"Besides 'Auta', what else are you into?",
-		"You looking forward to anything?",
-		"How'd you end up in militia work?",
-		"So, you seeing anyone?",
-		"Everything been alright with you?",
-		"Listen, about that girl..."
+		"...Well, bye then.",
+		"So how’s life, Chief? ",
+		"What got you into butchery?",
+		"You ever wanna get out of the city?",
+		"*Something odd you saw in the logs...",
 	};
 	public Godot.Collections.Array questionIndices = new Godot.Collections.Array{
-		105,
+		108,
 		110,
-		-1,
-		-1,
-		-1,
-		-1,
-		-1
+		150,
+		200,
+		300
+	};
+	public Godot.Collections.Array relationshipGates = new Godot.Collections.Array{
+		0,
+		0,
+		1,
+		3,
+		4,
 	};
 
 	public override void _Ready()
     {
+		trustAtStartOfMeeting = GameController.trustLevels[GameController.BUTCHER];
+
         base._Ready();
 		GameController.theSpeaker = this;
+		animPlayer.Play("Intro");
+		return;
+
 		if(GameController.currentTime != 0 
 			|| GameController.GetDay(GameController.currentDay) == "Saturday" 
 			|| GameController.GetDay(GameController.currentDay) == "Sunday") {
@@ -53,7 +61,7 @@ public partial class Butcher : Speaker
 			textbox_system.Instance.Initialize(0);
 			return;
 		} else {
-			textbox_system.Instance.Initialize(100);
+			textbox_system.Instance.Initialize(50);
 		}
 
 	}
@@ -83,6 +91,10 @@ public partial class Butcher : Speaker
 				break;
 			case 0:
 				GameController.butcherMemory[1] = 1;
+				GameController.butcherQuestionFlags[0] = true;
+				GameController.butcherQuestionFlags[1] = true;
+				GameController.butcherQuestionFlags[2] = true;
+				GameController.butcherQuestionFlags[3] = true;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*The Butcher's shop.",
@@ -221,8 +233,8 @@ public partial class Butcher : Speaker
 			case 5:
 				if(GameController.money >= 120) {
 					GameController.Instance.ChangeMoney(-120);
-					GameController.trustLevels[GameController.BUTCHER] += 1;
-					GameController.AddToInventory(steak);
+					GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+					GameController.steaks++;
 					if(GameController.butcherMemory[0] == 1) {
 						dialogueSet = new DialogueSet(
 							new Godot.Collections.Array{
@@ -369,8 +381,8 @@ public partial class Butcher : Speaker
 			case 9:
 				if(GameController.money >= 80) {
 					GameController.Instance.ChangeMoney(-80);
-					GameController.trustLevels[GameController.BUTCHER] += 1;
-					GameController.AddToInventory(steak);
+					GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+					GameController.hams++;
 					if(GameController.butcherMemory[0] == 1) {
 						dialogueSet = new DialogueSet(
 							new Godot.Collections.Array{
@@ -436,11 +448,8 @@ public partial class Butcher : Speaker
 						"Well, you picked the right butcher. These other guys -- half the time it's synth meat. Poor quality synth meat.",
 						"Sure, why learn to cut a pork shoulder when you can just grow one?",
 						"I hold no grudge against others with personal beliefs or dietary restrictions, of course. Don't mistake my devotion to the real deal for intolerance.",
-						"But...",
-						"Ah, but I see it in your eyes. They're hungry.",
-						"Like mine.",
-						"You see it too, yes?",
-						"Meat is a beautiful thing."
+						"But I'd only ever serve the proper stuff to you, boss.",
+						"Yes, good meat is a wonderful thing."
 					},
 					new Godot.Collections.Array{
 						"butcher_1_1",
@@ -451,7 +460,6 @@ public partial class Butcher : Speaker
 					new Godot.Collections.Array{
 						"Sure is.",
 						"...For eating.",
-						"You sound insane."
 					},
 					new Godot.Collections.Array{
 						11,
@@ -462,14 +470,10 @@ public partial class Butcher : Speaker
 				break;
 			
 			case 11:
-				GameController.trustLevels[GameController.BUTCHER] += 1;
+				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
-						"Knew you had the eyes.",
-						"*The Butcher seems genuinely delighted to hear that.",
-						"Not many of us left anymore, are there?",
-						"Humans these days would rather be fed whatever's given to them than choose a meal of their own accord. Insanity.",
-						"As long as you have an appreciation for the finer things, you'll always be free, yes?",
+						"Knew you'd feel the same way, boss.",
 						"Hope you'll become a regular.",
 						"Don't give me the cold shoulder -- I already have plenty!"
 					},
@@ -509,30 +513,7 @@ public partial class Butcher : Speaker
 					}
 				);
 				break;
-			
-			case 13:
-				GameController.trustLevels[GameController.BUTCHER] += 1;
-				dialogueSet = new DialogueSet(
-					new Godot.Collections.Array{
-						"Ha!",
-						"*The Butcher seems oddly delighted to hear that.",
-						"I hope so! What sort of artist is better than the insane one, after all?",
-						"Ah, if only you could see the world the way I do... you'd be the richer for it.",
-						"Come by often, yes? I'll fix you the good stuff until you're insane for it too."
-					},
-					new Godot.Collections.Array{
-						"butcher_1_1",
-						"nan",
-						"nan",
-						"nan"
-					},
-					new Godot.Collections.Array{
-					},
-					new Godot.Collections.Array{
-						14
-					}
-				);
-				break;
+		
 			
 			case 14:
 				dialogueSet = new DialogueSet(
@@ -588,27 +569,196 @@ public partial class Butcher : Speaker
 					}
 				);
 				break;
+			
+			case 50:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Boss! How are we today?"
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						"*Make a purchase.",
+						"Just saying hi, chief."
+					},
+					new Godot.Collections.Array{
+						51,
+						56
+					}
+				);
+				break;
+
+			case 51:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"My pleasure, big boss.",
+						"What can I get for you?"
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						"Let's do a rib-eye steak. [$120]",
+						"How about some ham? [$80]",
+						"Actually, I've changed my mind..."
+					},
+					new Godot.Collections.Array{
+						52,
+						53,
+						55
+					}
+				);
+				break;
+			case 52:
+				if(GameController.money >= 120) {
+					GameController.steaks++;
+					GameController.money -= 120;
+					dialogueSet = new DialogueSet(
+						new Godot.Collections.Array{
+							"*The Butcher cuts a prime chunk of steak down and wraps it up. It takes seconds.",
+							"The finest for you, boss.",
+							"*Acquired Rib-Eye Steak."
+						},
+						new Godot.Collections.Array{
+						},
+						new Godot.Collections.Array{
+						},
+						new Godot.Collections.Array{
+							54
+						}
+					);
+				} else {
+					dialogueSet = new DialogueSet(
+						new Godot.Collections.Array{
+							"You can't afford that..."
+						},
+						new Godot.Collections.Array{
+						},
+						new Godot.Collections.Array{
+
+						},
+						new Godot.Collections.Array{
+							51,
+						}
+					);
+				}
+				break;
+			case 53:
+				if(GameController.money >= 80) {
+					GameController.money -= 80;
+					GameController.hams++;
+					dialogueSet = new DialogueSet(
+						new Godot.Collections.Array{
+							"*The Butcher slams on the counter a hefty sack of deli ham.",
+							"To your good health.",
+							"*Acquired Deli Ham."
+						},
+						new Godot.Collections.Array{
+						},
+						new Godot.Collections.Array{
+						},
+						new Godot.Collections.Array{
+							54
+						}
+					);
+				} else {
+					dialogueSet = new DialogueSet(
+						new Godot.Collections.Array{
+							"You can't afford that..."
+						},
+						new Godot.Collections.Array{
+						},
+						new Godot.Collections.Array{
+
+						},
+						new Godot.Collections.Array{
+							51,
+						}
+					);
+				}
+				break;
+			case 54:
+				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				if(GameController.money >= 80) {
+					GameController.money -= 80;
+					GameController.hams++;
+					dialogueSet = new DialogueSet(
+						new Godot.Collections.Array{
+							"*Your purchase put the Butcher in a good mood..."
+						},
+						new Godot.Collections.Array{
+						},
+						new Godot.Collections.Array{
+						},
+						new Godot.Collections.Array{
+							100
+						}
+					);
+				} else {
+					dialogueSet = new DialogueSet(
+						new Godot.Collections.Array{
+							"You can't afford that..."
+						},
+						new Godot.Collections.Array{
+						},
+						new Godot.Collections.Array{
+
+						},
+						new Godot.Collections.Array{
+							51,
+						}
+					);
+				}
+				break;
+			case 55:
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Ah. So it goes.",
+						"*...You'd better leave."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 56:
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Of course, boss. You're always a friend here."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						100
+					}
+				);
+				break;
 
 			case 100:
-				GameController.Instance.ChangeMoney(-8);
 
 				Godot.Collections.Array theDialogue = new Godot.Collections.Array{
-					"*You see the Engineer and say hello. Briefly, you chat about your respective days."
 				};
 				if(GameController.trustLevels[GameController.BUTCHER] < 1) {
-					theDialogue.Add("*A momentary awkward silence ensues.");
+					theDialogue.Add("*The Butcher clears his throat.");
 				}
 				if(GameController.trustLevels[GameController.BUTCHER] >= 1 && GameController.trustLevels[GameController.BUTCHER] < 2) {
-					theDialogue.Add("*The Engineer settles comfortably back into his work.");
+					theDialogue.Add("*The Butcher contendedly examines his wares.");
 				}
 				if(GameController.trustLevels[GameController.BUTCHER] >= 2 && GameController.trustLevels[GameController.BUTCHER] < 3) {
-					theDialogue.Add("*The Engineer looks happy to see you.");
+					theDialogue.Add("*The Butcher looks happy to see you.");
 				}
 				if(GameController.trustLevels[GameController.BUTCHER] >= 3 && GameController.trustLevels[GameController.BUTCHER] < 4) {
-					theDialogue.Add("*The Engineer seems like they're opening up to you.");
+					theDialogue.Add("*The Butcher is grinning at you from ear to ear.");
 				}
 				if(GameController.trustLevels[GameController.BUTCHER] >= 4) {
-					theDialogue.Add("*You sense a good deal of trust from the Engineer.");
+					theDialogue.Add("*You sense a good deal of trust from the Butcher.");
 				}
 
 				theDialogue.Add("*Now's a good time to get to know him better.");
@@ -617,13 +767,14 @@ public partial class Butcher : Speaker
 				Godot.Collections.Array theIndices = new Godot.Collections.Array{};
 
 				for(int i = 0; i < questionOptions.Count; i++) {
-					if(GameController.butcherQuestionFlags[i] == true) {
+					if(GameController.butcherQuestionFlags[i] == true &&
+					GameController.trustLevels[GameController.BUTCHER] >= (float)relationshipGates[i]) {
 						theQuestions.Add(questionOptions[i]);
 						theIndices.Add(questionIndices[i]);
 					}
 				}
 
-				animPlayer.Play("Intro");
+		
 				dialogueSet = new DialogueSet(
 					theDialogue,
 					new Godot.Collections.Array{
@@ -634,31 +785,14 @@ public partial class Butcher : Speaker
 				);
 				break;
 			
-			case 105:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
-				dialogueSet = new DialogueSet(
-					new Godot.Collections.Array{
-						"*The two of you work together in a companionable silence.",
-						"*Some time passes. Time for you to head home."
-					},
-					new Godot.Collections.Array{
-
-					},
-					new Godot.Collections.Array{
-					},
-					new Godot.Collections.Array{
-						106
-					}
-				);
-				break;
 			case 106:
 				Godot.Collections.Array byeDialogue = new Godot.Collections.Array{};
-				if(trustAtStartOfMeeting == GameController.trustLevels[GameController.SOFTWARE] ) {
+				if(trustAtStartOfMeeting == GameController.trustLevels[GameController.BUTCHER] ) {
 					byeDialogue.Add("*You didn't grow much closer today...");
-				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.trustLevels[GameController.SOFTWARE]) ) {
-					byeDialogue.Add("*The Engineer definitely trusts you more after today.");
-				} else if (trustAtStartOfMeeting < GameController.trustLevels[GameController.SOFTWARE] ) {
-					byeDialogue.Add("*You think you grew a little closer to the Engineer today.");
+				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.trustLevels[GameController.BUTCHER]) ) {
+					byeDialogue.Add("*The Butcher definitely trusts you more after today.");
+				} else if (trustAtStartOfMeeting < GameController.trustLevels[GameController.BUTCHER] ) {
+					byeDialogue.Add("*You think you grew a little closer to the Butcher today.");
 				} else {
 					byeDialogue.Add("*Something is wrong here.");
 				}
@@ -674,6 +808,422 @@ public partial class Butcher : Speaker
 					}
 				);
 				break;
+			case 108:
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You head back out...",
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+
+			case 110:
+				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.butcherQuestionFlags[1] = false;
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Life? Oh, life’s good, big boss. Why, I live in a wonderful city, and I feed hungry people each day.",
+						"That’s the secret to happiness, boss. Did you know?",
+						"Work that feeds the soul. Yes, life is full of thankless jobs. But nobody ever forgets to say ‘thank you’ to their butcher!",
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						"Good food makes life worth living.",
+						"Well, don’t bite the hand that feeds…",
+
+					},
+					new Godot.Collections.Array{
+						111,
+						112
+					}
+				);
+				break;
+			case 111:
+				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+					
+						"Yes, boss. Precisely.",
+						"How many lives do I make ever brighter with my delicious cuts? And truly, is there anything worth more than that?",
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						113
+					}
+				);
+				break;
+			case 112:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*The Butcher gives you a pitying smile",
+						"Oh, no, boss. I don’t believe in pessimistic outlooks like that.",
+						"One should live life FOR things, never just to avoid them!",
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						113
+					}
+				);
+				break;
+			case 113:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Yes, my life is just fine.",
+						"*…The Butcher’s smile fades a little, for a moment.",
+						"Although, boss, sometimes I find myself losing a bit of joy as I live in this city.",
+						"Perhaps it is in the air? The city air spoils the meat.",
+						"You should take care to leave the city too, once in a while.",
+						"*…The Butcher has finished his thoughts on this topic.",
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						106
+					}
+				);
+				break;
+			
+			case 150:
+				GameController.butcherQuestionFlags[2] = false;
+				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*The Butcher smiles with nostalgia.",
+						"Oh, no, boss. I’ve been in butchery from the moment I was born!",
+						"My family, you see, owned farmland on the far side of the planet.",
+						"I grew up around wonderful friends – the pigs, the goats, the cows…",
+						"You’d best believe I enjoyed each day to the fullest.",
+						"*A slight tint of sadness crosses his face.",
+						"I often wish for those days back, you understand.",
+						"No more farming exists on this planet – it has all been converted into city, yes?",
+						"*...That's all the Butcher has to say on that."
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						106
+					}
+				);
+				break;
+			case 200:
+				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.butcherQuestionFlags[3] = false;
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Oh, no, boss. My life is here, and I’m happy with it. I take trips out when the shop is closed for weekends, though.",
+						"You’ve been up to the nature reservations up North, yes?",
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						"Of course – for fishing.",
+						"Of course – for hiking.",
+						"Nope…",
+
+					},
+					new Godot.Collections.Array{
+						203,
+						201,
+						202
+					}
+				);
+				break;
+			case 201:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Sounds like a wonderful time.",
+						"Frankly, I'm not much for hiking myself. Poor knees.",
+						"And poor lungs, I suppose, from all this city air.",
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						204
+					}
+				);
+				break;
+			case 202:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Oh no, boss, that won't do.",
+						"You stay here too long and your lungs grow black."
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						204
+					}
+				);
+				break;
+			case 203:
+				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Yes, Boss! Where have you been all my life?",
+						"Fishing is a wonderful time.",
+						"It's one of the most wonderful things about the reservation."
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						204
+					}
+				);
+				break;
+			case 204:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"But the air up North… why, it just cleans your lungs out.",
+						"Reminds you of simpler days. Of the trees and the meadows and the animals...",
+						"I wouldn't trade my upbringing on the farms for anything else.",
+						"It taught me a true appreciation for the finer things...",
+						"Why, fresh meat is a beautiful thing.",
+						"Wouldn't you agree?",
+						"*The Butcher beams at this thought."
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						106
+					}
+				);
+				break;
+			
+			case 300:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*That’s right… something you saw didn’t seem to add up. What was it?",
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						"The Butcher ate a nice salad.",
+						"The Butcher carved up a human.",
+						"The Butcher destroyed all his belongings.",
+					},
+					new Godot.Collections.Array{
+						301,
+						301,
+						302
+					}
+				);
+				break;
+			
+			case 301:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"That doesn't seem right...",
+						"You'd better check the logbook again..."
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						106
+					}
+				);
+				break;
+			case 302:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*...Yeah. How should you approach that with him?"
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						"I spent a lot of money on a new phone the other day…",
+						"So, how do you feel about the Buddhist lifestyle?",
+						"Boy. Kinda trashy in here today, huh?",
+
+					},
+					new Godot.Collections.Array{
+						305,
+						303,
+						304
+					}
+				);
+				break;
+			case 303:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"The Buddhist lifestyle?",
+						"I... don't believe I have any particular opinion on that, boss.",
+						"*The Butcher has no idea what you're talking about..."
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						106
+					}
+				);
+				break;
+			case 304:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Eh? Boss, you break my heart. It's not that bad, is it?",
+						"*Your blatant insult did not seem to endear you to him."
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						106
+					}
+				);
+				break;
+			case 305:
+				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.butcherQuestionFlags[4] = false;
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Is that right, boss? Well, you enjoy what you enjoy.",
+						"*…The Butcher is thinking.",
+						"Always a new phone coming out, isn’t there? Or a new hover-car, perhaps. New Synthesized Reality discs.",
+						"Do you ever wonder if the best things in life are the ones that were right from the start?",
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						"Nope. I’m a Material Detective.",
+						"Like… meat?",
+					},
+					new Godot.Collections.Array{
+						306,
+						307
+					}
+				);
+				break;
+			case 306:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*The Butcher chuckles.",
+						"Ah, well, what makes you happy is what’s most important in the end. Who am I to judge?",
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						308
+					}
+				);
+				break;
+			case 307:
+				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*The Butcher laughs.",
+						"Yes, boss, you understand. Like meat!",
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						308
+					}
+				);
+				break;
+			
+			case 308:
+				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.brokenPhones++;
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Personally, I think there’s senselessness in the way we search for the next best thing to make ourselves happy.",
+						"Yet, we had it already. And we destroyed it.",
+						"*…The Butcher pauses. Then, he laughs.",
+						"Oh, look at me. I’m getting carried away with my thoughts.",
+						"The world is how it is! I can accept that as well as anyone.",
+						"But just imagine...",
+						"If everything returned to the way it used to be.",
+						"Why, imagine how fresh the meat could be...",
+						"*The Butcher is lost in thought...",
+						"...You decide to head out.",
+						"*…? As you leave, you find something in the trash outside.",
+						"*It’s a broken cellphone. You decide to pick it up.",
+						"*Could somebody fix this…?",
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+
+
 			default:
 				dialogueSet = null;
 				break;

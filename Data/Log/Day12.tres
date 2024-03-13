@@ -6,6 +6,5 @@
 script = ExtResource("1_1740k")
 EngineerLog = ""
 TeacherLog = ""
-ButcherLog = ""
+ButcherLog = "The Butcher smashed all of their personal belongings."
 OccultistLog = ""
-day = 1

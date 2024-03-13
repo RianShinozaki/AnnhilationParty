@@ -67,6 +67,10 @@ public partial class GameController : Node
     public const int OCCULTER = 4;
     public const int OLDGUARD = 5;
 
+    public static int steaks = 0;
+    public static int hams = 0;
+    public static int brokenPhones = 0;
+
     public static float money;
     public static Godot.Collections.Array items = new Godot.Collections.Array();
 
@@ -109,7 +113,7 @@ public partial class GameController : Node
             trustLevels[i] = 0;
         }
 
-        money = 200;
+        money = 20000;
     }
     public static void SetSplitX(float x) {
 		wishSplitX = x;

@@ -55,6 +55,42 @@ public partial class OfficeSpeaker : Speaker
 				case 3:
 					textbox_system.Instance.Initialize(112);
 					break;
+				case 4:
+					textbox_system.Instance.Initialize(115);
+					break;
+				case 5:
+					textbox_system.Instance.Initialize(116);
+					break;
+				case 6:
+					textbox_system.Instance.Initialize(117);
+					break;
+				case 7:
+					textbox_system.Instance.Initialize(118);
+					break;
+				case 8:
+					textbox_system.Instance.Initialize(119);
+					break;
+				case 9:
+					textbox_system.Instance.Initialize(120);
+					break;
+				case 10:
+					textbox_system.Instance.Initialize(121);
+					break;
+				case 11:
+					textbox_system.Instance.Initialize(122);
+					break;
+				case 12:
+					textbox_system.Instance.Initialize(123);
+					break;
+				case 13:
+					textbox_system.Instance.Initialize(124);
+					break;
+				case 14:
+					textbox_system.Instance.Initialize(125);
+					break;
+				case 15:
+					textbox_system.Instance.Initialize(126);
+					break;
 				default:
 					textbox_system.Instance.Initialize(113);
 					break;
@@ -549,6 +585,242 @@ public partial class OfficeSpeaker : Speaker
 						"Yes? Good.",
 						"Well, I'm not going to mother-hen you. If you want more information, pick up that phone and call.",
 						"If you want to do this yourself, have fun.",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			
+			case 115:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"This job is a slow burn. You're not gonna get your answers right away, y'know?",
+						"Sometimes you meet a person, and there's nothing to say. Well, that's just how it is.",
+						"Spending time with them will help them open up to you anyway.",
+						"Keep it up, and you'll have options to learn more about them for certain.",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 116:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"You checking that logbook each day?",
+						"If you see somethin' real weird in there... make sure to remember.",
+						"Then, when you're close enough with the suspect, you could try learning more about it.",
+						"There could be a totally reasonable explanation. Or, there might not be.",
+						"You're the judge. That's your job.",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 117:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"Something I've found is people will become closer to you more easily if you're candid.",
+						"That being said, try not to be a complete ass either...",
+						"But when you want information? Best not to be too direct sometimes.",
+						"You have to find a way to have them approach you with the information.",
+						"People are bursting to share their secrets when they're not being prompted to...",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 118:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"Hey, you wanna know why the aberration becomes more obvious when you get closer to someone?",
+						"It's because that way, the aberration can infect you too.",
+						"You won't realize at first. Time will pass without your knowledge. You'll do things you have no recollection of.",
+						"If you notice that starting to happen to you...",
+						"Well... you have your gun, don't you?",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 119:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"...I was trying to think of some advice to give you today.",
+						"...",
+						"I'm not sure if you are, but I feel inclined to tell you...",
+						"You shouldn't carry raw meat around everywhere with you...",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 120:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"What do you think an aberration is anyway?",
+						"Most scientific explanation we have is that it's some kinda virus.",
+						"The aberration, that is, is the virus. The infected is the aberrant.",
+						"By the time the aberration has consumed enough of the host's psyche to become noticeable, it's already too late.",
+						"Used to be an old Earth disease like that. Rabies. You ever heard of that?",
+						"What a strange universe...",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 121:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*You hear feedback.",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 122:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"Hey, kid...",
+						"You hanging in alright?",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 123:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"You're well on your way through this case, huh?",
+						"Don't forget, when the final day comes... you'll have to make your choice.",
+						"Wish we had more tools to give you, kid.",
+						"We had roughly two weeks to pull this operation together in the first place...",
+						"December 31... once you pick the two aberrants, a team will come in and extract them.",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 124:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"Hey kid...",
+						"Do you remember when I told you to shoot yourself...?",
+						"...Real sorry.",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 125:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"If you can't figure it out, it's alright.",
+						"Just close the game and try again.",
+						"You'll know what to do next time, right?",
+						"*The phone clicks off."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 126:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired, gravelly voice comes through.",
+						"Is this world worth saving?",
 						"*The phone clicks off."
 					},
 					new Godot.Collections.Array{

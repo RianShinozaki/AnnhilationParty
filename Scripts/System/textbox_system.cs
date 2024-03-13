@@ -75,6 +75,27 @@ public partial class textbox_system : Control
 		else {
 			nextButton.Text = "Skip";
 		}
+
+		if(Input.IsActionPressed("ui_right")) {
+			if(dialogue.VisibleCharacters < dialogue.GetTotalCharacterCount()) {
+				visibleT = dialogue.GetTotalCharacterCount();
+				dialogue.VisibleCharacters = dialogue.GetTotalCharacterCount();
+				return;
+			}
+			if(idx == dialogueSet.lines.Count-1) {
+				//If there are any responses, switch to response mode. Otherwise, go to the next dialogue
+				if(dialogueSet.responses.Count == 0)
+					GetNextDialogue((int)dialogueSet.nextLines[0]);
+				else {
+					SetResponses();
+				}
+				return;
+			}
+			visibleT = 0;
+			idx++;
+			dialogue.Text = (string)dialogueSet.lines[idx];
+			dialogue.VisibleCharacters = 0;
+		}
     }
 
 	private void _on_next_button_pressed() {
