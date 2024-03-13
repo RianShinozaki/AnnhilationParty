@@ -15,7 +15,7 @@ public partial class Teacher : Speaker
 		"How long have you been working here?",
 		"What do you think about the Department for Children?",
 		"*Something odd you saw in the logs...",
-		"What do you think we can do about this war?"
+		"Do you think this war will ever end?"
 	};
 	public Godot.Collections.Array questionIndices = new Godot.Collections.Array{
 		105,
@@ -24,16 +24,14 @@ public partial class Teacher : Speaker
 		300,
 		400,
 		500,
-		600,
 	};
 	public Godot.Collections.Array relationshipGates = new Godot.Collections.Array{
 		0,
 		0,
-		1,
+		2,
 		3,
 		4,
-		4,
-		5
+		5,
 	};
 
 	public override void _Ready()
@@ -43,9 +41,6 @@ public partial class Teacher : Speaker
 		GameController.theSpeaker = this;
 
 		if(GameController.hams > 0) GameController.teacherQuestionFlags[1] = true;
-
-		animPlayer.Play("Intro");
-		return;
 
 		if(GameController.currentTime != 0 
 			|| GameController.GetDay(GameController.currentDay) == "Thursday" 
@@ -254,7 +249,7 @@ public partial class Teacher : Speaker
 			
 			case 5:
 				GameController.teacherMemory[0] = 2;
-				GameController.trustLevels[GameController.TEACHER] += 0.5f;
+				GameController.trustLevels[GameController.TEACHER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*The teacher gives you a small smile.",
@@ -354,13 +349,13 @@ public partial class Teacher : Speaker
 				if(GameController.trustLevels[GameController.TEACHER] < 1) {
 					theDialogue.Add("*The two of you sit in silence.");
 				}
-				if(GameController.trustLevels[GameController.TEACHER] >= 2 && GameController.trustLevels[GameController.TEACHER] < 2) {
+				if(GameController.trustLevels[GameController.TEACHER] >= 1 && GameController.trustLevels[GameController.TEACHER] < 2) {
 					theDialogue.Add("*The two of you sit in a companionable silence.");
 				}
-				if(GameController.trustLevels[GameController.TEACHER] >= 3 && GameController.trustLevels[GameController.TEACHER] < 3) {
+				if(GameController.trustLevels[GameController.TEACHER] >= 2 && GameController.trustLevels[GameController.TEACHER] < 4) {
 					theDialogue.Add("*The Teacher is humming as they eat their lunch.");
 				}
-				if(GameController.trustLevels[GameController.TEACHER] >= 4 && GameController.trustLevels[GameController.TEACHER] < 4) {
+				if(GameController.trustLevels[GameController.TEACHER] >= 4 && GameController.trustLevels[GameController.TEACHER] < 5) {
 					theDialogue.Add("*The Teacher smiles at your gratefully.");
 				}
 				if(GameController.trustLevels[GameController.TEACHER] >= 5) {
@@ -391,7 +386,7 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 105:
-				GameController.trustLevels[GameController.TEACHER] += 0.5f;
+				GameController.trustLevels[GameController.TEACHER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You make light conversation with lunch.",
@@ -409,7 +404,9 @@ public partial class Teacher : Speaker
 				break;
 			case 106:
 				Godot.Collections.Array byeDialogue = new Godot.Collections.Array{};
-				if(trustAtStartOfMeeting == GameController.trustLevels[GameController.TEACHER] ) {
+				if(GameController.trustLevels[GameController.TEACHER] >= 5) {
+					byeDialogue.Add("*Your trust with the Teacher has maxxed out...");
+				} else if(trustAtStartOfMeeting == GameController.trustLevels[GameController.TEACHER] ) {
 					byeDialogue.Add("*You didn't grow much closer today...");
 				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.trustLevels[GameController.TEACHER]) ) {
 					byeDialogue.Add("*The Teacher definitely trusts you more after today.");
@@ -434,6 +431,7 @@ public partial class Teacher : Speaker
 			case 110:
 				GameController.teacherQuestionFlags[1] = false;
 				GameController.trustLevels[GameController.TEACHER] += 1f;
+				GameController.hams--;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Oh my gosh!",
@@ -453,7 +451,7 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 200:
-				GameController.trustLevels[GameController.TEACHER] += 0.5f;
+				GameController.trustLevels[GameController.TEACHER] += 0.75f;
 				GameController.teacherQuestionFlags[2] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -477,7 +475,7 @@ public partial class Teacher : Speaker
 				);
 				break;
 			case 201:
-				GameController.trustLevels[GameController.TEACHER] += 0.5f;
+				GameController.trustLevels[GameController.TEACHER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Right! So, once you know your calling, the rest couldn’t be easier.",
@@ -597,7 +595,7 @@ public partial class Teacher : Speaker
 				break;
 
 			case 300:
-				GameController.trustLevels[GameController.TEACHER] += 0.5f;
+				GameController.trustLevels[GameController.TEACHER] += 0.75f;
 				GameController.teacherQuestionFlags[3] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -638,7 +636,7 @@ public partial class Teacher : Speaker
 				);
 				break;
 			case 302:
-				GameController.trustLevels[GameController.TEACHER] += 0.5f;
+				GameController.trustLevels[GameController.TEACHER] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -775,7 +773,7 @@ public partial class Teacher : Speaker
 				);
 				break;
 			case 405:
-				GameController.trustLevels[GameController.TEACHER] += 0.5f;
+				GameController.trustLevels[GameController.TEACHER] += 0.75f;
 				GameController.teacherQuestionFlags[4] = false;
 				GameController.teacherQuestionFlags[5] = true;
 
@@ -803,7 +801,7 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 406:
-				GameController.trustLevels[GameController.TEACHER] += 0.5f;
+				GameController.trustLevels[GameController.TEACHER] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -849,7 +847,6 @@ public partial class Teacher : Speaker
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
-						"Actually, I think it just might.",
 						"I don’t have any good reason to think that way. I’m certain this planet’s leadership will keep the war going as long as it’s profitable for them.",
 						"And it’ll keep being profitable as long as people have the Colony to direct their anger toward.",
 						"It’s a wonderful lie, isn’t it? This government telling us the Colony is to blame for our misfortune, while dealing out pain and suffering to us both?",
@@ -859,7 +856,7 @@ public partial class Teacher : Speaker
 						"But still…",
 						"There might just be an end to all the suffering soon.",
 						"It’s just this feeling that I have.",
-						"I intend to bring that hope with me into the New Year.",
+						"The New Year is coming up, after all..."
 
 					},
 					new Godot.Collections.Array{

@@ -92,11 +92,14 @@ public partial class GameController : Node
 
     public static short[] occultistMemory = new short[10];
     //0 -- has met :: 0 -- no :: 1 -- yes
+    //1 -- fortunes pulled
 
     public static bool[] engineerQuestionFlags = new bool[10];
     public static bool[] butcherQuestionFlags = new bool[10];
     public static bool[] occultistQuestionFlags = new bool[10];
     public static bool[] teacherQuestionFlags = new bool[10];
+
+    public static bool oldGuardCheck = false;
     
     public static Godot.Collections.Dictionary[] dialogueRecords = new Godot.Collections.Dictionary[31];
 
@@ -113,7 +116,7 @@ public partial class GameController : Node
             trustLevels[i] = 0;
         }
 
-        money = 20000;
+        money = 200;
     }
     public static void SetSplitX(float x) {
 		wishSplitX = x;
@@ -138,6 +141,9 @@ public partial class GameController : Node
 
     public void OnSwitchScene() {
         EmitSignal(SignalName.SwitchScene);
+        if(currentLocation == Location.Office && currentTime == 0 && currentDay%7==0) {
+            SetMoney(200);
+        }
     }
     public void OnSwitchSceneTransitionBegin(string newScene) {
         EmitSignal(SignalName.SwitchSceneTransitionBegin, newScene);

@@ -25,10 +25,10 @@ public partial class Butcher : Speaker
 	};
 	public Godot.Collections.Array relationshipGates = new Godot.Collections.Array{
 		0,
-		0,
-		1,
+		2,
 		3,
 		4,
+		5,
 	};
 
 	public override void _Ready()
@@ -37,8 +37,6 @@ public partial class Butcher : Speaker
 
         base._Ready();
 		GameController.theSpeaker = this;
-		animPlayer.Play("Intro");
-		return;
 
 		if(GameController.currentTime != 0 
 			|| GameController.GetDay(GameController.currentDay) == "Saturday" 
@@ -155,7 +153,7 @@ public partial class Butcher : Speaker
 							"nan"
 						},
 						new Godot.Collections.Array{
-							"Sounds good. [$120]",
+							"Sounds good. [$60]",
 							"Actually, on second thought..."
 						},
 						new Godot.Collections.Array{
@@ -198,7 +196,7 @@ public partial class Butcher : Speaker
 						"nan"
 					},
 					new Godot.Collections.Array{
-						"Sounds good. [$120]",
+						"Sounds good. [$60]",
 						"Actually, on second thought..."
 					},
 					new Godot.Collections.Array{
@@ -221,7 +219,7 @@ public partial class Butcher : Speaker
 						"nan"
 					},
 					new Godot.Collections.Array{
-						"Sounds good. [$120]",
+						"Sounds good. [$60]",
 						"Actually, on second thought..."
 					},
 					new Godot.Collections.Array{
@@ -231,9 +229,9 @@ public partial class Butcher : Speaker
 				);
 				break;
 			case 5:
-				if(GameController.money >= 120) {
-					GameController.Instance.ChangeMoney(-120);
-					GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				if(GameController.money >= 60) {
+					GameController.Instance.ChangeMoney(-60);
+					GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 					GameController.steaks++;
 					if(GameController.butcherMemory[0] == 1) {
 						dialogueSet = new DialogueSet(
@@ -303,7 +301,7 @@ public partial class Butcher : Speaker
 							"nan"
 						},
 						new Godot.Collections.Array{
-							"Sounds good. [$80]",
+							"Sounds good. [$40]",
 							"Actually, on second thought..."
 						},
 						new Godot.Collections.Array{
@@ -346,7 +344,7 @@ public partial class Butcher : Speaker
 						"nan"
 					},
 					new Godot.Collections.Array{
-						"Sounds good. [$80]",
+						"Sounds good. [$40]",
 						"Actually, on second thought..."
 					},
 					new Godot.Collections.Array{
@@ -369,7 +367,7 @@ public partial class Butcher : Speaker
 						"nan"
 					},
 					new Godot.Collections.Array{
-						"Sounds good. [$80]",
+						"Sounds good. [$40]",
 						"Actually, on second thought..."
 					},
 					new Godot.Collections.Array{
@@ -379,9 +377,9 @@ public partial class Butcher : Speaker
 				);
 				break;
 			case 9:
-				if(GameController.money >= 80) {
-					GameController.Instance.ChangeMoney(-80);
-					GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				if(GameController.money >= 40) {
+					GameController.Instance.ChangeMoney(-40);
+					GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 					GameController.hams++;
 					if(GameController.butcherMemory[0] == 1) {
 						dialogueSet = new DialogueSet(
@@ -470,7 +468,7 @@ public partial class Butcher : Speaker
 				break;
 			
 			case 11:
-				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Knew you'd feel the same way, boss.",
@@ -597,8 +595,8 @@ public partial class Butcher : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						"Let's do a rib-eye steak. [$120]",
-						"How about some ham? [$80]",
+						"Let's do a rib-eye steak. [$60]",
+						"How about some ham? [$40]",
 						"Actually, I've changed my mind..."
 					},
 					new Godot.Collections.Array{
@@ -609,9 +607,9 @@ public partial class Butcher : Speaker
 				);
 				break;
 			case 52:
-				if(GameController.money >= 120) {
+				if(GameController.money >= 60) {
 					GameController.steaks++;
-					GameController.money -= 120;
+					GameController.Instance.ChangeMoney(-60);
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{
 							"*The Butcher cuts a prime chunk of steak down and wraps it up. It takes seconds.",
@@ -643,8 +641,8 @@ public partial class Butcher : Speaker
 				}
 				break;
 			case 53:
-				if(GameController.money >= 80) {
-					GameController.money -= 80;
+				if(GameController.money >= 40) {
+					GameController.Instance.ChangeMoney(-40);
 					GameController.hams++;
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{
@@ -677,9 +675,9 @@ public partial class Butcher : Speaker
 				}
 				break;
 			case 54:
-				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
-				if(GameController.money >= 80) {
-					GameController.money -= 80;
+				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
+				if(GameController.money >= 40) {
+					GameController.money -= 40;
 					GameController.hams++;
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{
@@ -751,13 +749,13 @@ public partial class Butcher : Speaker
 				if(GameController.trustLevels[GameController.BUTCHER] >= 1 && GameController.trustLevels[GameController.BUTCHER] < 2) {
 					theDialogue.Add("*The Butcher contendedly examines his wares.");
 				}
-				if(GameController.trustLevels[GameController.BUTCHER] >= 2 && GameController.trustLevels[GameController.BUTCHER] < 3) {
+				if(GameController.trustLevels[GameController.BUTCHER] >= 2 && GameController.trustLevels[GameController.BUTCHER] < 4) {
 					theDialogue.Add("*The Butcher looks happy to see you.");
 				}
-				if(GameController.trustLevels[GameController.BUTCHER] >= 3 && GameController.trustLevels[GameController.BUTCHER] < 4) {
+				if(GameController.trustLevels[GameController.BUTCHER] >= 4 && GameController.trustLevels[GameController.BUTCHER] < 5) {
 					theDialogue.Add("*The Butcher is grinning at you from ear to ear.");
 				}
-				if(GameController.trustLevels[GameController.BUTCHER] >= 4) {
+				if(GameController.trustLevels[GameController.BUTCHER] >= 5) {
 					theDialogue.Add("*You sense a good deal of trust from the Butcher.");
 				}
 
@@ -787,7 +785,9 @@ public partial class Butcher : Speaker
 			
 			case 106:
 				Godot.Collections.Array byeDialogue = new Godot.Collections.Array{};
-				if(trustAtStartOfMeeting == GameController.trustLevels[GameController.BUTCHER] ) {
+				if(GameController.trustLevels[GameController.BUTCHER] >= 5) {
+					byeDialogue.Add("*Your trust with the Butcher has maxxed out...");
+				} else if(trustAtStartOfMeeting == GameController.trustLevels[GameController.BUTCHER] ) {
 					byeDialogue.Add("*You didn't grow much closer today...");
 				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.trustLevels[GameController.BUTCHER]) ) {
 					byeDialogue.Add("*The Butcher definitely trusts you more after today.");
@@ -827,7 +827,7 @@ public partial class Butcher : Speaker
 				break;
 
 			case 110:
-				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 				GameController.butcherQuestionFlags[1] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -851,7 +851,7 @@ public partial class Butcher : Speaker
 				);
 				break;
 			case 111:
-				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -915,7 +915,7 @@ public partial class Butcher : Speaker
 			
 			case 150:
 				GameController.butcherQuestionFlags[2] = false;
-				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*The Butcher smiles with nostalgia.",
@@ -940,7 +940,7 @@ public partial class Butcher : Speaker
 				);
 				break;
 			case 200:
-				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 				GameController.butcherQuestionFlags[3] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1000,7 +1000,7 @@ public partial class Butcher : Speaker
 				);
 				break;
 			case 203:
-				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Yes, Boss! Where have you been all my life?",
@@ -1135,7 +1135,7 @@ public partial class Butcher : Speaker
 				);
 				break;
 			case 305:
-				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 				GameController.butcherQuestionFlags[4] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1149,7 +1149,7 @@ public partial class Butcher : Speaker
 
 					},
 					new Godot.Collections.Array{
-						"Nope. I’m a Material Detective.",
+						"Nope. I’m a Material Boy.",
 						"Like… meat?",
 					},
 					new Godot.Collections.Array{
@@ -1175,7 +1175,7 @@ public partial class Butcher : Speaker
 				);
 				break;
 			case 307:
-				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1194,7 +1194,7 @@ public partial class Butcher : Speaker
 				break;
 			
 			case 308:
-				GameController.trustLevels[GameController.BUTCHER] += 0.5f;
+				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 				GameController.brokenPhones++;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{

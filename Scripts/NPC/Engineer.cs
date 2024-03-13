@@ -15,7 +15,8 @@ public partial class Engineer : Speaker
 		"So, you seeing anyone?",
 		"*Something odd you saw in the logs...",
 		"So, what are you gonna do about your work?",
-		"Hey… would you be able to fix this phone?"
+		"Hey… would you be able to fix this phone?",
+		"Any luck with that phone?"
 	};
 	public Godot.Collections.Array questionIndices = new Godot.Collections.Array{
 		105,
@@ -24,33 +25,25 @@ public partial class Engineer : Speaker
 		300,
 		400,
 		500,
-		600
+		600,
+		601
 	};
 	public Godot.Collections.Array relationshipGates = new Godot.Collections.Array{
 		0,
 		0,
 		1,
-		2,
 		3,
 		4,
-		3
+		5,
+		5,
+		0
 	};
 	public override void _Ready()
     {
 		trustAtStartOfMeeting = GameController.trustLevels[GameController.SOFTWARE];
         base._Ready();
 		GameController.theSpeaker = this;
-
-		//GameController.engineerMemory[1] = 1;
-		textbox_system.Instance.Initialize(-2);
-		//GameController.engineerQuestionFlags[0] = true;
-		//GameController.engineerQuestionFlags[1] = true;
-		//GameController.engineerQuestionFlags[2] = true;
-		//GameController.engineerQuestionFlags[3] = true;
-		//GameController.engineerQuestionFlags[4] = true;
-		//GameController.engineerQuestionFlags[5] = true;
-		//GameController.engineerQuestionFlags[6] = true;
-		return;
+		if(GameController.brokenPhones > 0) GameController.engineerQuestionFlags[6] = true;
 
 		if(GameController.currentTime != 1 
 			|| GameController.GetDay(GameController.currentDay) == "Friday" 
@@ -247,7 +240,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 2:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -524,7 +517,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 14:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.25f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*The Engineer snorts.",
@@ -561,7 +554,8 @@ public partial class Engineer : Speaker
 						"I'm a sick man."
 					},
 					new Godot.Collections.Array{
-						-1
+						16,
+						17
 					}
 				);
 				break;
@@ -710,13 +704,13 @@ public partial class Engineer : Speaker
 				if(GameController.trustLevels[GameController.SOFTWARE] >= 1 && GameController.trustLevels[GameController.SOFTWARE] < 2) {
 					theDialogue.Add("*The Engineer settles comfortably back into his work.");
 				}
-				if(GameController.trustLevels[GameController.SOFTWARE] >= 2 && GameController.trustLevels[GameController.SOFTWARE] < 3) {
+				if(GameController.trustLevels[GameController.SOFTWARE] >= 2 && GameController.trustLevels[GameController.SOFTWARE] < 4) {
 					theDialogue.Add("*The Engineer looks happy to see you.");
 				}
-				if(GameController.trustLevels[GameController.SOFTWARE] >= 3 && GameController.trustLevels[GameController.SOFTWARE] < 4) {
+				if(GameController.trustLevels[GameController.SOFTWARE] >= 4 && GameController.trustLevels[GameController.SOFTWARE] < 5) {
 					theDialogue.Add("*The Engineer seems like they're opening up to you.");
 				}
-				if(GameController.trustLevels[GameController.SOFTWARE] >= 4) {
+				if(GameController.trustLevels[GameController.SOFTWARE] >= 5) {
 					theDialogue.Add("*You sense a good deal of trust from the Engineer.");
 				}
 
@@ -745,7 +739,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 105:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*The two of you work together in a companionable silence.",
@@ -763,7 +757,9 @@ public partial class Engineer : Speaker
 				break;
 			case 106:
 				Godot.Collections.Array byeDialogue = new Godot.Collections.Array{};
-				if(trustAtStartOfMeeting == GameController.trustLevels[GameController.SOFTWARE] ) {
+				if(GameController.trustLevels[GameController.SOFTWARE] >= 5) {
+					byeDialogue.Add("*Your trust with the Engineer has maxxed out...");
+				} else if(trustAtStartOfMeeting == GameController.trustLevels[GameController.SOFTWARE] ) {
 					byeDialogue.Add("*You didn't grow much closer today...");
 				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.trustLevels[GameController.SOFTWARE]) ) {
 					byeDialogue.Add("*The Engineer definitely trusts you more after today.");
@@ -804,7 +800,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 108:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Oh man, where've you been all my life?",
@@ -870,8 +866,8 @@ public partial class Engineer : Speaker
 					new Godot.Collections.Array{
 						"Yeah, totally it is.",
 						"I'm an adult, so I can watch whatever I like.",
-						"But lately, I've been spending a lot of time wondering if there's more to me than that.",
-						"I've been joking with myself that I'm a walking stereotype, but..."
+						"Yeah... a software engineer, with games and anime instead of a social life...",
+						"Oh no... Am I a walking stereotype?"
 					},
 					new Godot.Collections.Array{
 
@@ -904,7 +900,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 113:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Well, yeah, you're right.",
@@ -947,7 +943,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 116:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"What? Hahah... No, man. It's not abject nihilism. It's...",
@@ -1001,7 +997,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 200:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
 				GameController.engineerQuestionFlags[2] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1038,7 +1034,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 202:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1067,8 +1063,8 @@ public partial class Engineer : Speaker
 						"When I first got to this city, I had so much energy… I was just excited for a new start, I guess. I went out every night and met other people in the same boat as me. ",
 						"We’d be out on the streets all night back in those days. We felt unstoppable. ",
 						"Then, I achieved what I’d always really wanted – a stable, well-paying corporate job. ",
-						"…Then I just made myself get busier and busier. ",
-						"I really sank into my work. Honestly, I don’t know why. ",
+						"I got so busy after that, though...",
+						"I really just sank into my job.",
 						"But, yeah, I don’t see those guys anymore. It’s probably been too long for me to reach out, by now. ",
 						"…"
 
@@ -1077,6 +1073,87 @@ public partial class Engineer : Speaker
 
 					},
 					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						106
+					}
+				);
+				break;
+			
+			case 300:
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.engineerQuestionFlags[3] = false;
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Ah... nope.",
+						"Haven't had a lot of luck lately. Or... time, really.",
+						"Bet you're pretty popular, though."
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						"Yeah, I have to fight suitors off with a stick.",
+						"Nope. My demented dialogue options are sometimes a turnoff."
+					},
+					new Godot.Collections.Array{
+						301,
+						302
+					}
+				);
+				break;
+			
+			case 301:
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Hah. Sounds tough."
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						303
+					}
+				);
+				break;
+			
+			case 302:
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Your what nows...?"
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+						303
+					}
+				);
+				break;
+			case 303:
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"But anyway, I haven't put a lot of effort into meeting new people, so it serves me right.",
+						"And I kind of screwed up my last relationship. So... I'm giving myself some time.",
+						"Which is a little tough, since she's always at the park in the evening...",
+						"...Right outside my work."
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+
 					},
 					new Godot.Collections.Array{
 						106
@@ -1179,7 +1256,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 405:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
 				GameController.engineerQuestionFlags[4] = false;
 				GameController.engineerQuestionFlags[5] = true;
 
@@ -1210,12 +1287,12 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 406:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.5f;
+				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Yeah.",
 						"You're right.",
-						"I think my mind just broke in half."
+						"It was like... cognitive dissonance?"
 					},
 					new Godot.Collections.Array{
 
@@ -1308,6 +1385,58 @@ public partial class Engineer : Speaker
 						"I'll see you at the New Years' party, yeah? "
 
 
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			
+			case 600:
+				GameController.engineerQuestionFlags[6] = false;
+				GameController.engineerQuestionFlags[7] = true;
+				GameController.brokenPhones--;
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"You broke your phone? ...Sorry, man, I can't exactly just fix that.",
+						"It's looking pretty trashed...",
+						"Tell you what, though... I might be able to extract its memory chip.",
+						"*The Engineer took the broken phone from you.",
+						"No promises, but check with me again later, okay?"
+					},
+					new Godot.Collections.Array{
+
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
+					}
+				);
+				break;
+			case 601:
+				GameController.engineerQuestionFlags[7] = false;
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Oh yeah -- I was able to get the memory chip out. I put your data on this USB.",
+						"The Engineer hands you a USB.",
+						"By the way... I didn't look at your data or anything. But I saw some of the file names, and -- I've never seen encryption like that before.",
+						"You take your privacy seriously, huh? You'll have to tell me what the encryption is called someday.",
+						"*...?",
+						"*You plug the USB into your laptop.",
+						"*...The files look encrypted. Their names are all scrambled.",
+						"*But they're not actually encrypted at all...",
+						"*You open a text file.",
+						"*Before you pops up a manifesto about humankinds' destruction of nature.",
+						"*'Humanity is a race of spoiled meat'...",
+						"*In addition, there's hundreds of photos... pictures of people with animal heads pasted on top of them.",
+						"..."
 					},
 					new Godot.Collections.Array{
 

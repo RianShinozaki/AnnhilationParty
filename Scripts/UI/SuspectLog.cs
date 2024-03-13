@@ -95,10 +95,17 @@ public partial class SuspectLog : Control
 			}
 
 		}
-		if(currentLogDay == 11) {
+		if(currentLogDay == 12) {
 			if(GameController.butcherMemory[5] == 0) {
 				GameController.butcherMemory[5] = 1;
 				GameController.butcherQuestionFlags[4] = true;
+			}
+
+		}
+		if(currentLogDay == 19 || currentLogDay == 26) {
+			if(GameController.occultistMemory[5] == 0) {
+				GameController.occultistMemory[5] = 1;
+				GameController.occultistQuestionFlags[5] = true;
 			}
 
 		}

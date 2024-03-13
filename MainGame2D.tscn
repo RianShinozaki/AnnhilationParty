@@ -385,6 +385,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "PREVIOUS DAY"
 
 [node name="DAYUP" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1075.0
 offset_top = 9.0
@@ -395,6 +396,7 @@ script = ExtResource("17_bbsds")
 val = 1
 
 [node name="DAYDOWN" type="Button" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 1075.0
 offset_top = 60.0

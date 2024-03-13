@@ -3,7 +3,7 @@ using System;
 
 public partial class OfficeSpeaker : Speaker
 {
-	bool DoIntro = false;
+	bool DoIntro = true;
 	public static OfficeSpeaker Instance;
 	public int lastCalledDay = 0;
 
@@ -311,7 +311,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"Mornin'. ",
 						"This the new blood?"
 					},
@@ -476,6 +476,7 @@ public partial class OfficeSpeaker : Speaker
 						"...Listen, that's probably enough for today.",
 						"I can tell you more if you call again another time. Go ahead and pick up that phone whenever. I'll be there.",
 						"Meanwhile, try to make contact with the suspects. Your briefing should have told you where to find them.",
+						"It's Friday morning now, yeah? Maybe go see the Butcher -- he's one of your suspects. Grab some lunch, too.",
 						"Rooting for ya.",
 						"*The phone clicks off.",
 						"*...Daily suspect logs on your desk, and photos of the suspects on the wall...",
@@ -495,7 +496,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"Hey there. You gone and visited any folks yet?",
 						"I guess the briefing told ya where to find them... not necessarily when.",
 						"Hope you haven't wasted any time running around and not finding anyone...",
@@ -516,7 +517,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"This job requires you to be a real people-person.",
 						"When ya talk to people, you're gonna have to break through their reservations.",
 						"Most people don't act their true selves around someone they just met...",
@@ -539,7 +540,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"Oh yeah, how's the war-fund taking care of ya?",
 						"Two-hundred big-ones a week. Imagine that.",
 						"...Still, that's all you get.",
@@ -579,7 +580,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"Hey there. You never called back, so I figured I had to check on you.",
 						"You're still alive, right?",
 						"Yes? Good.",
@@ -601,7 +602,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"This job is a slow burn. You're not gonna get your answers right away, y'know?",
 						"Sometimes you meet a person, and there's nothing to say. Well, that's just how it is.",
 						"Spending time with them will help them open up to you anyway.",
@@ -621,7 +622,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"You checking that logbook each day?",
 						"If you see somethin' real weird in there... make sure to remember.",
 						"Then, when you're close enough with the suspect, you could try learning more about it.",
@@ -642,7 +643,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"Something I've found is people will become closer to you more easily if you're candid.",
 						"That being said, try not to be a complete ass either...",
 						"But when you want information? Best not to be too direct sometimes.",
@@ -663,7 +664,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"Hey, you wanna know why the aberration becomes more obvious when you get closer to someone?",
 						"It's because that way, the aberration can infect you too.",
 						"You won't realize at first. Time will pass without your knowledge. You'll do things you have no recollection of.",
@@ -684,7 +685,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"...I was trying to think of some advice to give you today.",
 						"...",
 						"I'm not sure if you are, but I feel inclined to tell you...",
@@ -704,7 +705,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"What do you think an aberration is anyway?",
 						"Most scientific explanation we have is that it's some kinda virus.",
 						"The aberration, that is, is the virus. The infected is the aberrant.",
@@ -742,7 +743,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"Hey, kid...",
 						"You hanging in alright?",
 						"*The phone clicks off."
@@ -760,7 +761,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"You're well on your way through this case, huh?",
 						"Don't forget, when the final day comes... you'll have to make your choice.",
 						"Wish we had more tools to give you, kid.",
@@ -781,10 +782,10 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"Hey kid...",
-						"Do you remember when I told you to shoot yourself...?",
-						"...Real sorry.",
+						"Are you having a good time?",
+						"Don't forget to have some fun. Life's not all work.",
 						"*The phone clicks off."
 					},
 					new Godot.Collections.Array{
@@ -800,7 +801,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
+						"*...A tired voice comes through.",
 						"If you can't figure it out, it's alright.",
 						"Just close the game and try again.",
 						"You'll know what to do next time, right?",
@@ -819,8 +820,10 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",
-						"*...A tired, gravelly voice comes through.",
-						"Is this world worth saving?",
+						"*...A tired voice comes through.",
+						"Hey kid, I might not be able to answer the phone much longer.",
+						"Some stuff came up. Perks of being a world-class detective.",
+						"You got it from here, yeah?",
 						"*The phone clicks off."
 					},
 					new Godot.Collections.Array{
