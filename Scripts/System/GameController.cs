@@ -109,12 +109,13 @@ public partial class GameController : Node
     public static int timesCalledOldGuard = 0;
 
     public static bool goodEnding = false;
+    public static bool canReturnButtonAppear = false;
 
     public override void _Ready()
     {
         base._Ready();
         wishSplitX = 215;
-        GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile, "res://MainGame2D.tscn");
+        GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile, "res://TitleScreen.tscn");
         Instance = this;
 
         for(int i = 0; i < trustLevels.Length; i++) {

@@ -19,7 +19,7 @@ public partial class SuspectPhoto : Clickable
     public override void CheckActive()
     {
         if(myLocation == GameController.Location.Office) {
-            if(GameController.currentState != GameController.GameState.SuspectLocation) {
+            if(GameController.currentState != GameController.GameState.SuspectLocation || !GameController.canReturnButtonAppear) {
                 Visible = false;
                 active = false;
             } else {
@@ -51,6 +51,7 @@ public partial class SuspectPhoto : Clickable
 		GameController.currentLocation = myLocation;
 		GameController.Instance.OnSwitchSceneTransitionBegin(goToScene);
 		clicked = true;
+        GameController.canReturnButtonAppear =false;
     }
 	public void OnSwitchScene() {
 		if(clicked) {

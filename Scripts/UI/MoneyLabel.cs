@@ -17,5 +17,8 @@ public partial class MoneyLabel : Label
 
 	public void OnMoneyChanged() {
 		Text = GameController.money.ToString("C");
+		if(GameController.money > 900) {
+			((Control)GetParent()).Visible = false;
+		}
 	}
 }

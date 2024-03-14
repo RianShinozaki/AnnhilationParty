@@ -14,8 +14,8 @@ public partial class Screen : TextureRect
         Split2Line = GetNode<TextureRect>("SplitLine2");
         Split3Line = GetNode<TextureRect>("SplitLine3");
         TimeAndDate = SplitLine.GetNode<Label>("Label");
-        GameController.Instance.SwitchScene += OnSwitchScene;
-        OnSwitchScene();
+        GameController.Instance.SwitchSceneTransitionBegin += OnSwitchScene;
+        OnSwitchScene("");
     }
     public override void _Process(double delta)
     {
@@ -25,7 +25,7 @@ public partial class Screen : TextureRect
 		Split2Line.GlobalPosition = new Vector2(GameController.split2X*4 - 49*4, 0);
 		Split3Line.GlobalPosition = new Vector2(GameController.split3X*4 - 49*4, 0);
     }
-    public void OnSwitchScene() {
+    public void OnSwitchScene(string dummy) {
         if(GameController.currentLocation == GameController.Location.Office) {
             Tween tween = GetTree().CreateTween();
             int toLen = TimeAndDate.Text.Length - (GameController.currentTime == 1 ? "MORNING" : "EVENING").Length;

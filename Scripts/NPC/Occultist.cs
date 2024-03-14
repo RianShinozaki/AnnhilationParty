@@ -281,7 +281,7 @@ public partial class Occultist : Speaker
 						"You're a troubled individual, that much is clear.",
 						"You shame yourself for your past and live the present with reckless abandon.",
 						"And whatever lifeline you have, whoever's looking out for you... they'll turn on you in the end, too.",
-						"What an attrocious fortune. You must be totally great."
+						"What an atrocious fortune. You must be totally great."
 					},
 					new Godot.Collections.Array{
 
@@ -658,21 +658,21 @@ public partial class Occultist : Speaker
 
 				switch(fortune) {
 					case 0:
-						if(GameController.currentDay >= 15) {
+						if(GameController.currentDay <= 15) {
 							theFortune = "...Something will happen on the 15th. Don't miss anything from that day.";
 						} else {
 							theFortune = "...Something happened on the 15th. Make sure you didn't miss anything from that day.";
 						}
 						break;
 					case 1:
-						if(GameController.currentDay >= 22) {
+						if(GameController.currentDay <= 22) {
 							theFortune = "...Something will happen on the 22nd. Don't miss anything from that day.";
 						} else {
 							theFortune = "...Something happened on the 22nd. Make sure you didn't miss anything from that day.";
 						}
 						break;
 					case 2:
-						if(GameController.currentDay >= 12) {
+						if(GameController.currentDay <= 12) {
 							theFortune = "...Something will happen on the 12th. Don't miss anything from that day.";
 						} else {
 							theFortune = "...Something happened on the 12th. Make sure you didn't miss anything from that day.";
@@ -783,12 +783,9 @@ public partial class Occultist : Speaker
 				break;
 			
 			case 400:
-				GameController.occultistQuestionFlags[5] = false;
-				GameController.occultistQuestionFlags[6] = true;
-
+				
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
-						"*Something odd you saw in the logs...",
 						"*That’s right… something you saw didn’t seem to add up. What was it? ",
 					},
 					new Godot.Collections.Array{
@@ -880,6 +877,9 @@ public partial class Occultist : Speaker
 				);
 				break;
 			case 405:
+				GameController.occultistQuestionFlags[5] = false;
+				GameController.occultistQuestionFlags[6] = true;
+
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"What, are we thinking about imminent doom again?",

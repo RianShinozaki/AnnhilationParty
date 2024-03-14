@@ -3,7 +3,7 @@ using System;
 
 public partial class OfficeSpeaker : Speaker
 {
-	bool DoIntro = false;
+	bool DoIntro = true;
 	public static OfficeSpeaker Instance;
 	public int lastCalledDay = 0;
 
@@ -118,7 +118,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*Four suspects -- Two aberrants.",
-						"*aberrants... Eldritch entities that have infested the city.",
+						"*Aberrations... Eldritch entities that have infested the city.",
 						"*Beings that hide in the shadow of the psyche...",
 						"*Of the four suspects before you, two of them are unknowingly nursing a nightmare virus that hides in the cloak of their own minds.",
 						"*The longer they fester, the more power they gain...",
@@ -244,7 +244,7 @@ public partial class OfficeSpeaker : Speaker
 					new Godot.Collections.Array{
 						"*And truly, it is.",
 						"*Shunted into the far rings of the United Solar System, told your very survival rests on this case...",
-						"*Only for the case briefing to spout some Fruedian... bullshit.",
+						"*Only for the case briefing to spout some Freudian... bullshit.",
 						"*You wish you had a better word. You wish they had better words."
 					},
 					new Godot.Collections.Array{
@@ -429,7 +429,7 @@ public partial class OfficeSpeaker : Speaker
 						"Frankly, what with the general size of this planet, and that war going on...",
 						"I think they see it as more trouble than it's worth.",
 						"Easy for them not to give it their all, given half the populace doesn't even believe in... whatever's allegedly going on here. The Aberrants.",
-						"So if a city gets annhilated, that's one less headache, and more funding for weaponry.",
+						"So if a city gets annihilated, that's one less headache, and more funding for weaponry.",
 						"Some people we put our trust in..."
 					},
 					new Godot.Collections.Array{
@@ -462,7 +462,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Alright, so the details are: You're basically alone out there.",
-						"You've gotta find the two aberrants by the end of the month or it's hello, annhilation.",
+						"You've gotta find the two aberrants by the end of the month or it's hello, annihilation.",
 						"Now, you've got a few tools at your disposal. Thanks to WiFi signal reconstruction and digital surveillance, we can essentially tell you what everyone did each day.",
 						"That won't be enough, because the Aberrant rarely reveals itself when it's alone.",
 						"However, the presence of the Aberrant can manifest in outbursts of unusual behavior.",
@@ -840,6 +840,7 @@ public partial class OfficeSpeaker : Speaker
 				break;
 			
 			case 900:
+				GameController.Instance.SetMoney(999);
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You pick up the archaic phone.",

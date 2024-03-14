@@ -149,7 +149,7 @@ public partial class Ending : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						9
+						10
 					}
 				);
 				break;
