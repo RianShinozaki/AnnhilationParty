@@ -90,10 +90,12 @@ public partial class GameController : Node
     //0 -- know his fav anime ? :: 0 -- no :: 2 -- yes
     //1 -- has met :: 0 -- no :: 1 -- yes
     //2 -- know job :: 0 -- ? :: 1 -- writer :: 2 -- unemployed :: 3 -- engineer
+    //3 -- final dialogue
 
     public static short[] occultistMemory = new short[10];
     //0 -- has met :: 0 -- no :: 1 -- yes
     //1 -- fortunes pulled
+    //2 -- final dialogue
 
     public static bool[] engineerQuestionFlags = new bool[10];
     public static bool[] butcherQuestionFlags = new bool[10];

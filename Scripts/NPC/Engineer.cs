@@ -1385,6 +1385,8 @@ public partial class Engineer : Speaker
 				break;
 			case 501:
 				GameController.trustLevels[GameController.SOFTWARE] += 1;
+				GameController.engineerMemory[3] = 1;
+
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Huh? There's a shelter for colony kids out there? ",

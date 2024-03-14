@@ -1033,6 +1033,8 @@ public partial class Occultist : Speaker
 				break;
 			
 			case 504:
+				GameController.occultistMemory[2] = 1;
+
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"One last fortune, huh? Easy, I’ll do one for the 31st, and I won’t even use the cards.",

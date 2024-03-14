@@ -37,6 +37,12 @@ public partial class EndingAssist : Node
 					
 					actionState = 0;
 					break;
+				case 4:
+					if(GameController.currentState == GameController.GameState.Dialogue) {
+						return;
+					}
+					GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile, "res://Scenes/Credits.tscn");
+					break;
 			}
 		}
 		

@@ -29,6 +29,7 @@ public partial class SuspectLog : Control
     {
         base._Ready();
 		Instance = this;
+		GameController.Instance.SwitchScene += _onSwitchScene;
     }
     public void Init() {
 		//currentLogDay = 1;
@@ -125,6 +126,10 @@ public partial class SuspectLog : Control
 		tween.TweenProperty(this, "rotation",  Mathf.Pi * 2/3, 0.5f).SetTrans(Tween.TransitionType.Sine);
 		tween.Finished += switchToOffice;
 
+	}
+	private void _onSwitchScene() {
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(this, "rotation",  Mathf.Pi * 2/3, 0.5f).SetTrans(Tween.TransitionType.Sine);
 	}
 	private void switchToSuspectLog() {
 		GameController.currentState = GameController.GameState.SuspectLog;

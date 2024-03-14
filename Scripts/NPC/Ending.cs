@@ -4,7 +4,7 @@ using System;
 public partial class Ending : Speaker
 {
 
-
+	[Export] AnimationPlayer animPlayer;
 	public override void _Ready()
     {
 
@@ -132,7 +132,7 @@ public partial class Ending : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						9
+						GameController.engineerMemory[3] == 1 && GameController.occultistMemory[2] == 1 ? 9 : 10
 					}
 				);
 				break;
@@ -166,11 +166,12 @@ public partial class Ending : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						9
+						11
 					}
 				);
 				break;
 			case 11:
+				animPlayer.Play("Appear1");
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*The old detective appears before you. She stands a head above nearly everyone else in the crowd.",
@@ -235,7 +236,9 @@ public partial class Ending : Speaker
 						"Dreams that exist in reality."
 					},
 					new Godot.Collections.Array{
-						15
+						15,
+						16,
+						17
 					}
 				);
 				break;
@@ -250,7 +253,7 @@ public partial class Ending : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						15
+						18
 					}
 				);
 				break;
@@ -265,7 +268,7 @@ public partial class Ending : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						15
+						18
 					}
 				);
 				break;
@@ -281,7 +284,7 @@ public partial class Ending : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						15
+						18
 					}
 				);
 				break;
@@ -309,11 +312,12 @@ public partial class Ending : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						15
+						19
 					}
 				);
 				break;
 			case 19:
+				animPlayer.Play("Appear2");
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"You completed my game, after all.",
@@ -332,7 +336,45 @@ public partial class Ending : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						15
+						21
+					}
+				);
+				break;
+			case 21:
+				animPlayer.Play("Disappear");
+				EndingAssist.actionState = 1;
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"...",
+						"The old detective vanishes.",
+						"Slowly, the party dies down...",
+						"And a new year begins.",
+						"..."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						"Well, that was some bullshit."
+					},
+					new Godot.Collections.Array{
+						22
+					}
+				);
+				break;
+			case 22:
+				EndingAssist.actionState = 4;
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"And truly, it was."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1
 					}
 				);
 				break;

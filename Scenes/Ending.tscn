@@ -1,9 +1,99 @@
-[gd_scene load_steps=5 format=3 uid="uid://cruowte63wvlb"]
+[gd_scene load_steps=10 format=3 uid="uid://cruowte63wvlb"]
 
 [ext_resource type="Texture2D" uid="uid://w0q76ljrg1ow" path="res://Art Assets/Party.png" id="1_tbidl"]
 [ext_resource type="Script" path="res://Scripts/NPC/Ending.cs" id="3_usdhp"]
 [ext_resource type="Script" path="res://Scripts/NPC/EndingAssist.cs" id="4_6vu4e"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="4_awx3b"]
+[ext_resource type="Texture2D" uid="uid://bcyf0pk3peid8" path="res://Art Assets/Butcher/OldDetective.png" id="5_xjorp"]
+
+[sub_resource type="Animation" id="Animation_5kggh"]
+resource_name = "Appear1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_k6ahv"]
+resource_name = "Appear2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_hyihx"]
+resource_name = "Disappear"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.6, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fiwnh"]
+_data = {
+"Appear1": SubResource("Animation_5kggh"),
+"Appear2": SubResource("Animation_k6ahv"),
+"Disappear": SubResource("Animation_hyihx")
+}
 
 [node name="Office" type="Node2D"]
 position = Vector2(-1.52588e-05, 0)
@@ -15,12 +105,25 @@ texture = ExtResource("1_tbidl")
 
 [node name="Pointer" parent="." instance=ExtResource("4_awx3b")]
 
-[node name="Speaker" type="Control" parent="."]
+[node name="Speaker" type="Control" parent="." node_paths=PackedStringArray("animPlayer")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_usdhp")
+animPlayer = NodePath("../OldDetective/AnimationPlayer")
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("4_6vu4e")
+
+[node name="OldDetective" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(614, 362)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_xjorp")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="OldDetective"]
+libraries = {
+"": SubResource("AnimationLibrary_fiwnh")
+}

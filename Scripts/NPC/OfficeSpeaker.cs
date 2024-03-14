@@ -381,7 +381,7 @@ public partial class OfficeSpeaker : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"So, by now you're settled into the old office and the case briefing is nice and settled in your brain, yeah?",
-						"As far as clarification goes on what that case file is talking about, I got nothin' for ya.",
+						"I got nothin' for ya on the metaphysics of this whole thing...",
 						"But I can tell you how you're gonna do this. So listen up.",
 						"I did this gig before you. See, I'm a pretty big shot detective. The last city this happened to, well... the United Solar System actually cared to keep that one.",
 						"I think they give just a little more than a super-rat's ass about your city.",

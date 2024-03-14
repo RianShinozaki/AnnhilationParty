@@ -1033,9 +1033,12 @@ public partial class Butcher : Speaker
 						"Reminds you of simpler days. Of the trees and the meadows and the animals...",
 						"I wouldn't trade my upbringing on the farms for anything else.",
 						"It taught me a true appreciation for the finer things...",
-						"Why, fresh meat is a beautiful thing.",
+						"The things unspoiled in life...",
+						"It gave me the eyes, you see.",
+						"You have them too, don't you?",
+						"Your eyes... they're hungry, like mine.",
+						"Yes... fresh meat is a beautiful thing.",
 						"Wouldn't you agree?",
-						"*The Butcher beams at this thought."
 					},
 					new Godot.Collections.Array{
 
