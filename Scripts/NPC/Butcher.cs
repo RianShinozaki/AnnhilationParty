@@ -676,35 +676,18 @@ public partial class Butcher : Speaker
 				break;
 			case 54:
 				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
-				if(GameController.money >= 40) {
-					GameController.hams++;
-					dialogueSet = new DialogueSet(
-						new Godot.Collections.Array{
-							"*Your purchase put the Butcher in a good mood..."
-						},
-						new Godot.Collections.Array{
-						},
-						new Godot.Collections.Array{
-						},
-						new Godot.Collections.Array{
-							100
-						}
-					);
-				} else {
-					dialogueSet = new DialogueSet(
-						new Godot.Collections.Array{
-							"You can't afford that..."
-						},
-						new Godot.Collections.Array{
-						},
-						new Godot.Collections.Array{
-
-						},
-						new Godot.Collections.Array{
-							51,
-						}
-					);
-				}
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*Your purchase put the Butcher in a good mood..."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						100
+					}
+				);
 				break;
 			case 55:
 
