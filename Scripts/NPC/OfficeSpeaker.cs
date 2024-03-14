@@ -1067,6 +1067,7 @@ public partial class OfficeSpeaker : Speaker
 			
 			case 911:
 				EndSequenceObject.active = true;
+				GameController.goodEnding = suspectsChosen[0] == true && suspectsChosen[3] == true;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Alright. We're trusting you on this. We'll be taking the individuals in for rehabilitation shortly.",

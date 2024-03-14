@@ -106,6 +106,8 @@ public partial class GameController : Node
 
     public static int timesCalledOldGuard = 0;
 
+    public static bool goodEnding = false;
+
     public override void _Ready()
     {
         base._Ready();

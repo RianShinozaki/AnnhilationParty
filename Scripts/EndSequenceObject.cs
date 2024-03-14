@@ -18,6 +18,7 @@ public partial class EndSequenceObject : Node
 			GameController.currentLocation = myLocation;
 			GameController.Instance.OnSwitchSceneTransitionBegin(goToScene);
 			GameController.SetSplitX(-100);
+			active = false;
 		}
 	}
 }

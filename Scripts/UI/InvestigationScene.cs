@@ -6,6 +6,7 @@ public partial class InvestigationScene : Node2D
 	Sprite2D Fade;
 	PackedScene toScene;
 	Node instantiatedScene;
+	public static InvestigationScene Instance;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -18,6 +19,7 @@ public partial class InvestigationScene : Node2D
 
 		Tween tween = GetTree().CreateTween();
 		tween.TweenProperty(Fade, "modulate", new Color(0, 0, 0, 0), 1.0f).SetTrans(Tween.TransitionType.Sine);
+		Instance = this;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -40,5 +42,9 @@ public partial class InvestigationScene : Node2D
 		Tween tween = GetTree().CreateTween();
 		tween.TweenProperty(Fade, "modulate", new Color(0, 0, 0, 0), 1.0f).SetTrans(Tween.TransitionType.Sine);
 
+	}
+	public void QuickFade(float amt) {
+		Tween tween = GetTree().CreateTween();
+		tween.TweenProperty(Fade, "modulate", new Color(0, 0, 0, amt), 0.1f).SetTrans(Tween.TransitionType.Sine);
 	}
 }

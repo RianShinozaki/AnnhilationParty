@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dpcj6th1adiv2"]
 
-[ext_resource type="Texture2D" uid="uid://bdrvmqu0jwm7q" path="res://Art Assets/Untitled_Artwork.png" id="1_6du5u"]
-[ext_resource type="Texture2D" uid="uid://trksf44t1aus" path="res://Art Assets/CharacterGeneric.png" id="2_dw56q"]
+[ext_resource type="Texture2D" uid="uid://bgopkn1m52e4b" path="res://Art Assets/OccultBG.png" id="1_4oum7"]
+[ext_resource type="Texture2D" uid="uid://dmxktmfqmlm4c" path="res://Art Assets/OccultNormal.png" id="2_loaw0"]
 [ext_resource type="Texture2D" uid="uid://cqwco4aiansp0" path="res://Art Assets/!.png" id="3_makk2"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="4_u8f6n"]
 [ext_resource type="Script" path="res://Scripts/NPC/Occultist.cs" id="5_u6hgs"]
@@ -145,14 +145,13 @@ position = Vector2(-1.52588e-05, 0)
 [node name="Background2" type="Sprite2D" parent="."]
 position = Vector2(636, 356)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_6du5u")
+texture = ExtResource("1_4oum7")
 
 [node name="Character" type="Sprite2D" parent="."]
-visible = false
 texture_filter = 1
-position = Vector2(541, 147)
-scale = Vector2(4, 4)
-texture = ExtResource("2_dw56q")
+position = Vector2(-33, -4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_loaw0")
 centered = false
 hframes = 2
 frame = 1
@@ -164,8 +163,8 @@ libraries = {
 
 [node name="!" type="Node2D" parent="Character"]
 visible = false
-position = Vector2(31, -20.25)
-scale = Vector2(0.25, 0.25)
+position = Vector2(1316, 106)
+scale = Vector2(2, 2)
 
 [node name="Sprite2D3" type="Sprite2D" parent="Character/!"]
 modulate = Color(0, 0.517647, 0.811765, 1)

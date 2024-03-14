@@ -396,6 +396,7 @@ script = ExtResource("17_bbsds")
 val = 1
 
 [node name="DAYDOWN2" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1076.0
 offset_top = 119.0
 offset_right = 1221.0
@@ -433,6 +434,7 @@ script = ExtResource("50_um8kk")
 
 [node name="Node" type="Node" parent="."]
 script = ExtResource("59_8wspn")
+goToScene = "res://Scenes/Ending.tscn"
 
 [connection signal="pressed" from="SuspectLog/CLOSE" to="SuspectLog" method="_on_close_pressed"]
 [connection signal="pressed" from="SuspectLog/NextDay" to="SuspectLog" method="_on_next_day_pressed"]

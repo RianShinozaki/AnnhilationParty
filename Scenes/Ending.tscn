@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cruowte63wvlb"]
+
+[ext_resource type="Texture2D" uid="uid://w0q76ljrg1ow" path="res://Art Assets/Party.png" id="1_tbidl"]
+[ext_resource type="Script" path="res://Scripts/NPC/Ending.cs" id="3_usdhp"]
+[ext_resource type="Script" path="res://Scripts/NPC/EndingAssist.cs" id="4_6vu4e"]
+[ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="4_awx3b"]
+
+[node name="Office" type="Node2D"]
+position = Vector2(-1.52588e-05, 0)
+
+[node name="Background2" type="Sprite2D" parent="."]
+position = Vector2(641, 359)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tbidl")
+
+[node name="Pointer" parent="." instance=ExtResource("4_awx3b")]
+
+[node name="Speaker" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_usdhp")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("4_6vu4e")

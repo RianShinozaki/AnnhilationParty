@@ -31,7 +31,7 @@ public partial class Occultist : Speaker
 	public Godot.Collections.Array relationshipGates = new Godot.Collections.Array{
 		0,
 		0,
-		2,
+		1,
 		0,
 		3,
 		5,
@@ -51,7 +51,7 @@ public partial class Occultist : Speaker
 			|| GameController.GetDay(GameController.currentDay) == "Wednesday") {
 				textbox_system.Instance.Initialize(-100);
 				NPCSprite.Visible = false;
-				tempObscure.Visible = true;
+				//tempObscure.Visible = true;
 				return;
 			}
 		if(GameController.occultistMemory[0] == 0) {
@@ -264,6 +264,7 @@ public partial class Occultist : Speaker
 				GameController.occultistQuestionFlags[0] = true;
 				GameController.occultistQuestionFlags[2] = true;
 				GameController.occultistQuestionFlags[4] = true;
+				GameController.trustLevels[GameController.OCCULTER] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
