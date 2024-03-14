@@ -32,10 +32,10 @@ public partial class Engineer : Speaker
 		0,
 		0,
 		1,
+		2,
 		3,
 		4,
-		5,
-		5,
+		4,
 		0
 	};
 	public override void _Ready()
@@ -46,9 +46,8 @@ public partial class Engineer : Speaker
 		if(GameController.brokenPhones > 0) GameController.engineerQuestionFlags[6] = true;
 
 		if(GameController.currentTime != 1 
-			|| GameController.GetDay(GameController.currentDay) == "Friday" 
-			|| GameController.GetDay(GameController.currentDay) == "Saturday"
-			|| GameController.GetDay(GameController.currentDay) == "Wednesday"
+			|| GameController.GetDay(GameController.currentDay) == "Saturday" 
+			|| GameController.GetDay(GameController.currentDay) == "Thursday"
 			|| GameController.currentDay == 15 || GameController.currentDay == 16 || GameController.currentDay == 17) {
 				textbox_system.Instance.Initialize(-100);
 				NPCSprite.Visible = false;
@@ -714,18 +713,26 @@ public partial class Engineer : Speaker
 					theDialogue.Add("*You sense a good deal of trust from the Engineer.");
 				}
 
-				theDialogue.Add("*Now's a good time to get to know him better.");
-
 				Godot.Collections.Array theQuestions = new Godot.Collections.Array{};
 				Godot.Collections.Array theIndices = new Godot.Collections.Array{};
 
+				bool foundAGate = false;
+
 				for(int i = 0; i < questionOptions.Count; i++) {
-					if(GameController.engineerQuestionFlags[i] == true &&
-					GameController.trustLevels[GameController.SOFTWARE] >= (float)relationshipGates[i]) {
-						theQuestions.Add(questionOptions[i]);
-						theIndices.Add(questionIndices[i]);
+					if(GameController.engineerQuestionFlags[i] == true) {
+						if (GameController.trustLevels[GameController.SOFTWARE] >= (float)relationshipGates[i]) {
+							theQuestions.Add(questionOptions[i]);
+							theIndices.Add(questionIndices[i]);
+						} else {
+							foundAGate = true;
+						}
 					}
 				}
+				if(foundAGate) {
+					theDialogue.Add("*You sense that if you were closer, you would have more to talk about...");
+				}
+
+				theDialogue.Add("*Now's a good time to get to know him better.");
 
 				animPlayer.Play("Intro");
 				dialogueSet = new DialogueSet(
@@ -1224,7 +1231,9 @@ public partial class Engineer : Speaker
 					new Godot.Collections.Array{
 						"You're... huh?",
 						"Um... don't? Sorry, I don't know what to tell you there.",
-						"*...The Engineer doesn't want to discuss that with you."
+						"*...The Engineer doesn't want to discuss that with you.",
+						"*Maybe you need a different approach? You should try again later..."
+
 					},
 					new Godot.Collections.Array{
 
@@ -1242,7 +1251,9 @@ public partial class Engineer : Speaker
 					new Godot.Collections.Array{
 						"I... what?",
 						"Um. No. I don't think I do.",
-						"*...The Engineer doesn't want to discuss that with you."
+						"*...The Engineer doesn't want to discuss that with you.",
+						"*Maybe you need a different approach? You should try again later..."
+						
 					},
 					new Godot.Collections.Array{
 

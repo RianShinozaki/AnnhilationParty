@@ -8,7 +8,7 @@ public partial class Phone : Clickable
 	[Export] public AnimatedSprite2D animPlayer;
 	[Export] public AudioStreamPlayer ringing;
 	public bool isRinging;
-	int specialInt = -1;
+	public int specialInt = -1;
     public override void _Ready()
     {
         base._Ready();
@@ -18,9 +18,12 @@ public partial class Phone : Clickable
 			StartRinging();
 			specialInt = 114;
 			GameController.oldGuardCheck = true;
-		} else {
-			GD.Print(GameController.currentDay - OfficeSpeaker.Instance.lastCalledDay);
 		}
+		if(GameController.currentDay == 31) {
+            BGMPlayer.Instance.Stop();
+           	StartRinging();
+            specialInt = 900;
+        }
     }
     public override void CheckActive()
     {

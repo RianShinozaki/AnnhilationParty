@@ -44,7 +44,7 @@ public partial class Teacher : Speaker
 
 		if(GameController.currentTime != 0 
 			|| GameController.GetDay(GameController.currentDay) == "Thursday" 
-			|| GameController.GetDay(GameController.currentDay) == "Saturday") {
+			|| GameController.GetDay(GameController.currentDay) == "Monday") {
 				textbox_system.Instance.Initialize(-100);
 				NPCSprite.Visible = false;
 				return;
@@ -362,18 +362,26 @@ public partial class Teacher : Speaker
 					theDialogue.Add("*You sense a good deal of trust from the Teacher.");
 				}
 
-				theDialogue.Add("*...Now's your chance to get closer to them.");
-
 				Godot.Collections.Array theQuestions = new Godot.Collections.Array{};
 				Godot.Collections.Array theIndices = new Godot.Collections.Array{};
 
+				bool foundAGate = false;
+
 				for(int i = 0; i < questionOptions.Count; i++) {
-					if(GameController.teacherQuestionFlags[i] == true &&
-					GameController.trustLevels[GameController.TEACHER] >= (float)relationshipGates[i]) {
-						theQuestions.Add(questionOptions[i]);
-						theIndices.Add(questionIndices[i]);
+					if(GameController.teacherQuestionFlags[i] == true) {
+						if (GameController.trustLevels[GameController.TEACHER] >= (float)relationshipGates[i]) {
+							theQuestions.Add(questionOptions[i]);
+							theIndices.Add(questionIndices[i]);
+						} else {
+							foundAGate = true;
+						}
 					}
 				}
+				if(foundAGate) {
+					theDialogue.Add("*You sense that if you were closer, you would have more to talk about...");
+				}
+
+				theDialogue.Add("*Now's a good time to get to know them better.");
 
 				dialogueSet = new DialogueSet(
 					theDialogue,
@@ -741,6 +749,7 @@ public partial class Teacher : Speaker
 						"Graffiti…? Yeah, of course I saw it. I work there.",
 						"It’s horrible, of course.",
 						"*The Teacher has totally closed off from you…",
+						"*Maybe you need a different approach? You should try again later..."
 					},
 					new Godot.Collections.Array{
 
@@ -759,7 +768,7 @@ public partial class Teacher : Speaker
 						"…Ah. Is there?",
 						"Well, painting activities with the kids can get a little wild. I have to remind them paint belongs on the canvas!",
 						"*…The Teacher has become lost in thought.",
-
+						"*Maybe you need a different approach? You should try again later..."
 					},
 					new Godot.Collections.Array{
 

@@ -3,10 +3,13 @@ using System;
 
 public partial class OfficeSpeaker : Speaker
 {
-	bool DoIntro = true;
+	bool DoIntro = false;
 	public static OfficeSpeaker Instance;
 	public int lastCalledDay = 0;
 
+	public bool[] suspectsChosen = new bool[4];
+	string choiceOne;
+	string choiceTwo;
 	
 	public override void _Ready()
     {
@@ -832,6 +835,256 @@ public partial class OfficeSpeaker : Speaker
 					},
 					new Godot.Collections.Array{
 						-1
+					}
+				);
+				break;
+			
+			case 900:
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"*You pick up the archaic phone.",
+						"*...A tired voice comes through.",
+						"Hey, kid... you know what day it is, right?",
+						"Time to make your choice. It all comes down to this, so no pressure.",
+						"Once you make your choice, the suspects in question will be taken away for rehabilitation.",
+						"So, I'll ask you now... and in no particular order...",
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						901,
+					}
+				);
+				break;
+			case 901:
+				suspectsChosen[0] = false;
+				suspectsChosen[1] = false;
+				suspectsChosen[2] = false;
+				suspectsChosen[3] = false;
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Who is the first suspect?"
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						"The Butcher.",
+						"The Occultist.",
+						"The Engineer.",
+						"The Teacher."
+					},
+					new Godot.Collections.Array{
+						902,
+						903,
+						904,
+						905
+					}
+				);
+				break;
+			case 902:
+				suspectsChosen[0] = true;
+				choiceOne = "the Butcher";
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Alright... I understand.",
+						"Now, who is the second suspect?"
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						"The Occultist.",
+						"The Engineer.",
+						"The Teacher."
+					},
+					new Godot.Collections.Array{
+						907,
+						908,
+						909
+					}
+				);
+				break;
+			case 903:
+				suspectsChosen[1] = true;
+				choiceOne = "the Occultist";
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Alright... I understand.",
+						"Now, who is the second suspect?"
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						"The Butcher.",
+						"The Engineer.",
+						"The Teacher."
+					},
+					new Godot.Collections.Array{
+						906,
+						908,
+						909
+					}
+				);
+				break;
+			case 904:
+				suspectsChosen[2] = true;
+				choiceOne = "the Engineer";
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Alright... I understand.",
+						"Now, who is the second suspect?"
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						"The Butcher.",
+						"The Occultist.",
+						"The Teacher."
+					},
+					new Godot.Collections.Array{
+						906,
+						907,
+						909
+					}
+				);
+				break;
+			case 905:
+				suspectsChosen[3] = true;
+				choiceOne = "the Teacher";
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Alright... I understand.",
+						"Now, who is the second suspect?"
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						"The Butcher.",
+						"The Occultist.",
+						"The Engineer.",
+					},
+					new Godot.Collections.Array{
+						906,
+						907,
+						908
+					}
+				);
+				break;
+			
+			case 906:
+				suspectsChosen[0] = true;
+				choiceTwo = "the Butcher";
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Alright."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						910
+					}
+				);
+				break;
+			case 907:
+				suspectsChosen[1] = true;
+				choiceTwo = "the Occultist";
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Alright."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						910
+					}
+				);
+				break;
+			case 908:
+				suspectsChosen[2] = true;
+				choiceTwo = "the Engineer";
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Alright."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						910
+					}
+				);
+				break;
+			case 909:
+				suspectsChosen[3] = true;
+				choiceTwo = "the Teacher";
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Alright."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						910
+					}
+				);
+				break;
+			
+			case 910:
+
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"So your choices are... " + choiceOne + " and " + choiceTwo + ".",
+						"That right?"
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						"Yep",
+						"No, wait..."
+					},
+					new Godot.Collections.Array{
+						911,
+						901
+					}
+				);
+				break;
+			
+			case 911:
+				EndSequenceObject.active = true;
+				dialogueSet = new DialogueSet(
+					new Godot.Collections.Array{
+						"Alright. We're trusting you on this. We'll be taking the individuals in for rehabilitation shortly.",
+						"As for you... we can't transport you out of there today. You're to sit tight until tomorrow, if there is one.",
+						"Talk to you later.",
+						"*The phone clicks off.",
+						"...",
+						"*You've made your choice.",
+						"*There's nowhere else to go now...",
+						"*...Come to think of it, the city's holding a New Years party...",
+						"*If you're going to watch the world end, might as well see it there..."
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+					},
+					new Godot.Collections.Array{
+						-1,
 					}
 				);
 				break;

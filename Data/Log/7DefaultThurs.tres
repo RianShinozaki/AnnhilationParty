@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_slep2")
-EngineerLog = "The Engineer went to work and then spent the night in a cafe."
+EngineerLog = "The Engineer went to work and then went home."
 TeacherLog = "The Teacher taught in the evening."
 ButcherLog = "The Butcher went to work in the morning, and then went home."
-OccultistLog = "The Occultist went to work all day."
+OccultistLog = "The Occultist spent the night reading Tarot fortunes at the park."

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://rc02847t6sxq"]
+[gd_scene load_steps=70 format=3 uid="uid://rc02847t6sxq"]
 
 [ext_resource type="Script" path="res://Scripts/System/Screen.cs" id="1_haiik"]
 [ext_resource type="PackedScene" uid="uid://3tn1o525br5" path="res://Scenes/Investigation.tscn" id="1_lbqt6"]
@@ -58,6 +58,7 @@
 [ext_resource type="Resource" uid="uid://d82m45pb386u" path="res://Data/Log/7DefaultThurs.tres" id="50_dqunx"]
 [ext_resource type="Script" path="res://Scripts/System/BGMPlayer.cs" id="50_mv3uq"]
 [ext_resource type="Script" path="res://Scripts/NPC/OfficeSpeaker.cs" id="50_um8kk"]
+[ext_resource type="Script" path="res://Scripts/EndSequenceObject.cs" id="59_8wspn"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_l607p"]
 viewport_path = NodePath("Control/Investigation/SubViewport")
@@ -385,7 +386,6 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "PREVIOUS DAY"
 
 [node name="DAYUP" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 1075.0
 offset_top = 9.0
@@ -395,8 +395,17 @@ text = "Day +1"
 script = ExtResource("17_bbsds")
 val = 1
 
+[node name="DAYDOWN2" type="Button" parent="."]
+offset_left = 1076.0
+offset_top = 119.0
+offset_right = 1221.0
+offset_bottom = 161.0
+text = "Day = 30
+"
+script = ExtResource("17_bbsds")
+val = 30
+
 [node name="DAYDOWN" type="Button" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 1075.0
 offset_top = 60.0
@@ -422,8 +431,12 @@ offset_right = -330.0
 offset_bottom = 72.0
 script = ExtResource("50_um8kk")
 
+[node name="Node" type="Node" parent="."]
+script = ExtResource("59_8wspn")
+
 [connection signal="pressed" from="SuspectLog/CLOSE" to="SuspectLog" method="_on_close_pressed"]
 [connection signal="pressed" from="SuspectLog/NextDay" to="SuspectLog" method="_on_next_day_pressed"]
 [connection signal="pressed" from="SuspectLog/PreviousDay" to="SuspectLog" method="_on_previous_day_pressed"]
 [connection signal="pressed" from="DAYUP" to="DAYUP" method="_on_pressed"]
+[connection signal="pressed" from="DAYDOWN2" to="DAYDOWN2" method="_on_pressed"]
 [connection signal="pressed" from="DAYDOWN" to="DAYDOWN" method="_on_pressed"]

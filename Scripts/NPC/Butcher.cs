@@ -10,7 +10,7 @@ public partial class Butcher : Speaker
 	float trustAtStartOfMeeting;
 
 	public Godot.Collections.Array questionOptions = new Godot.Collections.Array{
-		"...Well, bye then.",
+		"You take care, now.",
 		"So how’s life, Chief? ",
 		"What got you into butchery?",
 		"You ever wanna get out of the city?",
@@ -677,7 +677,7 @@ public partial class Butcher : Speaker
 			case 54:
 				GameController.trustLevels[GameController.BUTCHER] += 0.75f;
 				if(GameController.money >= 40) {
-					GameController.money -= 40;
+					GameController.Instance.ChangeMoney(-40);
 					GameController.hams++;
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{
@@ -759,18 +759,26 @@ public partial class Butcher : Speaker
 					theDialogue.Add("*You sense a good deal of trust from the Butcher.");
 				}
 
-				theDialogue.Add("*Now's a good time to get to know him better.");
-
 				Godot.Collections.Array theQuestions = new Godot.Collections.Array{};
 				Godot.Collections.Array theIndices = new Godot.Collections.Array{};
 
+				bool foundAGate = false;
+
 				for(int i = 0; i < questionOptions.Count; i++) {
-					if(GameController.butcherQuestionFlags[i] == true &&
-					GameController.trustLevels[GameController.BUTCHER] >= (float)relationshipGates[i]) {
-						theQuestions.Add(questionOptions[i]);
-						theIndices.Add(questionIndices[i]);
+					if(GameController.butcherQuestionFlags[i] == true) {
+						if (GameController.trustLevels[GameController.BUTCHER] >= (float)relationshipGates[i]) {
+							theQuestions.Add(questionOptions[i]);
+							theIndices.Add(questionIndices[i]);
+						} else {
+							foundAGate = true;
+						}
 					}
 				}
+				if(foundAGate) {
+					theDialogue.Add("*You sense that if you were closer, you would have more to talk about...");
+				}
+
+				theDialogue.Add("*Now's a good time to get to know him better.");
 
 		
 				dialogueSet = new DialogueSet(
@@ -1104,16 +1112,18 @@ public partial class Butcher : Speaker
 					new Godot.Collections.Array{
 						"The Buddhist lifestyle?",
 						"I... don't believe I have any particular opinion on that, boss.",
-						"*The Butcher has no idea what you're talking about..."
-					},
-					new Godot.Collections.Array{
+						"*The Butcher has no idea what you're talking about...",
+						"*Maybe you need a different approach? You should try again later..."
 
 					},
 					new Godot.Collections.Array{
 
 					},
 					new Godot.Collections.Array{
-						106
+
+					},
+					new Godot.Collections.Array{
+						302
 					}
 				);
 				break;
@@ -1121,16 +1131,18 @@ public partial class Butcher : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Eh? Boss, you break my heart. It's not that bad, is it?",
-						"*Your blatant insult did not seem to endear you to him."
-					},
-					new Godot.Collections.Array{
+						"*Your blatant insult did not seem to endear you to him.",
+						"*Maybe you need a different approach? You should try again later..."
 
 					},
 					new Godot.Collections.Array{
 
 					},
 					new Godot.Collections.Array{
-						106
+
+					},
+					new Godot.Collections.Array{
+						302
 					}
 				);
 				break;

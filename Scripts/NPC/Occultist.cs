@@ -47,9 +47,8 @@ public partial class Occultist : Speaker
 		if(GameController.steaks > 0) GameController.occultistQuestionFlags[1] = true;
 
 		if(GameController.currentTime != 1 
-			|| GameController.GetDay(GameController.currentDay) == "Tuesday" 
-			|| GameController.GetDay(GameController.currentDay) == "Thursday"
-			|| GameController.GetDay(GameController.currentDay) == "Friday") {
+			|| GameController.GetDay(GameController.currentDay) == "Monday" 
+			|| GameController.GetDay(GameController.currentDay) == "Wednesday") {
 				textbox_system.Instance.Initialize(-100);
 				NPCSprite.Visible = false;
 				tempObscure.Visible = true;
@@ -356,24 +355,32 @@ public partial class Occultist : Speaker
 					theDialogue.Add("*She smiles as she sees you coming near.");
 				}
 				if(GameController.trustLevels[GameController.OCCULTER] >= 4 && GameController.trustLevels[GameController.OCCULTER] < 5) {
-					theDialogue.Add("*The Engineer seems like they're opening up to you.");
+					theDialogue.Add("*The Occultist seems like they're opening up to you.");
 				}
 				if(GameController.trustLevels[GameController.OCCULTER] >= 5) {
 					theDialogue.Add("*You sense a good deal of trust from the Occultist.");
 				}
 
-				theDialogue.Add("*Now's a good time to get to know her better.");
-
 				Godot.Collections.Array theQuestions = new Godot.Collections.Array{};
 				Godot.Collections.Array theIndices = new Godot.Collections.Array{};
 
+				bool foundAGate = false;
+
 				for(int i = 0; i < questionOptions.Count; i++) {
-					if(GameController.occultistQuestionFlags[i] == true &&
-					GameController.trustLevels[GameController.OCCULTER] >= (float)relationshipGates[i]) {
-						theQuestions.Add(questionOptions[i]);
-						theIndices.Add(questionIndices[i]);
+					if(GameController.occultistQuestionFlags[i] == true) {
+						if (GameController.trustLevels[GameController.OCCULTER] >= (float)relationshipGates[i]) {
+							theQuestions.Add(questionOptions[i]);
+							theIndices.Add(questionIndices[i]);
+						} else {
+							foundAGate = true;
+						}
 					}
 				}
+				if(foundAGate) {
+					theDialogue.Add("*You sense that if you were closer, you would have more to talk about...");
+				}
+
+				theDialogue.Add("*Now's a good time to get to know her better.");
 
 				dialogueSet = new DialogueSet(
 					theDialogue,
@@ -839,7 +846,9 @@ public partial class Occultist : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"In town? Man, I dunno. I… don’t go down there often.",
-						"*...The Occultist has no more to say on the topic."
+						"*...The Occultist has no more to say on the topic.",
+						"*Maybe you need a different approach? You should try again later..."
+
 					},
 					new Godot.Collections.Array{
 
@@ -855,7 +864,9 @@ public partial class Occultist : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Sure, I guess.",
-						"*...The Occultist has no more to say on the topic."
+						"*...The Occultist has no more to say on the topic.",
+						"*Maybe you need a different approach? You should try again later..."
+
 					},
 					new Godot.Collections.Array{
 

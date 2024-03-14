@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_nlhww")
 EngineerLog = "The Engineer rearranged his living room all day."
-TeacherLog = "The Teacher cried all day."
+TeacherLog = ""
 ButcherLog = ""
 OccultistLog = ""

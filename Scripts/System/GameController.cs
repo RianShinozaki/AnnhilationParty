@@ -20,7 +20,8 @@ public partial class GameController : Node
         SuspectLocation,
         Dialogue,
         Transitioning,
-        SuspectLog
+        SuspectLog,
+        FinalChoice
     }
 
     public enum Location {
@@ -144,6 +145,7 @@ public partial class GameController : Node
         if(currentLocation == Location.Office && currentTime == 0 && currentDay%7==0) {
             SetMoney(200);
         }
+        
     }
     public void OnSwitchSceneTransitionBegin(string newScene) {
         EmitSignal(SignalName.SwitchSceneTransitionBegin, newScene);
