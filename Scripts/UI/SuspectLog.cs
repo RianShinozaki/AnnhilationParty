@@ -33,7 +33,7 @@ public partial class SuspectLog : Control
     }
     public void Init() {
 		//currentLogDay = 1;
-		currentLogDay = Mathf.Max(1, GameController.currentDay-1);
+		currentLogDay = Mathf.Max(1, GameController.Instance.currentDay-1);
 		OnDayChanged();
 
 		Rotation = Mathf.Pi * 2/3;
@@ -43,12 +43,12 @@ public partial class SuspectLog : Control
 		Visible = true;
 	}
 	public void OnDayChanged() {
-		if(currentLogDay > GameController.currentDay-1 && GameController.currentDay > 1) {
+		if(currentLogDay > GameController.Instance.currentDay-1 && GameController.Instance.currentDay > 1) {
 			EngineerButton.Text = "";
 			TeacherButton.Text = "";
 			ButcherButton.Text = "";
 			OccultistButton.Text = "";
-		} else if (GameController.currentDay > 1){
+		} else if (GameController.Instance.currentDay > 1){
 			if(logs[currentLogDay-1].EngineerLog == "") 
 				EngineerButton.Text = defaultLogs[ (currentLogDay-1)%7 ].EngineerLog;
 			else
@@ -79,49 +79,49 @@ public partial class SuspectLog : Control
 		String thisDayName = (String)days[(currentLogDay-1)%7];
 		Date.Text = thisDayName + ", December " + currentLogDay.ToString("D2") + ", 50XX";
 
-		if(currentLogDay == 2 && GameController.currentDay > 2) {
-			GameController.engineerMemory[0] = 1;
+		if(currentLogDay == 2 && GameController.Instance.currentDay > 2) {
+			GameController.Instance.engineerMemory[0] = 1;
 		}
 		if(currentLogDay == 15 || currentLogDay == 16 || currentLogDay == 17) {
-			if(GameController.engineerMemory[3] == 0) {
-				GameController.engineerMemory[3] = 1;
-				GameController.engineerQuestionFlags[4] = true;
+			if(GameController.Instance.engineerMemory[3] == 0) {
+				GameController.Instance.engineerMemory[3] = 1;
+				GameController.Instance.engineerQuestionFlags[4] = true;
 			}
 
 		}
 		if(currentLogDay == 22) {
-			if(GameController.teacherMemory[5] == 0) {
-				GameController.teacherMemory[5] = 1;
-				GameController.teacherQuestionFlags[4] = true;
+			if(GameController.Instance.teacherMemory[5] == 0) {
+				GameController.Instance.teacherMemory[5] = 1;
+				GameController.Instance.teacherQuestionFlags[4] = true;
 			}
 
 		}
 		if(currentLogDay == 12) {
-			if(GameController.butcherMemory[5] == 0) {
-				GameController.butcherMemory[5] = 1;
-				GameController.butcherQuestionFlags[4] = true;
+			if(GameController.Instance.butcherMemory[5] == 0) {
+				GameController.Instance.butcherMemory[5] = 1;
+				GameController.Instance.butcherQuestionFlags[4] = true;
 			}
 
 		}
 		if(currentLogDay == 19 || currentLogDay == 26) {
-			if(GameController.occultistMemory[5] == 0) {
-				GameController.occultistMemory[5] = 1;
-				GameController.occultistQuestionFlags[5] = true;
+			if(GameController.Instance.occultistMemory[5] == 0) {
+				GameController.Instance.occultistMemory[5] = 1;
+				GameController.Instance.OccultistQuestionFlags[5] = true;
 			}
 
 		}
 	}
 
 	private void _on_next_day_pressed() {
-		currentLogDay = Mathf.Clamp(currentLogDay + 1, 1, Mathf.Max(1, GameController.currentDay-1));
+		currentLogDay = Mathf.Clamp(currentLogDay + 1, 1, Mathf.Max(1, GameController.Instance.currentDay-1));
 		OnDayChanged();
 	}
 	private void _on_previous_day_pressed() {
-		currentLogDay = Mathf.Clamp(currentLogDay - 1, 1, Mathf.Max(1, GameController.currentDay-1));
+		currentLogDay = Mathf.Clamp(currentLogDay - 1, 1, Mathf.Max(1, GameController.Instance.currentDay-1));
 		OnDayChanged();
 	}
 	private void _on_close_pressed() {
-		GameController.currentState = GameController.GameState.Transitioning;
+		GameController.Instance.currentState = GameController.GameState.Transitioning;
 		Tween tween = GetTree().CreateTween();
 		tween.TweenProperty(this, "rotation",  Mathf.Pi * 2/3, 0.5f).SetTrans(Tween.TransitionType.Sine);
 		tween.Finished += switchToOffice;
@@ -132,10 +132,10 @@ public partial class SuspectLog : Control
 		tween.TweenProperty(this, "rotation",  Mathf.Pi * 2/3, 0.5f).SetTrans(Tween.TransitionType.Sine);
 	}
 	private void switchToSuspectLog() {
-		GameController.currentState = GameController.GameState.SuspectLog;
+		GameController.Instance.currentState = GameController.GameState.SuspectLog;
 	}
 	private void switchToOffice() {
-		GameController.currentState = GameController.GameState.Office;
+		GameController.Instance.currentState = GameController.GameState.Office;
 		Visible = false;
 	}
 

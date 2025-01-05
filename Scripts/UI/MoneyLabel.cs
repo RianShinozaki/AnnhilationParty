@@ -7,7 +7,7 @@ public partial class MoneyLabel : Label
 	public override void _Ready()
 	{
 		GameController.Instance.MoneyChanged += OnMoneyChanged;
-		Text = GameController.money.ToString("C");
+		Text = GameController.Instance.money.ToString("C");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,8 +16,8 @@ public partial class MoneyLabel : Label
 	}
 
 	public void OnMoneyChanged() {
-		Text = GameController.money.ToString("C");
-		if(GameController.money > 900) {
+		Text = GameController.Instance.money.ToString("C");
+		if(GameController.Instance.money > 900) {
 			((Control)GetParent()).Visible = false;
 		}
 	}

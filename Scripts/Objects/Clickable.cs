@@ -30,7 +30,7 @@ public partial class Clickable : Area2D
 	}
 
 	public virtual void CheckActive() {
-		if(GameController.currentState == GameController.GameState.Dialogue) {
+		if(GameController.Instance.currentState == GameController.GameState.Dialogue) {
 			active = false;
 		}
 	}

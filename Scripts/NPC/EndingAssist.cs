@@ -12,7 +12,7 @@ public partial class EndingAssist : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		//if(GameController.currentState == GameController.GameState.Dialogue)
+		//if(GameController.Instance.currentState == GameController.GameState.Dialogue)
 			//return;
 
 		if(actionState != 0) {
@@ -26,19 +26,19 @@ public partial class EndingAssist : Node
 					actionState = 0;
 					break;
 				case 3:
-					if(GameController.currentState == GameController.GameState.Dialogue) {
+					if(GameController.Instance.currentState == GameController.GameState.Dialogue) {
 						return;
 					}
-					GameController.currentLocation = GameController.Location.Office;
-					GameController.currentDay = 30;
-					GameController.currentTime = 1;
+					GameController.Instance.currentLocation = GameController.Location.Office;
+					GameController.Instance.currentDay = 30;
+					GameController.Instance.currentTime = 1;
 					
 					GameController.Instance.OnSwitchSceneTransitionBegin("res://Scenes/office.tscn");
 					
 					actionState = 0;
 					break;
 				case 4:
-					if(GameController.currentState == GameController.GameState.Dialogue) {
+					if(GameController.Instance.currentState == GameController.GameState.Dialogue) {
 						return;
 					}
 					GetTree().CallDeferred(SceneTree.MethodName.ChangeSceneToFile, "res://Scenes/Credits.tscn");

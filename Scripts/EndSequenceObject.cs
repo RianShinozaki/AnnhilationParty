@@ -14,10 +14,10 @@ public partial class EndSequenceObject : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if(active && GameController.currentState != GameController.GameState.Dialogue) {
-			GameController.currentLocation = myLocation;
+		if(active && GameController.Instance.currentState != GameController.GameState.Dialogue) {
+			GameController.Instance.currentLocation = myLocation;
 			GameController.Instance.OnSwitchSceneTransitionBegin(goToScene);
-			GameController.SetSplitX(-100);
+			GameController.Instance.SetSplitX(-100);
 			active = false;
 		}
 	}

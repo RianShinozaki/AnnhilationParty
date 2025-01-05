@@ -20,23 +20,23 @@ public partial class Screen : TextureRect
     public override void _Process(double delta)
     {
         base._Process(delta);
-		((ShaderMaterial)Material).SetShaderParameter("split_origin", new Vector2(GameController.splitX/320, 0.5f));
-		SplitLine.GlobalPosition = new Vector2(GameController.splitX*4 - 49*4, 0);
-		Split2Line.GlobalPosition = new Vector2(GameController.split2X*4 - 49*4, 0);
-		Split3Line.GlobalPosition = new Vector2(GameController.split3X*4 - 49*4, 0);
+		((ShaderMaterial)Material).SetShaderParameter("split_origin", new Vector2(GameController.Instance.splitX/320, 0.5f));
+		SplitLine.GlobalPosition = new Vector2(GameController.Instance.splitX*4 - 49*4, 0);
+		Split2Line.GlobalPosition = new Vector2(GameController.Instance.split2X*4 - 49*4, 0);
+		Split3Line.GlobalPosition = new Vector2(GameController.Instance.split3X*4 - 49*4, 0);
     }
     public void OnSwitchScene(string dummy) {
-        if(GameController.currentLocation == GameController.Location.Office) {
+        if(GameController.Instance.currentLocation == GameController.Location.Office) {
             Tween tween = GetTree().CreateTween();
-            int toLen = TimeAndDate.Text.Length - (GameController.currentTime == 1 ? "MORNING" : "EVENING").Length;
+            int toLen = TimeAndDate.Text.Length - (GameController.Instance.currentTime == 1 ? "MORNING" : "EVENING").Length;
             tween.TweenProperty(TimeAndDate, "visible_characters", toLen, 1).SetTrans(Tween.TransitionType.Linear);
             tween.Finished += ChangeDateDisplay;
         }
     }
     public void ChangeDateDisplay() {
-        string day = GameController.GetDay(GameController.currentDay);
-        string time = GameController.currentTime == 0 ? "MORNING" : (GameController.currentTime == 1 ? "EVENING" : "NIGHTFALL");
-        string date = "12    " + GameController.currentDay.ToString("D2");
+        string day = GameController.Instance.GetDay(GameController.Instance.currentDay);
+        string time = GameController.Instance.currentTime == 0 ? "MORNING" : (GameController.Instance.currentTime == 1 ? "EVENING" : "NIGHTFALL");
+        string date = "12    " + GameController.Instance.currentDay.ToString("D2");
         string stringFirst = date + "\n" + day + "\n";
         TimeAndDate.VisibleCharacters = stringFirst.Length;
         TimeAndDate.Text = stringFirst + time;

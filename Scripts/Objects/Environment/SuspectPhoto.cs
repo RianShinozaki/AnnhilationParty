@@ -19,7 +19,7 @@ public partial class SuspectPhoto : Clickable
     public override void CheckActive()
     {
         if(myLocation == GameController.Location.Office) {
-            if(GameController.currentState != GameController.GameState.SuspectLocation || !GameController.canReturnButtonAppear) {
+            if(GameController.Instance.currentState != GameController.GameState.SuspectLocation || !GameController.Instance.canReturnButtonAppear) {
                 Visible = false;
                 active = false;
             } else {
@@ -27,7 +27,7 @@ public partial class SuspectPhoto : Clickable
                 active = true;
             }
         } else {
-            if(GameController.currentState != GameController.GameState.Office) {
+            if(GameController.Instance.currentState != GameController.GameState.Office) {
                 Visible = false;
                 active = false;
             } else {
@@ -35,7 +35,7 @@ public partial class SuspectPhoto : Clickable
                 active = true;
             }
         }
-        if(GameController.currentTime == 2) {
+        if(GameController.Instance.currentTime == 2) {
             Visible = false;
             active = false;
         }
@@ -48,10 +48,10 @@ public partial class SuspectPhoto : Clickable
     public override void OnClick()
     {
         base.OnClick();
-		GameController.currentLocation = myLocation;
+		GameController.Instance.currentLocation = myLocation;
 		GameController.Instance.OnSwitchSceneTransitionBegin(goToScene);
 		clicked = true;
-        GameController.canReturnButtonAppear =false;
+        GameController.Instance.canReturnButtonAppear =false;
     }
 	public void OnSwitchScene() {
 		if(clicked) {

@@ -14,12 +14,12 @@ public partial class Phone : Clickable
         base._Ready();
 		Instance = this;
 
-		if(GameController.currentDay - OfficeSpeaker.Instance.lastCalledDay > 1 && GameController.timesCalledOldGuard == 1 && !GameController.oldGuardCheck) {
+		if(GameController.Instance.currentDay - OfficeSpeaker.Instance.lastCalledDay > 1 && GameController.Instance.timesCalledOldGuard == 1 && !GameController.Instance.oldGuardCheck) {
 			StartRinging();
 			specialInt = 114;
-			GameController.oldGuardCheck = true;
+			GameController.Instance.oldGuardCheck = true;
 		}
-		if(GameController.currentDay == 31) {
+		if(GameController.Instance.currentDay == 31) {
             BGMPlayer.Instance.Stop();
            	StartRinging();
             specialInt = 900;
@@ -27,7 +27,7 @@ public partial class Phone : Clickable
     }
     public override void CheckActive()
     {
-        if(GameController.currentState != GameController.GameState.Office) {
+        if(GameController.Instance.currentState != GameController.GameState.Office) {
 			Visible = false;
 			active = false;
 		} else {

@@ -9,6 +9,6 @@ public partial class SuspectLogs : Clickable
     }
     public override void CheckActive()
     {
-        active = GameController.currentState == GameController.GameState.Office;
+        active = GameController.Instance.currentState == GameController.GameState.Office;
     }
 }

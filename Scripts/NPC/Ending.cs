@@ -9,7 +9,7 @@ public partial class Ending : Speaker
     {
 
         base._Ready();
-		GameController.theSpeaker = this;
+		GameController.Instance.theSpeaker = this;
 		
 		textbox_system.Instance.Initialize(0);
 		
@@ -44,7 +44,7 @@ public partial class Ending : Speaker
 
 					},
 					new Godot.Collections.Array{
-						(GameController.goodEnding ? 7 : 1)
+						(GameController.Instance.goodEnding ? 7 : 1)
 					}
 				);
 				break;
@@ -132,7 +132,7 @@ public partial class Ending : Speaker
 					new Godot.Collections.Array{
 					},
 					new Godot.Collections.Array{
-						GameController.engineerMemory[3] == 1 && GameController.occultistMemory[2] == 1 ? 9 : 10
+						GameController.Instance.engineerMemory[3] == 1 && GameController.Instance.occultistMemory[2] == 1 ? 9 : 10
 					}
 				);
 				break;

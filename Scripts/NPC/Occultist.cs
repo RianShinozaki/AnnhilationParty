@@ -40,21 +40,21 @@ public partial class Occultist : Speaker
 
 	public override void _Ready()
     {
-		trustAtStartOfMeeting = GameController.trustLevels[GameController.OCCULTER];
+		trustAtStartOfMeeting = GameController.Instance.trustLevels[GameController.OCCULTER];
         base._Ready();
-		GameController.theSpeaker = this;
-		GameController.occultistQuestionFlags[0] = true;
-		if(GameController.Instance.steaks > 0) GameController.occultistQuestionFlags[1] = true;
+		GameController.Instance.theSpeaker = this;
+		GameController.Instance.OccultistQuestionFlags[0] = true;
+		if(GameController.Instance.steaks > 0) GameController.Instance.OccultistQuestionFlags[1] = true;
 
-		if(GameController.currentTime != 1 
-			|| GameController.GetDay(GameController.currentDay) == "Monday" 
-			|| GameController.GetDay(GameController.currentDay) == "Wednesday") {
+		if(GameController.Instance.currentTime != 1 
+			|| GameController.Instance.GetDay(GameController.Instance.currentDay) == "Monday" 
+			|| GameController.Instance.GetDay(GameController.Instance.currentDay) == "Wednesday") {
 				textbox_system.Instance.Initialize(-100);
 				NPCSprite.Visible = false;
 				//tempObscure.Visible = true;
 				return;
 			}
-		if(GameController.occultistMemory[0] == 0) {
+		if(GameController.Instance.occultistMemory[0] == 0) {
 			textbox_system.Instance.Initialize(0);
 		} else {
 			animPlayer.Play("Intro");
@@ -69,7 +69,7 @@ public partial class Occultist : Speaker
 
 	public void Init() {
 
-		if(GameController.occultistMemory[0] == 0) {
+		if(GameController.Instance.occultistMemory[0] == 0) {
 
 		} else {
 			textbox_system.Instance.Initialize(100);
@@ -122,7 +122,7 @@ public partial class Occultist : Speaker
 				);
 				break;
 			case 1:
-				if(GameController.money > 10) {
+				if(GameController.Instance.money > 10) {
 					GameController.Instance.ChangeMoney(-10);
 					animPlayer.Play("Intro");
 					dialogueSet = new DialogueSet(
@@ -260,11 +260,11 @@ public partial class Occultist : Speaker
 				);
 				break;
 			case 7:
-				GameController.occultistMemory[0] = 1;
-				GameController.occultistQuestionFlags[0] = true;
-				GameController.occultistQuestionFlags[2] = true;
-				GameController.occultistQuestionFlags[4] = true;
-				GameController.trustLevels[GameController.OCCULTER] += 0.75f;
+				GameController.Instance.occultistMemory[0] = 1;
+				GameController.Instance.OccultistQuestionFlags[0] = true;
+				GameController.Instance.OccultistQuestionFlags[2] = true;
+				GameController.Instance.OccultistQuestionFlags[4] = true;
+				GameController.Instance.trustLevels[GameController.OCCULTER] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -346,19 +346,19 @@ public partial class Occultist : Speaker
 				Godot.Collections.Array theDialogue = new Godot.Collections.Array{
 					"*You see the Occultist at her fortune-telling stand, surrounded in mist."
 				};
-				if(GameController.trustLevels[GameController.OCCULTER] < 1) {
+				if(GameController.Instance.trustLevels[GameController.OCCULTER] < 1) {
 					theDialogue.Add("*She's shuffling her cards absentmindedly.");
 				}
-				if(GameController.trustLevels[GameController.OCCULTER] >= 1 && GameController.trustLevels[GameController.OCCULTER] < 2) {
+				if(GameController.Instance.trustLevels[GameController.OCCULTER] >= 1 && GameController.Instance.trustLevels[GameController.OCCULTER] < 2) {
 					theDialogue.Add("*She looks up at you as you approach.");
 				}
-				if(GameController.trustLevels[GameController.OCCULTER] >= 2 && GameController.trustLevels[GameController.OCCULTER] < 4) {
+				if(GameController.Instance.trustLevels[GameController.OCCULTER] >= 2 && GameController.Instance.trustLevels[GameController.OCCULTER] < 4) {
 					theDialogue.Add("*She smiles as she sees you coming near.");
 				}
-				if(GameController.trustLevels[GameController.OCCULTER] >= 4 && GameController.trustLevels[GameController.OCCULTER] < 5) {
+				if(GameController.Instance.trustLevels[GameController.OCCULTER] >= 4 && GameController.Instance.trustLevels[GameController.OCCULTER] < 5) {
 					theDialogue.Add("*The Occultist seems like they're opening up to you.");
 				}
-				if(GameController.trustLevels[GameController.OCCULTER] >= 5) {
+				if(GameController.Instance.trustLevels[GameController.OCCULTER] >= 5) {
 					theDialogue.Add("*You sense a good deal of trust from the Occultist.");
 				}
 
@@ -368,8 +368,8 @@ public partial class Occultist : Speaker
 				bool foundAGate = false;
 
 				for(int i = 0; i < questionOptions.Count; i++) {
-					if(GameController.occultistQuestionFlags[i] == true) {
-						if (GameController.trustLevels[GameController.OCCULTER] >= (float)relationshipGates[i]) {
+					if(GameController.Instance.OccultistQuestionFlags[i] == true) {
+						if (GameController.Instance.trustLevels[GameController.OCCULTER] >= (float)relationshipGates[i]) {
 							theQuestions.Add(questionOptions[i]);
 							theIndices.Add(questionIndices[i]);
 						} else {
@@ -394,7 +394,7 @@ public partial class Occultist : Speaker
 				break;
 			
 			case 105:
-				GameController.trustLevels[GameController.OCCULTER] += 0.75f;
+				GameController.Instance.trustLevels[GameController.OCCULTER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"My fortune was right about you. You’d have to be insane to walk in weather like this. ",
@@ -415,13 +415,13 @@ public partial class Occultist : Speaker
 				break;
 			case 106:
 				Godot.Collections.Array byeDialogue = new Godot.Collections.Array{};
-				if(GameController.trustLevels[GameController.OCCULTER] >= 5) {
+				if(GameController.Instance.trustLevels[GameController.OCCULTER] >= 5) {
 					byeDialogue.Add("*Your trust with the Occultist has maxxed out...");
-				} else if(trustAtStartOfMeeting == GameController.trustLevels[GameController.OCCULTER] ) {
+				} else if(trustAtStartOfMeeting == GameController.Instance.trustLevels[GameController.OCCULTER] ) {
 					byeDialogue.Add("*You didn't grow much closer today...");
-				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.trustLevels[GameController.OCCULTER]) ) {
+				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.Instance.trustLevels[GameController.OCCULTER]) ) {
 					byeDialogue.Add("*The Occultist definitely trusts you more after today.");
-				} else if (trustAtStartOfMeeting < GameController.trustLevels[GameController.OCCULTER] ) {
+				} else if (trustAtStartOfMeeting < GameController.Instance.trustLevels[GameController.OCCULTER] ) {
 					byeDialogue.Add("*You think you grew a little closer to the Occultist today.");
 				} else {
 					byeDialogue.Add("*Something is wrong here.");
@@ -440,9 +440,9 @@ public partial class Occultist : Speaker
 				break;
 			
 			case 110:
-				GameController.trustLevels[GameController.OCCULTER] += 1f;
+				GameController.Instance.trustLevels[GameController.OCCULTER] += 1f;
 				GameController.Instance.steaks--;
-				GameController.occultistQuestionFlags[1] = false;
+				GameController.Instance.OccultistQuestionFlags[1] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Oh, DO I? That’s the best offer anyone’s made me in years!",
@@ -463,9 +463,9 @@ public partial class Occultist : Speaker
 				break;
 			
 			case 150:
-				GameController.trustLevels[GameController.OCCULTER] += 0.75f;
-				GameController.occultistQuestionFlags[2] = false;
-				GameController.occultistQuestionFlags[3] = true;
+				GameController.Instance.trustLevels[GameController.OCCULTER] += 0.75f;
+				GameController.Instance.OccultistQuestionFlags[2] = false;
+				GameController.Instance.OccultistQuestionFlags[3] = true;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Eh? Does my sign say I offer palm readings?",
@@ -504,7 +504,7 @@ public partial class Occultist : Speaker
 				);
 				break;
 			case 152:
-				GameController.trustLevels[GameController.OCCULTER] += 0.75f;
+				GameController.Instance.trustLevels[GameController.OCCULTER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*The Occultist laughs at your straight-forwardness."
@@ -544,7 +544,7 @@ public partial class Occultist : Speaker
 				);
 				break;
 			case 154:
-				GameController.trustLevels[GameController.OCCULTER] += 0.75f;
+				GameController.Instance.trustLevels[GameController.OCCULTER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"You’re headed for some real big life changes, my guy.",
@@ -606,8 +606,8 @@ public partial class Occultist : Speaker
 				break;
 			
 			case 200:
-				if(GameController.money >= 10) {
-					GameController.trustLevels[GameController.OCCULTER] += 1f;
+				if(GameController.Instance.money >= 10) {
+					GameController.Instance.trustLevels[GameController.OCCULTER] += 1f;
 					GameController.Instance.ChangeMoney(-10);
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{
@@ -649,30 +649,30 @@ public partial class Occultist : Speaker
 				
 				float fortune = 0;
 
-				if(GameController.occultistMemory[1] > 2) {
+				if(GameController.Instance.occultistMemory[1] > 2) {
 					fortune = rand.RandiRange(0, 2);
 				}
 				else {
-					fortune = GameController.occultistMemory[1];
+					fortune = GameController.Instance.occultistMemory[1];
 				}
 
 				switch(fortune) {
 					case 0:
-						if(GameController.currentDay <= 15) {
+						if(GameController.Instance.currentDay <= 15) {
 							theFortune = "...Something will happen on the 15th. Don't miss anything from that day.";
 						} else {
 							theFortune = "...Something happened on the 15th. Make sure you didn't miss anything from that day.";
 						}
 						break;
 					case 1:
-						if(GameController.currentDay <= 22) {
+						if(GameController.Instance.currentDay <= 22) {
 							theFortune = "...Something will happen on the 22nd. Don't miss anything from that day.";
 						} else {
 							theFortune = "...Something happened on the 22nd. Make sure you didn't miss anything from that day.";
 						}
 						break;
 					case 2:
-						if(GameController.currentDay <= 12) {
+						if(GameController.Instance.currentDay <= 12) {
 							theFortune = "...Something will happen on the 12th. Don't miss anything from that day.";
 						} else {
 							theFortune = "...Something happened on the 12th. Make sure you didn't miss anything from that day.";
@@ -680,7 +680,7 @@ public partial class Occultist : Speaker
 						break;
 				}
 
-				GameController.occultistMemory[1]++;
+				GameController.Instance.occultistMemory[1]++;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -698,8 +698,8 @@ public partial class Occultist : Speaker
 				break;
 			
 			case 300:
-				GameController.trustLevels[GameController.OCCULTER] += 0.75f;
-				GameController.occultistQuestionFlags[4] = false;
+				GameController.Instance.trustLevels[GameController.OCCULTER] += 0.75f;
+				GameController.Instance.OccultistQuestionFlags[4] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"MY fortune, huh? I ought to stake you for a question like that… but I suppose it’s only fair.",
@@ -740,7 +740,7 @@ public partial class Occultist : Speaker
 				);
 				break;
 			case 302:
-				GameController.trustLevels[GameController.OCCULTER] += 0.75f;
+				GameController.Instance.trustLevels[GameController.OCCULTER] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -877,8 +877,8 @@ public partial class Occultist : Speaker
 				);
 				break;
 			case 405:
-				GameController.occultistQuestionFlags[5] = false;
-				GameController.occultistQuestionFlags[6] = true;
+				GameController.Instance.OccultistQuestionFlags[5] = false;
+				GameController.Instance.OccultistQuestionFlags[6] = true;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -956,6 +956,7 @@ public partial class Occultist : Speaker
 				break;
 			
 			case 500:
+				GameController.Instance.OccultistQuestionFlags[6] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"The future, huh? Yeah. Lots, actually",
@@ -1033,7 +1034,7 @@ public partial class Occultist : Speaker
 				break;
 			
 			case 504:
-				GameController.occultistMemory[2] = 1;
+				GameController.Instance.occultistMemory[2] = 1;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{

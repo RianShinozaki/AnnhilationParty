@@ -31,22 +31,22 @@ public partial class OfficeSpeaker : Speaker
 		}
     }
 	public void IntroSeq() {
-		GameController.theSpeaker = this;
+		GameController.Instance.theSpeaker = this;
 		textbox_system.Instance.Initialize(0);
 	}
 
 	public void Init() {
-		GameController.theSpeaker = this;
+		GameController.Instance.theSpeaker = this;
 		textbox_system.Instance.Initialize(0);
 	}
 
 	public void PickupCall() {
-		GameController.theSpeaker = this;
-		if(lastCalledDay == GameController.currentDay) {
+		GameController.Instance.theSpeaker = this;
+		if(lastCalledDay == GameController.Instance.currentDay) {
 			textbox_system.Instance.Initialize(99);
 		} else {
 	
-			switch(GameController.timesCalledOldGuard) {
+			switch(GameController.Instance.timesCalledOldGuard) {
 				case 0:
 					textbox_system.Instance.Initialize(100);
 					break;
@@ -99,14 +99,14 @@ public partial class OfficeSpeaker : Speaker
 					textbox_system.Instance.Initialize(113);
 					break;
 			}
-			GameController.timesCalledOldGuard++;
+			GameController.Instance.timesCalledOldGuard++;
 		}
-		lastCalledDay = GameController.currentDay;
+		lastCalledDay = GameController.Instance.currentDay;
 		
 	}
 
 	public void SpecialCall(int ind) {
-		GameController.theSpeaker = this;
+		GameController.Instance.theSpeaker = this;
 		textbox_system.Instance.Initialize(ind);
 		
 	}
@@ -260,7 +260,7 @@ public partial class OfficeSpeaker : Speaker
 				break;
 			
 			case 6:
-				GameController.SetSplitX(215);
+				GameController.Instance.SetSplitX(215);
 				BGMPlayer.Instance.BeginPlaying();
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1069,7 +1069,7 @@ public partial class OfficeSpeaker : Speaker
 			
 			case 911:
 				EndSequenceObject.active = true;
-				GameController.goodEnding = suspectsChosen[0] == true && suspectsChosen[3] == true;
+				GameController.Instance.goodEnding = suspectsChosen[0] == true && suspectsChosen[3] == true;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Alright. We're trusting you on this. We'll be taking the individuals in for rehabilitation shortly.",

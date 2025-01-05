@@ -40,15 +40,15 @@ public partial class Engineer : Speaker
 	};
 	public override void _Ready()
     {
-		trustAtStartOfMeeting = GameController.trustLevels[GameController.SOFTWARE];
+		trustAtStartOfMeeting = GameController.Instance.trustLevels[GameController.SOFTWARE];
         base._Ready();
-		GameController.theSpeaker = this;
-		if(GameController.brokenPhones > 0) GameController.engineerQuestionFlags[6] = true;
+		GameController.Instance.theSpeaker = this;
+		if(GameController.Instance.brokenPhones > 0) GameController.Instance.engineerQuestionFlags[6] = true;
 
-		if(GameController.currentTime != 1 
-			|| GameController.GetDay(GameController.currentDay) == "Saturday" 
-			|| GameController.GetDay(GameController.currentDay) == "Thursday"
-			|| GameController.currentDay == 15 || GameController.currentDay == 16 || GameController.currentDay == 17) {
+		if(GameController.Instance.currentTime != 1 
+			|| GameController.Instance.GetDay(GameController.Instance.currentDay) == "Saturday" 
+			|| GameController.Instance.GetDay(GameController.Instance.currentDay) == "Thursday"
+			|| GameController.Instance.currentDay == 15 || GameController.Instance.currentDay == 16 || GameController.Instance.currentDay == 17) {
 				textbox_system.Instance.Initialize(-100);
 				NPCSprite.Visible = false;
 				return;
@@ -66,7 +66,7 @@ public partial class Engineer : Speaker
 
 	public void Init() {
 		
-		/*if(GameController.engineerMemory[1] == 0) {
+		/*if(GameController.Instance.engineerMemory[1] == 0) {
 			textbox_system.Instance.Initialize(-2);
 			return;
 		} else {
@@ -96,7 +96,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case -2:
-				if(GameController.engineerMemory[1] == 0 || GameController.money < 8) {
+				if(GameController.Instance.engineerMemory[1] == 0 || GameController.Instance.money < 8) {
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{
 							"*Coffee here costs $8... Can't get a seat without paying."
@@ -133,9 +133,9 @@ public partial class Engineer : Speaker
 				}
 				break;
 			case -3:
-				if(GameController.money >= 8) {
+				if(GameController.Instance.money >= 8) {
 					GameController.Instance.ChangeMoney(-8);
-					if(GameController.engineerMemory[0] == 0) {
+					if(GameController.Instance.engineerMemory[0] == 0) {
 						dialogueSet = new DialogueSet(
 							new Godot.Collections.Array{
 								"*You get your coffee and take a seat beside the Engineer.",
@@ -159,9 +159,9 @@ public partial class Engineer : Speaker
 						dialogueSet = new DialogueSet(
 							new Godot.Collections.Array{
 								"*You get your coffee and take a seat beside the Engineer.",
-								"*He's looks like he's forcing himself to stay focused... the bags around his eyes speak of many recent long nights.",
+								"*He looks like he's forcing himself to stay focused... the bags around his eyes speak of many recent long nights.",
 								"*His laptop is covered in stickers...",
-								"*That's right. You know about the Engineer's watch history... that character is from the anime 'Auta'",
+								"*That's right. You know about the Engineer's watch history... that character is from the anime 'Auta'.",
 								"*...That'd be one way to break the ice."
 							},
 							new Godot.Collections.Array{
@@ -194,7 +194,7 @@ public partial class Engineer : Speaker
 				break;
 			case 0:
 				animPlayer.Play("Intro");
-				GameController.engineerMemory[1] = 1;
+				GameController.Instance.engineerMemory[1] = 1;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*Hearing the name of his favorite show, he snaps his head up. Fast.",
@@ -239,7 +239,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 2:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -347,7 +347,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 7:
-				if(GameController.engineerMemory[2] == 0) {
+				if(GameController.Instance.engineerMemory[2] == 0) {
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{
 							"...it's nothing too interesting. Drudgery is correct.",
@@ -393,7 +393,7 @@ public partial class Engineer : Speaker
 				}
 				break;
 			case 8:
-				GameController.engineerMemory[2] = 1;
+				GameController.Instance.engineerMemory[2] = 1;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"A writer, huh?",
@@ -455,7 +455,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 11:
-				GameController.engineerMemory[2] = 2;
+				GameController.Instance.engineerMemory[2] = 2;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -474,7 +474,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 12:
-				GameController.engineerMemory[2] = 3;
+				GameController.Instance.engineerMemory[2] = 3;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -516,7 +516,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 14:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*The Engineer snorts.",
@@ -590,7 +590,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 18:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.25f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.25f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -626,7 +626,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 20:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.25f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.25f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Maybe it was just the way things were when we were kids.",
@@ -663,10 +663,10 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 22:
-				GameController.engineerQuestionFlags[0] = true;
-				GameController.engineerQuestionFlags[1] = true;
-				GameController.engineerQuestionFlags[2] = true;
-				GameController.engineerQuestionFlags[3] = true;
+				GameController.Instance.engineerQuestionFlags[0] = true;
+				GameController.Instance.engineerQuestionFlags[1] = true;
+				GameController.Instance.engineerQuestionFlags[2] = true;
+				GameController.Instance.engineerQuestionFlags[3] = true;
 
 				
 
@@ -697,19 +697,19 @@ public partial class Engineer : Speaker
 				Godot.Collections.Array theDialogue = new Godot.Collections.Array{
 					"*You see the Engineer and say hello. Briefly, you chat about your respective days."
 				};
-				if(GameController.trustLevels[GameController.SOFTWARE] < 1) {
+				if(GameController.Instance.trustLevels[GameController.SOFTWARE] < 1) {
 					theDialogue.Add("*A momentary awkward silence ensues.");
 				}
-				if(GameController.trustLevels[GameController.SOFTWARE] >= 1 && GameController.trustLevels[GameController.SOFTWARE] < 2) {
+				if(GameController.Instance.trustLevels[GameController.SOFTWARE] >= 1 && GameController.Instance.trustLevels[GameController.SOFTWARE] < 2) {
 					theDialogue.Add("*The Engineer settles comfortably back into his work.");
 				}
-				if(GameController.trustLevels[GameController.SOFTWARE] >= 2 && GameController.trustLevels[GameController.SOFTWARE] < 4) {
+				if(GameController.Instance.trustLevels[GameController.SOFTWARE] >= 2 && GameController.Instance.trustLevels[GameController.SOFTWARE] < 4) {
 					theDialogue.Add("*The Engineer looks happy to see you.");
 				}
-				if(GameController.trustLevels[GameController.SOFTWARE] >= 4 && GameController.trustLevels[GameController.SOFTWARE] < 5) {
+				if(GameController.Instance.trustLevels[GameController.SOFTWARE] >= 4 && GameController.Instance.trustLevels[GameController.SOFTWARE] < 5) {
 					theDialogue.Add("*The Engineer seems like they're opening up to you.");
 				}
-				if(GameController.trustLevels[GameController.SOFTWARE] >= 5) {
+				if(GameController.Instance.trustLevels[GameController.SOFTWARE] >= 5) {
 					theDialogue.Add("*You sense a good deal of trust from the Engineer.");
 				}
 
@@ -719,8 +719,8 @@ public partial class Engineer : Speaker
 				bool foundAGate = false;
 
 				for(int i = 0; i < questionOptions.Count; i++) {
-					if(GameController.engineerQuestionFlags[i] == true) {
-						if (GameController.trustLevels[GameController.SOFTWARE] >= (float)relationshipGates[i]) {
+					if(GameController.Instance.engineerQuestionFlags[i] == true) {
+						if (GameController.Instance.trustLevels[GameController.SOFTWARE] >= (float)relationshipGates[i]) {
 							theQuestions.Add(questionOptions[i]);
 							theIndices.Add(questionIndices[i]);
 						} else {
@@ -746,7 +746,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 105:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*The two of you work together in a companionable silence.",
@@ -764,13 +764,13 @@ public partial class Engineer : Speaker
 				break;
 			case 106:
 				Godot.Collections.Array byeDialogue = new Godot.Collections.Array{};
-				if(GameController.trustLevels[GameController.SOFTWARE] >= 5) {
+				if(GameController.Instance.trustLevels[GameController.SOFTWARE] >= 5) {
 					byeDialogue.Add("*Your trust with the Engineer has maxxed out...");
-				} else if(trustAtStartOfMeeting == GameController.trustLevels[GameController.SOFTWARE] ) {
+				} else if(trustAtStartOfMeeting == GameController.Instance.trustLevels[GameController.SOFTWARE] ) {
 					byeDialogue.Add("*You didn't grow much closer today...");
-				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.trustLevels[GameController.SOFTWARE]) ) {
+				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.Instance.trustLevels[GameController.SOFTWARE]) ) {
 					byeDialogue.Add("*The Engineer definitely trusts you more after today.");
-				} else if (trustAtStartOfMeeting < GameController.trustLevels[GameController.SOFTWARE] ) {
+				} else if (trustAtStartOfMeeting < GameController.Instance.trustLevels[GameController.SOFTWARE] ) {
 					byeDialogue.Add("*You think you grew a little closer to the Engineer today.");
 				} else {
 					byeDialogue.Add("*Something is wrong here.");
@@ -788,7 +788,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 107:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.25f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.25f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"That's a good one for sure.",
@@ -807,7 +807,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 108:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Oh man, where've you been all my life?",
@@ -826,7 +826,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 109:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.25f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.25f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Oh, yeah. I guess games aren't for everyone still.",
@@ -844,7 +844,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 110:
-				GameController.engineerQuestionFlags[1] = false;
+				GameController.Instance.engineerQuestionFlags[1] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Oh, man. All kinds of stuff. All sorts of anime, movies, games...",
@@ -907,7 +907,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 113:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Well, yeah, you're right.",
@@ -950,7 +950,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 116:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"What? Hahah... No, man. It's not abject nihilism. It's...",
@@ -1004,8 +1004,8 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 200:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
-				GameController.engineerQuestionFlags[2] = false;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.engineerQuestionFlags[2] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Right now? Looking forward to going home and getting some sleep. ",
@@ -1041,7 +1041,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 202:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1088,8 +1088,8 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 300:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
-				GameController.engineerQuestionFlags[3] = false;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.engineerQuestionFlags[3] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Ah... nope.",
@@ -1111,7 +1111,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 301:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1130,7 +1130,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 302:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1267,9 +1267,9 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 405:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
-				GameController.engineerQuestionFlags[4] = false;
-				GameController.engineerQuestionFlags[5] = true;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.engineerQuestionFlags[4] = false;
+				GameController.Instance.engineerQuestionFlags[5] = true;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1298,7 +1298,7 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 406:
-				GameController.trustLevels[GameController.SOFTWARE] += 0.75f;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Yeah.",
@@ -1356,8 +1356,8 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 500:
-				GameController.trustLevels[GameController.SOFTWARE] += 1;
-				GameController.engineerQuestionFlags[5] = false;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 1;
+				GameController.Instance.engineerQuestionFlags[5] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Oh, yeah. That's the big question, huh? ",
@@ -1384,8 +1384,8 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 501:
-				GameController.trustLevels[GameController.SOFTWARE] += 1;
-				GameController.engineerMemory[3] = 1;
+				GameController.Instance.trustLevels[GameController.SOFTWARE] += 1;
+				GameController.Instance.engineerMemory[3] = 1;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -1411,9 +1411,9 @@ public partial class Engineer : Speaker
 				break;
 			
 			case 600:
-				GameController.engineerQuestionFlags[6] = false;
-				GameController.engineerQuestionFlags[7] = true;
-				GameController.brokenPhones--;
+				GameController.Instance.engineerQuestionFlags[6] = false;
+				GameController.Instance.engineerQuestionFlags[7] = true;
+				GameController.Instance.brokenPhones--;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"You broke your phone? ...Sorry, man, I can't exactly just fix that.",
@@ -1433,7 +1433,7 @@ public partial class Engineer : Speaker
 				);
 				break;
 			case 601:
-				GameController.engineerQuestionFlags[7] = false;
+				GameController.Instance.engineerQuestionFlags[7] = false;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{

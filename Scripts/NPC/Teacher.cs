@@ -36,15 +36,15 @@ public partial class Teacher : Speaker
 
 	public override void _Ready()
     {
-		trustAtStartOfMeeting = GameController.trustLevels[GameController.TEACHER];
+		trustAtStartOfMeeting = GameController.Instance.trustLevels[GameController.TEACHER];
         base._Ready();
-		GameController.theSpeaker = this;
+		GameController.Instance.theSpeaker = this;
 
-		if(GameController.hams > 0) GameController.teacherQuestionFlags[1] = true;
+		if(GameController.Instance.hams > 0) GameController.Instance.teacherQuestionFlags[1] = true;
 
-		if(GameController.currentTime != 0 
-			|| GameController.GetDay(GameController.currentDay) == "Thursday" 
-			|| GameController.GetDay(GameController.currentDay) == "Monday") {
+		if(GameController.Instance.currentTime != 0 
+			|| GameController.Instance.GetDay(GameController.Instance.currentDay) == "Thursday" 
+			|| GameController.Instance.GetDay(GameController.Instance.currentDay) == "Monday") {
 				textbox_system.Instance.Initialize(-100);
 				NPCSprite.Visible = false;
 				return;
@@ -61,7 +61,7 @@ public partial class Teacher : Speaker
 	public void Init() {
 		
 		
-		if(GameController.teacherMemory[1] == 0) {
+		if(GameController.Instance.teacherMemory[1] == 0) {
 			textbox_system.Instance.Initialize(0);
 			return;
 		} else {
@@ -73,7 +73,7 @@ public partial class Teacher : Speaker
 		DialogueSet dialogueSet;
 		switch(id){
 			case -100:
-				if(GameController.teacherMemory[1] == 0) {
+				if(GameController.Instance.teacherMemory[1] == 0) {
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{
 							"...",
@@ -115,7 +115,7 @@ public partial class Teacher : Speaker
 				}
 				break;
 			case 0:
-				GameController.teacherMemory[1] = 1;
+				GameController.Instance.teacherMemory[1] = 1;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You see an adult surrounded by young children. The oldest of them can't be much more than 5 years old.",
@@ -180,7 +180,7 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 3:
-				if(GameController.teacherMemory[0] == 0) {
+				if(GameController.Instance.teacherMemory[0] == 0) {
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{
 							"Yes, well... it is a shelter.",
@@ -228,7 +228,7 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 4:
-				GameController.teacherMemory[0] = 1;
+				GameController.Instance.teacherMemory[0] = 1;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*...There's an odd flicker behind the Teacher's eyes.",
@@ -248,8 +248,8 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 5:
-				GameController.teacherMemory[0] = 2;
-				GameController.trustLevels[GameController.TEACHER] += 0.75f;
+				GameController.Instance.teacherMemory[0] = 2;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*The teacher gives you a small smile.",
@@ -311,10 +311,10 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 8:
-				GameController.teacherQuestionFlags[0] = true;
-				GameController.teacherQuestionFlags[1] = true;
-				GameController.teacherQuestionFlags[2] = true;
-				GameController.teacherQuestionFlags[3] = true;
+				GameController.Instance.teacherQuestionFlags[0] = true;
+				GameController.Instance.teacherQuestionFlags[1] = true;
+				GameController.Instance.teacherQuestionFlags[2] = true;
+				GameController.Instance.teacherQuestionFlags[3] = true;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -346,19 +346,19 @@ public partial class Teacher : Speaker
 					"*Before you know it, it's noon. You and the Teacher take a moment for some lunch.",
 					
 				};
-				if(GameController.trustLevels[GameController.TEACHER] < 1) {
+				if(GameController.Instance.trustLevels[GameController.TEACHER] < 1) {
 					theDialogue.Add("*The two of you sit in silence.");
 				}
-				if(GameController.trustLevels[GameController.TEACHER] >= 1 && GameController.trustLevels[GameController.TEACHER] < 2) {
+				if(GameController.Instance.trustLevels[GameController.TEACHER] >= 1 && GameController.Instance.trustLevels[GameController.TEACHER] < 2) {
 					theDialogue.Add("*The two of you sit in a companionable silence.");
 				}
-				if(GameController.trustLevels[GameController.TEACHER] >= 2 && GameController.trustLevels[GameController.TEACHER] < 4) {
+				if(GameController.Instance.trustLevels[GameController.TEACHER] >= 2 && GameController.Instance.trustLevels[GameController.TEACHER] < 4) {
 					theDialogue.Add("*The Teacher is humming as they eat their lunch.");
 				}
-				if(GameController.trustLevels[GameController.TEACHER] >= 4 && GameController.trustLevels[GameController.TEACHER] < 5) {
+				if(GameController.Instance.trustLevels[GameController.TEACHER] >= 4 && GameController.Instance.trustLevels[GameController.TEACHER] < 5) {
 					theDialogue.Add("*The Teacher smiles at your gratefully.");
 				}
-				if(GameController.trustLevels[GameController.TEACHER] >= 5) {
+				if(GameController.Instance.trustLevels[GameController.TEACHER] >= 5) {
 					theDialogue.Add("*You sense a good deal of trust from the Teacher.");
 				}
 
@@ -368,8 +368,8 @@ public partial class Teacher : Speaker
 				bool foundAGate = false;
 
 				for(int i = 0; i < questionOptions.Count; i++) {
-					if(GameController.teacherQuestionFlags[i] == true) {
-						if (GameController.trustLevels[GameController.TEACHER] >= (float)relationshipGates[i]) {
+					if(GameController.Instance.teacherQuestionFlags[i] == true) {
+						if (GameController.Instance.trustLevels[GameController.TEACHER] >= (float)relationshipGates[i]) {
 							theQuestions.Add(questionOptions[i]);
 							theIndices.Add(questionIndices[i]);
 						} else {
@@ -394,7 +394,7 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 105:
-				GameController.trustLevels[GameController.TEACHER] += 0.75f;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"*You make light conversation with lunch.",
@@ -412,13 +412,13 @@ public partial class Teacher : Speaker
 				break;
 			case 106:
 				Godot.Collections.Array byeDialogue = new Godot.Collections.Array{};
-				if(GameController.trustLevels[GameController.TEACHER] >= 5) {
+				if(GameController.Instance.trustLevels[GameController.TEACHER] >= 5) {
 					byeDialogue.Add("*Your trust with the Teacher has maxxed out...");
-				} else if(trustAtStartOfMeeting == GameController.trustLevels[GameController.TEACHER] ) {
+				} else if(trustAtStartOfMeeting == GameController.Instance.trustLevels[GameController.TEACHER] ) {
 					byeDialogue.Add("*You didn't grow much closer today...");
-				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.trustLevels[GameController.TEACHER]) ) {
+				} else if (Mathf.FloorToInt(trustAtStartOfMeeting) < Mathf.FloorToInt(GameController.Instance.trustLevels[GameController.TEACHER]) ) {
 					byeDialogue.Add("*The Teacher definitely trusts you more after today.");
-				} else if (trustAtStartOfMeeting < GameController.trustLevels[GameController.TEACHER] ) {
+				} else if (trustAtStartOfMeeting < GameController.Instance.trustLevels[GameController.TEACHER] ) {
 					byeDialogue.Add("*You think you grew a little closer to the Teacher today.");
 				} else {
 					byeDialogue.Add("*Something is wrong here.");
@@ -437,9 +437,9 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 110:
-				GameController.teacherQuestionFlags[1] = false;
-				GameController.trustLevels[GameController.TEACHER] += 1f;
-				GameController.hams--;
+				GameController.Instance.teacherQuestionFlags[1] = false;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 1f;
+				GameController.Instance.hams--;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Oh my gosh!",
@@ -459,8 +459,8 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 200:
-				GameController.trustLevels[GameController.TEACHER] += 0.75f;
-				GameController.teacherQuestionFlags[2] = false;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 0.75f;
+				GameController.Instance.teacherQuestionFlags[2] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Well … must be around 5 years now.",
@@ -483,7 +483,7 @@ public partial class Teacher : Speaker
 				);
 				break;
 			case 201:
-				GameController.trustLevels[GameController.TEACHER] += 0.75f;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 0.75f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Right! So, once you know your calling, the rest couldn’t be easier.",
@@ -519,7 +519,7 @@ public partial class Teacher : Speaker
 				);
 				break;
 			case 203:
-				GameController.trustLevels[GameController.TEACHER] += 0.25f;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 0.25f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"It was easy for me to find mine… I had seven younger siblings, you see.",
@@ -560,7 +560,7 @@ public partial class Teacher : Speaker
 				);
 				break;
 			case 205:
-				GameController.trustLevels[GameController.TEACHER] += 0.25f;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 0.25f;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Often it was, yes…",
@@ -603,8 +603,8 @@ public partial class Teacher : Speaker
 				break;
 
 			case 300:
-				GameController.trustLevels[GameController.TEACHER] += 0.75f;
-				GameController.teacherQuestionFlags[3] = false;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 0.75f;
+				GameController.Instance.teacherQuestionFlags[3] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Oh… you noticed I didn’t seem thrilled about them?",
@@ -644,7 +644,7 @@ public partial class Teacher : Speaker
 				);
 				break;
 			case 302:
-				GameController.trustLevels[GameController.TEACHER] += 0.75f;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -782,9 +782,9 @@ public partial class Teacher : Speaker
 				);
 				break;
 			case 405:
-				GameController.trustLevels[GameController.TEACHER] += 0.75f;
-				GameController.teacherQuestionFlags[4] = false;
-				GameController.teacherQuestionFlags[5] = true;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 0.75f;
+				GameController.Instance.teacherQuestionFlags[4] = false;
+				GameController.Instance.teacherQuestionFlags[5] = true;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -810,7 +810,7 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 406:
-				GameController.trustLevels[GameController.TEACHER] += 0.75f;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 0.75f;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -852,7 +852,8 @@ public partial class Teacher : Speaker
 				break;
 			
 			case 500:
-				GameController.trustLevels[GameController.TEACHER] += 1f;
+				GameController.Instance.trustLevels[GameController.TEACHER] += 1f;
+				GameController.Instance.teacherQuestionFlags[5] = false;
 
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{

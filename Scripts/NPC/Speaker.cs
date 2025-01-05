@@ -13,7 +13,7 @@ public partial class Speaker : Control
         base._Process(delta);
 		if(!initialized) {
 			initialized = true;
-			GameController.theSpeaker = this;
+			GameController.Instance.theSpeaker = this;
 			textbox_system.Instance.Initialize(0);
 		}
     }

@@ -30,15 +30,15 @@ public partial class textbox_system : Control
     }
 
 	public void GetNextDialogue(int id) {
-		if(GameController.currentState != GameController.GameState.Dialogue) {
-			stateCache = GameController.currentState;
-			GameController.currentState = GameController.GameState.Dialogue;
+		if(GameController.Instance.currentState != GameController.GameState.Dialogue) {
+			stateCache = GameController.Instance.currentState;
+			GameController.Instance.currentState = GameController.GameState.Dialogue;
 		}
-		dialogueSet = GameController.theSpeaker.GetNextDialogue(id);
+		dialogueSet = GameController.Instance.theSpeaker.GetNextDialogue(id);
 		if(dialogueSet == null) {
-			GameController.currentState = stateCache;
+			GameController.Instance.currentState = stateCache;
 			Visible = false;
-			GameController.canReturnButtonAppear = true;
+			GameController.Instance.canReturnButtonAppear = true;
 			return;
 		}
 		visibleT = 0;

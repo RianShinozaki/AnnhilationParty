@@ -44,13 +44,13 @@ public partial class GameController : Node
     
 	public static GameController Instance;
     
-	public static float splitX;
-	public static float split2X;
-	public static float split3X;
-	static float wishSplitX;
-    public static Speaker theSpeaker;
-    public static Location currentLocation;
-    public static GameState currentState;
+	public float splitX;
+	public float split2X;
+	public float split3X;
+	float wishSplitX;
+    public Speaker theSpeaker;
+    public Location currentLocation;
+    public GameState currentState;
 
 
     const int MORNING = 0;
@@ -69,47 +69,47 @@ public partial class GameController : Node
     //TO SAVE
     public bool shouldDoIntro = true;
     public int steaks = 0;
-    public static int hams = 0;
-    public static int brokenPhones = 0;
+    public int hams = 0;
+    public int brokenPhones = 0;
 
-    public static float money;
-    public static Godot.Collections.Array items = new Godot.Collections.Array();
-    public static int currentTime = 0;
-    public static int currentDay = 1;
+    public float money;
+    public Godot.Collections.Array items = new Godot.Collections.Array();
+    public int currentTime = 0;
+    public int currentDay = 1;
 
-    public static float[] trustLevels = new float[5];
+    public float[] trustLevels = new float[5];
 
-    public static float[] butcherMemory = new float[10];
+    public float[] butcherMemory = new float[10];
     //0 -- marital status
     //1 -- has met :: 0 -- no :: 1 -- yes
 
-    public static float[] teacherMemory = new float[10];
+    public float[] teacherMemory = new float[10];
     //0 -- has kids :: 1 -- no :: 2 -- yes
     //1 -- has met :: 0 -- no :: 1 -- yes
     //2 -- worked w/o them :: 0 -- no :: 1 -- yes
 
-    public static float[] engineerMemory = new float[10];
+    public float[] engineerMemory = new float[10];
     //0 -- know his fav anime ? :: 0 -- no :: 2 -- yes
     //1 -- has met :: 0 -- no :: 1 -- yes
     //2 -- know job :: 0 -- ? :: 1 -- writer :: 2 -- unemployed :: 3 -- engineer
     //3 -- final dialogue
 
-    public static float[] occultistMemory = new float[10];
+    public float[] occultistMemory = new float[10];
     //0 -- has met :: 0 -- no :: 1 -- yes
     //1 -- fortunes pulled
     //2 -- final dialogue
 
-    public static Godot.Collections.Array<bool> engineerQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
-    public static Godot.Collections.Array<bool> butcherQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
-    public static Godot.Collections.Array<bool> occultistQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
-    public static Godot.Collections.Array<bool> teacherQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
+    public Godot.Collections.Array<bool> engineerQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
+    public Godot.Collections.Array<bool> butcherQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
+    public Godot.Collections.Array<bool> OccultistQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
+    public Godot.Collections.Array<bool> teacherQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
 
-    public static bool oldGuardCheck = false;
+    public bool oldGuardCheck = false;
     
-    public static int timesCalledOldGuard = 0;
+    public int timesCalledOldGuard = 0;
 
-    public static bool goodEnding = false;
-    public static bool canReturnButtonAppear = false;
+    public bool goodEnding = false;
+    public bool canReturnButtonAppear = false;
 
     public override void _Ready()
     {
@@ -124,7 +124,7 @@ public partial class GameController : Node
 
         SetMoney(150);
     }
-    public static void SetSplitX(float x) {
+    public void SetSplitX(float x) {
 		wishSplitX = x;
 	}
     public override void _Process(double delta)
@@ -170,7 +170,7 @@ public partial class GameController : Node
             currentState = GameState.SuspectLocation;
         }
     }
-    public static void AddToInventory(Item item) {
+    public void AddToInventory(Item item) {
         items.Add(item);
     }
     public void ChangeMoney(float amount) {
@@ -181,7 +181,7 @@ public partial class GameController : Node
         money = amount;
         EmitSignal(SignalName.MoneyChanged);
     }
-    public static string GetDay(int day) {
+    public string GetDay(int day) {
         return (string)days[(day-1)%7];
     }
 
@@ -203,7 +203,7 @@ public partial class GameController : Node
             { "occultistMemory", occultistMemory},
             { "engineerQuestionFlags", engineerQuestionFlags},
             { "butcherQuestionFlags", butcherQuestionFlags},
-            { "occultistQuestionFlags", occultistQuestionFlags},
+            { "OccultistQuestionFlags", OccultistQuestionFlags},
             { "teacherQuestionFlags", teacherQuestionFlags},
             { "oldGuardCheck", oldGuardCheck},
             { "timesCalledOldGuard", timesCalledOldGuard},
