@@ -15,7 +15,8 @@ public partial class OfficeSpeaker : Speaker
     {
         base._Ready();
 		GameController.Instance.BeginIntroSequence += IntroSeq;
-		if(DoIntro) {
+		GD.Print(GameController.Instance.shouldDoIntro);
+		if(GameController.Instance.shouldDoIntro) {
 			GameController.Instance.DoIntro();
 		} else {
 			BGMPlayer.Instance.BeginPlaying();
@@ -259,7 +260,7 @@ public partial class OfficeSpeaker : Speaker
 				break;
 			
 			case 6:
-				GameController.SetSplitX(225);
+				GameController.SetSplitX(215);
 				BGMPlayer.Instance.BeginPlaying();
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{

@@ -57,10 +57,6 @@ public partial class GameController : Node
     const int EVENING = 1;
     const int NIGHTFALL = 2;
 
-    public static int currentTime = 0;
-
-    public static int currentDay = 1;
-
     public const int BUTCHER = 0;
     public const int SOFTWARE = 1;
     public const int TEACHER = 2;
@@ -68,44 +64,48 @@ public partial class GameController : Node
     public const int OCCULTER = 4;
     public const int OLDGUARD = 5;
 
-    public static int steaks = 0;
+
+
+    //TO SAVE
+    public bool shouldDoIntro = true;
+    public int steaks = 0;
     public static int hams = 0;
     public static int brokenPhones = 0;
 
     public static float money;
     public static Godot.Collections.Array items = new Godot.Collections.Array();
+    public static int currentTime = 0;
+    public static int currentDay = 1;
 
     public static float[] trustLevels = new float[5];
 
-    public static short[] butcherMemory = new short[10];
+    public static float[] butcherMemory = new float[10];
     //0 -- marital status
     //1 -- has met :: 0 -- no :: 1 -- yes
 
-    public static short[] teacherMemory = new short[10];
+    public static float[] teacherMemory = new float[10];
     //0 -- has kids :: 1 -- no :: 2 -- yes
     //1 -- has met :: 0 -- no :: 1 -- yes
     //2 -- worked w/o them :: 0 -- no :: 1 -- yes
 
-    public static short[] engineerMemory = new short[10];
+    public static float[] engineerMemory = new float[10];
     //0 -- know his fav anime ? :: 0 -- no :: 2 -- yes
     //1 -- has met :: 0 -- no :: 1 -- yes
     //2 -- know job :: 0 -- ? :: 1 -- writer :: 2 -- unemployed :: 3 -- engineer
     //3 -- final dialogue
 
-    public static short[] occultistMemory = new short[10];
+    public static float[] occultistMemory = new float[10];
     //0 -- has met :: 0 -- no :: 1 -- yes
     //1 -- fortunes pulled
     //2 -- final dialogue
 
-    public static bool[] engineerQuestionFlags = new bool[10];
-    public static bool[] butcherQuestionFlags = new bool[10];
-    public static bool[] occultistQuestionFlags = new bool[10];
-    public static bool[] teacherQuestionFlags = new bool[10];
+    public static Godot.Collections.Array<bool> engineerQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
+    public static Godot.Collections.Array<bool> butcherQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
+    public static Godot.Collections.Array<bool> occultistQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
+    public static Godot.Collections.Array<bool> teacherQuestionFlags = new Godot.Collections.Array<bool>(new bool[10]);
 
     public static bool oldGuardCheck = false;
     
-    public static Godot.Collections.Dictionary[] dialogueRecords = new Godot.Collections.Dictionary[31];
-
     public static int timesCalledOldGuard = 0;
 
     public static bool goodEnding = false;
@@ -122,7 +122,7 @@ public partial class GameController : Node
             trustLevels[i] = 0;
         }
 
-        money = 200;
+        SetMoney(150);
     }
     public static void SetSplitX(float x) {
 		wishSplitX = x;
@@ -138,6 +138,7 @@ public partial class GameController : Node
     }
 
     public void DoIntro() {
+        shouldDoIntro = false;
         wishSplitX = 600;
         splitX = 600;
         split2X = 600;
@@ -148,7 +149,7 @@ public partial class GameController : Node
     public void OnSwitchScene() {
         EmitSignal(SignalName.SwitchScene);
         if(currentLocation == Location.Office && currentTime == 0 && currentDay%7==0) {
-            SetMoney(200);
+            SetMoney(150);
         }
         
     }
@@ -161,6 +162,8 @@ public partial class GameController : Node
             if(currentTime > 1) {
                 currentDay++;
                 currentTime = 0;
+                Save();
+                GD.Print("saved");
             }
         } else {
             wishSplitX = 50;
@@ -180,6 +183,56 @@ public partial class GameController : Node
     }
     public static string GetDay(int day) {
         return (string)days[(day-1)%7];
+    }
+
+    public void Save()
+    {
+        Godot.Collections.Dictionary<string, Variant> saveData = new Godot.Collections.Dictionary<string, Variant>()
+        {
+            { "shouldDoIntro", shouldDoIntro},
+            { "steaks", steaks},
+            { "hams", hams},
+            { "brokenPhones", brokenPhones},
+            { "money", money},
+            { "items", items},
+            { "currentDay", currentDay},
+            { "trustLevels", trustLevels},
+            { "butcherMemory", butcherMemory},
+            { "teacherMemory", teacherMemory},
+            { "engineerMemory", engineerMemory},
+            { "occultistMemory", occultistMemory},
+            { "engineerQuestionFlags", engineerQuestionFlags},
+            { "butcherQuestionFlags", butcherQuestionFlags},
+            { "occultistQuestionFlags", occultistQuestionFlags},
+            { "teacherQuestionFlags", teacherQuestionFlags},
+            { "oldGuardCheck", oldGuardCheck},
+            { "timesCalledOldGuard", timesCalledOldGuard},
+        };
+        var jsonString = Json.Stringify(saveData);
+        using var saveFile = FileAccess.Open("user://savegame.save", FileAccess.ModeFlags.Write);
+        saveFile.StoreLine(jsonString);
+    }
+    public void Load() {
+        using var saveFile = FileAccess.Open("user://savegame.save", FileAccess.ModeFlags.Read);
+        var jsonString = saveFile.GetLine();
+        GD.Print(jsonString);
+        var json = new Json();
+        var parseResult = json.Parse(jsonString);
+
+        if (parseResult != Error.Ok)
+        {
+            GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
+        }
+
+        
+
+        var saveData = new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)json.Data);
+
+        foreach (var (key, value) in saveData) {
+            Set(key, value);
+            GD.Print(key, " = ", value);
+            GD.Print(key, " = ", Get(key));
+        }
     }
 }
 

@@ -232,7 +232,7 @@ public partial class Butcher : Speaker
 				if(GameController.money >= 60) {
 					GameController.Instance.ChangeMoney(-60);
 					GameController.trustLevels[GameController.BUTCHER] += 0.75f;
-					GameController.steaks++;
+					GameController.Instance.steaks++;
 					if(GameController.butcherMemory[0] == 1) {
 						dialogueSet = new DialogueSet(
 							new Godot.Collections.Array{
@@ -608,7 +608,7 @@ public partial class Butcher : Speaker
 				break;
 			case 52:
 				if(GameController.money >= 60) {
-					GameController.steaks++;
+					GameController.Instance.steaks++;
 					GameController.Instance.ChangeMoney(-60);
 					dialogueSet = new DialogueSet(
 						new Godot.Collections.Array{

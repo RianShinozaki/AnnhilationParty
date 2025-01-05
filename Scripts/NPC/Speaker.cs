@@ -54,11 +54,18 @@ public partial class Speaker : Control
 					},
 					new Godot.Collections.Array{
 						"Yes",
-						"No"
+						"No",
+						"options",
+						"it depends",
+						"oscillating"
 					},
 					new Godot.Collections.Array{
 						2,
-						3
+						3,
+						4,
+						5,
+						6,
+						
 					}
 				);
 

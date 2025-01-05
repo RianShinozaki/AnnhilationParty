@@ -44,7 +44,7 @@ public partial class Occultist : Speaker
         base._Ready();
 		GameController.theSpeaker = this;
 		GameController.occultistQuestionFlags[0] = true;
-		if(GameController.steaks > 0) GameController.occultistQuestionFlags[1] = true;
+		if(GameController.Instance.steaks > 0) GameController.occultistQuestionFlags[1] = true;
 
 		if(GameController.currentTime != 1 
 			|| GameController.GetDay(GameController.currentDay) == "Monday" 
@@ -276,7 +276,7 @@ public partial class Occultist : Speaker
 						"Alright...",
 						"Now flip them over.",
 						"*The Occultist studies your reading.",
-						"The past -- Judgement. The present -- the Devil. And the future -- Hierophant, upside down.",
+						"The past -- Judgement. The present -- the Devil. And the future -- Hierophant, reversed.",
 						"Well.",
 						"You're a troubled individual, that much is clear.",
 						"You shame yourself for your past and live the present with reckless abandon.",
@@ -441,7 +441,7 @@ public partial class Occultist : Speaker
 			
 			case 110:
 				GameController.trustLevels[GameController.OCCULTER] += 1f;
-				GameController.steaks--;
+				GameController.Instance.steaks--;
 				GameController.occultistQuestionFlags[1] = false;
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
@@ -647,7 +647,7 @@ public partial class Occultist : Speaker
 				string theFortune = "...Nothing's showing up. How odd.";
 				RandomNumberGenerator rand = new RandomNumberGenerator();
 				
-				int fortune = 0;
+				float fortune = 0;
 
 				if(GameController.occultistMemory[1] > 2) {
 					fortune = rand.RandiRange(0, 2);

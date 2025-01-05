@@ -1,0 +1,24 @@
+{ "frames": [
+   {
+    "filename": "Squiggle.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 125, "h": 123 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 125, "h": 123 },
+    "sourceSize": { "w": 125, "h": 123 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "https://www.aseprite.org/",
+  "version": "1.3.10.1-x64",
+  "image": "Squiggle.png",
+  "format": "RGBA8888",
+  "size": { "w": 125, "h": 123 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "slices": [
+  ]
+ }
+}

@@ -11,7 +11,7 @@ public partial class Teacher : Speaker
 
 	public Godot.Collections.Array questionOptions = new Godot.Collections.Array{
 		"*Make light conversation with lunch.",
-		"By the way, I've got some food to donate...",
+		"By the way, I've got some ham to donate...",
 		"How long have you been working here?",
 		"What do you think about the Department for Children?",
 		"*Something odd you saw in the logs...",
@@ -319,7 +319,7 @@ public partial class Teacher : Speaker
 				dialogueSet = new DialogueSet(
 					new Godot.Collections.Array{
 						"Well, I think that ought to be enough for today. I have to run soon -- I have a night job at the public school.",
-						"Please, do come back when you find the time. As volunteers, we don't have strict schedules, but I'll always be here any day but Thursday and Saturday.",
+						"Please, do come back when you find the time. As volunteers, we don't have strict schedules, but I'll always be here any day but Thursday and Monday.",
 						"I hope I see you again!",
 						"...",
 						"*You've become acquainted with the Teacher. Time to head back."

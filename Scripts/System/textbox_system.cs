@@ -77,7 +77,7 @@ public partial class textbox_system : Control
 			nextButton.Text = "Skip";
 		}
 
-		/*if(Input.IsActionPressed("ui_right")) {
+		if(Input.IsActionPressed("ui_right")) {
 			if(dialogue.VisibleCharacters < dialogue.GetTotalCharacterCount()) {
 				visibleT = dialogue.GetTotalCharacterCount();
 				dialogue.VisibleCharacters = dialogue.GetTotalCharacterCount();
@@ -96,7 +96,7 @@ public partial class textbox_system : Control
 			idx++;
 			dialogue.Text = (string)dialogueSet.lines[idx];
 			dialogue.VisibleCharacters = 0;
-		}*/
+		}
     }
 
 	private void _on_next_button_pressed() {

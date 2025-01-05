@@ -34,7 +34,6 @@ public partial class Screen : TextureRect
         }
     }
     public void ChangeDateDisplay() {
-        GD.Print("why");
         string day = GameController.GetDay(GameController.currentDay);
         string time = GameController.currentTime == 0 ? "MORNING" : (GameController.currentTime == 1 ? "EVENING" : "NIGHTFALL");
         string date = "12    " + GameController.currentDay.ToString("D2");

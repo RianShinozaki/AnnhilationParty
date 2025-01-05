@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ctasrud4l0rp2"]
+[gd_scene load_steps=15 format=3 uid="uid://ctasrud4l0rp2"]
 
 [ext_resource type="Texture2D" uid="uid://dwb5ipa33jn6" path="res://Art Assets/Butcher/DetectiveOffice.png" id="1_sf8br"]
 [ext_resource type="PackedScene" uid="uid://bokf3bdem5cn8" path="res://Objects/pointer.tscn" id="2_t3on5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cfhqc3io1feh3" path="res://Art Assets/PaperStackTemp.png" id="4_csh88"]
 [ext_resource type="Texture2D" uid="uid://b8wf0fn3ecbiy" path="res://Art Assets/PhoneTemp.png" id="4_i4m0p"]
 [ext_resource type="Script" path="res://Scripts/NPC/Phone.cs" id="5_d3j0v"]
+[ext_resource type="Texture2D" uid="uid://bi550dwvx66x3" path="res://Art Assets/PhoneTemp.aseprite" id="5_hknw5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_btrvb"]
 size = Vector2(221, 120)
@@ -15,13 +16,13 @@ size = Vector2(221, 120)
 atlas = ExtResource("4_i4m0p")
 region = Rect2(0, 0, 131, 98)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_40oqm"]
-atlas = ExtResource("4_i4m0p")
-region = Rect2(131, 0, 131, 98)
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkui8"]
+atlas = ExtResource("5_hknw5")
+region = Rect2(756, 238, 378, 119)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_uv4m1"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dmqm"]
 atlas = ExtResource("4_i4m0p")
-region = Rect2(131, 0, 131, 98)
+region = Rect2(0, 72, 32, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xcvjr"]
 animations = [{
@@ -30,7 +31,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_f4cpn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_40oqm")
+"texture": SubResource("AtlasTexture_xkui8")
 }],
 "loop": true,
 "name": &"Ring",
@@ -38,7 +39,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_uv4m1")
+"texture": SubResource("AtlasTexture_0dmqm")
 }],
 "loop": true,
 "name": &"default",
@@ -76,6 +77,9 @@ texture = ExtResource("4_csh88")
 [node name="PhoneTemp" type="AnimatedSprite2D" parent="Area2D"]
 position = Vector2(176, -91)
 sprite_frames = SubResource("SpriteFrames_xcvjr")
+animation = &"Ring"
+frame = 1
+frame_progress = 0.0316489
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Area2D/PhoneTemp"]
 stream = ExtResource("4_agxjk")
